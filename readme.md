@@ -5,7 +5,7 @@
 ## Description
 
 TBD
-This application is built using Node.js, GraphQL, Apollo Server, MongoDB and it is using React for the front end and Redux for state management.
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
