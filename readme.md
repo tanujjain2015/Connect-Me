@@ -110,7 +110,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ## Contributing
 
-Izabela Petrovicova
+Nirupama Sundararaman, Tanuj Jain, Joshua Hartshorn, Izabela Petrovicova
 
 
 ## Questions
