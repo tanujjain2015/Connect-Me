@@ -46,6 +46,7 @@ function Signup(props) {
             onChange={handleChange}
           />
         </div>
+
         <div className="flex-row space-between my-2">
           <label htmlFor="lastName">Last Name:</label>
           <input
@@ -56,6 +57,7 @@ function Signup(props) {
             onChange={handleChange}
           />
         </div>
+
         <div className="flex-row space-between my-2">
           <label htmlFor="email">Email:</label>
           <input
@@ -66,6 +68,7 @@ function Signup(props) {
             onChange={handleChange}
           />
         </div>
+
         <div className="flex-row space-between my-2">
           <label htmlFor="pwd">Password:</label>
           <input
@@ -76,6 +79,52 @@ function Signup(props) {
             onChange={handleChange}
           />
         </div>
+
+        <div className="flex-row space-between my-2">
+          <label htmlFor="tutor">Do you wish to be a tutor?</label>
+          <input
+            value ="tutor"
+            name="tutor"
+            type="checkbox"
+            id="tutor"
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="flex-row space-between my-2">
+          <label htmlFor="locations">Choose a location</label>
+          <select id="locations" name ="locations">
+            <option value="USA">USA</option>
+            <option value="India">India</option>
+            <option value="Brazil">Brazil</option>
+            <option value="Europe">Europe</option>
+            <option value="Canada">Canada</option>
+            <option value="Mexico">Mexico</option>
+          </select>
+          <input
+            placeholder="choose your country"
+            type="locations"
+            onChange={handleChange}
+          /> 
+        </div>
+
+        <div className="flex-row space-between my-2">
+          <label htmlFor="subjcets">Pick desired Subjects</label>
+          <select id="subjects" name ="subjects" multiple>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Science">Science</option>
+            <option value="Maths">Maths</option>
+            <option value="Biology">Biology</option>
+            <option value="Geography">Geography</option>
+          </select>
+          <input
+            placeholder="choose your country"
+            type="locations"
+            onChange={handleChange}
+          /> 
+        </div>
+
+
         <div className="flex-row flex-end">
           <button type="submit">
             Submit
