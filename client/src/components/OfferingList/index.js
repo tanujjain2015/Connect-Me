@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import ProductItem from "../ProductItem";
+import OfferingItem from "../OfferingItem";
 import { QUERY_OFFERINGS } from "../../utils/queries";
 import spinner from "../../assets/spinner.gif"
 import { UPDATE_OFFERINGS } from '../../utils/actions';
@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { off } from '../../../../server/models/User';
 
 
-function ProductList() {
+function OfferingList() {
 
 
   const state = useSelector((state) => {
@@ -17,7 +17,7 @@ function ProductList() {
   });
   const dispatch = useDispatch();
 
-  const { currentCategory } = state;
+  const { currentSubject } = state;
   
   const { loading, data } = useQuery(QUERY_OFFERINGS);
 
@@ -30,9 +30,9 @@ function ProductList() {
         type: UPDATE_OFFERINGS,
         offerings: data.offerings
       });
-      // but let's also take each product and save it to IndexedDB using the helper function
-      data.offerings.forEach((product) => {
-        idbPromise('offerings', 'put', product)
+      // but let's also take each offering and save it to IndexedDB using the helper function
+      data.offerings.forEach((offering) => {
+        idbPromise('offerings', 'put', offering)
       });
 
       // add else if to check if `loading` is undefined in `useQuery()` Hook
@@ -52,11 +52,11 @@ function ProductList() {
 
   
   function filterOfferings() {
-    if (!currentCategory) {
+    if (!currentSubject) {
       return state.offerings;
     }
   
-    return state.offerings.filter(product => product.category._id === currentCategory);
+    return state.offerings.filter(offering => offering.subject._id === currentSubject);
   }
 
 
@@ -65,14 +65,14 @@ function ProductList() {
       <h2>Our Offerings:</h2>
       {offerings.length ? (
         <div className="flex-row">
-            {filterOfferings().map(product => (
-                <ProductItem
-                  key= {product._id}
-                  _id={product._id}
-                  image={product.image}
-                  name={product.name}
-                  price={product.price}
-                  quantity={product.quantity}
+            {filterOfferings().map(offering => (
+                <OfferingItem
+                  key= {offering._id}
+                  _id={offering._id}
+                  image={offering.image}
+                  name={offering.name}
+                  price={offering.price}
+                  quantity={offering.quantity}
                 />
             ))}
         </div>
@@ -85,4 +85,4 @@ function ProductList() {
   );
 }
 
-export default ProductList;
+export default OfferingList;

@@ -26,7 +26,7 @@ function Detail() {
 
   const { id } = useParams();
 
-  const [currentProduct, setCurrentProduct] = useState({});
+  const [currentOffering, setCurrentOffering] = useState({});
 
   const { loading, data } = useQuery(QUERY_OFFERINGS);
 
@@ -35,7 +35,7 @@ function Detail() {
   useEffect(() => {
     // already in global store
     if (offerings.length) {
-      setCurrentProduct(offerings.find(product => product._id === id));
+      setCurrentOffering(offerings.find(offering => offering._id === id));
     } 
     // retrieved from server
     else if (data) {
@@ -78,10 +78,10 @@ function Detail() {
     } else {
       dispatch({
         type: ADD_TO_CART,
-        product: { ...currentProduct, purchaseQuantity: 1 }
+        product: { ...currentOffering, purchaseQuantity: 1 }
       });
       // if product isn't in the cart yet, add it to the current shopping cart in IndexedDB
-      idbPromise('cart', 'put', { ...currentProduct, purchaseQuantity: 1 });
+      idbPromise('cart', 'put', { ...currentOffering, purchaseQuantity: 1 });
     }
   }
 
@@ -89,39 +89,39 @@ function Detail() {
   const removeFromCart = () => {
     dispatch({
       type: REMOVE_FROM_CART,
-      _id: currentProduct._id
+      _id: currentOffering._id
     });
   
-    // upon removal from cart, delete the item from IndexedDB using the `currentProduct._id` to locate what to remove
-    idbPromise('cart', 'delete', { ...currentProduct });
+    // upon removal from cart, delete the item from IndexedDB using the `currentOffering._id` to locate what to remove
+    idbPromise('cart', 'delete', { ...currentOffering });
   };
 
 
 
   return (
     <>
-      {currentProduct ? (
+      {currentOffering ? (
         <div className="container my-1">
           <Link to="/">
             ← Back to Home
           </Link>
 
-          <h2>{currentProduct.name}</h2>
+          <h2>{currentOffering.name}</h2>
 
           <p>
-            {currentProduct.description}
+            {currentOffering.description}
           </p>
 
           <p>
             <strong>Price:</strong>
-            ${currentProduct.price}
+            ${currentOffering.price}
             {" "}
             <button onClick={addToCart}>
               Add to cart
             </button>
 
             <button 
-            disabled={!cart.find(p => p._id === currentProduct._id)} 
+            disabled={!cart.find(p => p._id === currentOffering._id)} 
             onClick={removeFromCart}
           >
             Remove from Cart
@@ -129,8 +129,8 @@ function Detail() {
           </p>
 
           <img
-            src={`/images/${currentProduct.image}`}
-            alt={currentProduct.name}
+            src={`/images/${currentOffering.image}`}
+            alt={currentOffering.name}
           />
         </div>
       ) : null}

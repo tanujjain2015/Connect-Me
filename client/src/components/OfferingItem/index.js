@@ -5,7 +5,7 @@ import { ADD_TO_CART, UPDATE_CART_QUANTITY} from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 import { useDispatch, useSelector } from 'react-redux';
 
-function ProductItem(item) {
+function OfferingItem(item) {
 
   const state = useSelector((state) => {
     return state
@@ -30,7 +30,7 @@ function ProductItem(item) {
     } else {
       dispatch({
         type: ADD_TO_CART,
-        product: { ...item, purchaseQuantity: 1 }
+        offering: { ...item, purchaseQuantity: 1 }
       });
       idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
     }
@@ -67,4 +67,4 @@ function ProductItem(item) {
   );
 }
 
-export default ProductItem;
+export default OfferingItem;

@@ -16,7 +16,7 @@ const defaultState = {
     cart: [],
     cartOpen: false,
     subjects: [],
-    currentCategory: '',
+    currentSubject: '',
 }
 
 
@@ -40,14 +40,14 @@ const reducer = (state=defaultState, action) => {
         case UPDATE_CURRENT_SUBJECT: 
             return {
                 ...state,
-                currentCategory: action.currentCategory
+                currentSubject: action.currentSubject
             };
 
         case ADD_TO_CART: 
             return {
                 ...state,
                 cartOpen: true,
-                cart: [...state.cart, action.product]
+                cart: [...state.cart, action.offering]
             };
 
         case ADD_MULTIPLE_TO_CART:
@@ -57,8 +57,8 @@ const reducer = (state=defaultState, action) => {
             };
 
         case REMOVE_FROM_CART:
-            let newState = state.cart.filter(product => {
-                return product._id !== action._id;
+            let newState = state.cart.filter(offering => {
+                return offering._id !== action._id;
             });
             
             return {
@@ -71,12 +71,12 @@ const reducer = (state=defaultState, action) => {
             return {
                 ...state,
                 cartOpen: true,
-                cart: state.cart.map(product => {
-                    if(action._id === product._id) {
-                        product.purchaseQuantity = action.purchaseQuantity;
+                cart: state.cart.map(offering => {
+                    if(action._id === offering._id) {
+                        offering.purchaseQuantity = action.purchaseQuantity;
                     }
 
-                    return product;
+                    return offering;
                 })
             };
 

@@ -18,7 +18,7 @@ import { reducer } from '../utils/reducers';
 const initialState = {
     offerings: [],
     subjects: [{ name: 'Food'}],
-    currentCategory: '1',
+    currentSubject: '1',
     cart: [
         {
             _id: '1',
@@ -60,18 +60,18 @@ test('UPDATE_SUBJECTS', () => {
 test('UPDATE_CURRENT_SUBJECT', () => {
     let newState = reducer(initialState, {
         type: UPDATE_CURRENT_SUBJECT,
-        currentCategory: '2'
+        currentSubject: '2'
     });
 
-    expect(newState.currentCategory).toBe('2');
-    expect(initialState.currentCategory).toBe('1');
+    expect(newState.currentSubject).toBe('2');
+    expect(initialState.currentSubject).toBe('1');
 });
 
 
 test('ADD_TO_CART', () => {
     let newState = reducer(initialState, {
         type: ADD_TO_CART,
-        product: { purchaseQuantity: 1}
+        offering: { purchaseQuantity: 1}
     });
 
     expect(newState.cart.length).toBe(3);

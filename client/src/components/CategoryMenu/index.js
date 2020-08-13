@@ -26,8 +26,8 @@ function CategoryMenu() {
         subjects: categoryData.subjects
       });
 
-      categoryData.subjects.forEach(category => {
-        idbPromise('subjects', 'put', category)
+      categoryData.subjects.forEach(subject => {
+        idbPromise('subjects', 'put', subject)
       }) 
     } else if (!loading) {
       idbPromise('subjects', 'get').then(subjects => {
@@ -43,7 +43,7 @@ function CategoryMenu() {
   const handleClick = id => {
     dispatch({
       type: UPDATE_CURRENT_SUBJECT,
-      currentCategory: id
+      currentSubject: id
     });
   };
 
