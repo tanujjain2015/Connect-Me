@@ -1,8 +1,8 @@
 // import our actions 
 import {
-    UPDATE_PRODUCTS,
-    UPDATE_CATEGORIES,
-    UPDATE_CURRENT_CATEGORY,
+    UPDATE_OFFERINGS,
+    UPDATE_SUBJECTS,
+    UPDATE_CURRENT_SUBJECT,
     ADD_TO_CART,
     ADD_MULTIPLE_TO_CART,
     REMOVE_FROM_CART,
@@ -16,8 +16,8 @@ import { reducer } from '../utils/reducers';
 
 //create a sample of our global state will look like
 const initialState = {
-    products: [],
-    categories: [{ name: 'Food'}],
+    offerings: [],
+    subjects: [{ name: 'Food'}],
     currentCategory: '1',
     cart: [
         {
@@ -35,31 +35,31 @@ const initialState = {
     cartOpen: false
 }
 
-test('UPDATE_PRODUCTS', () => {
+test('UPDATE_OFFERINGS', () => {
     let newState = reducer(initialState, {
-        type: UPDATE_PRODUCTS,
-        products: [{}, {}]
+        type: UPDATE_OFFERINGS,
+        offerings: [{}, {}]
     });
 
-    expect(newState.products.length).toBe(2);
-    expect(initialState.products.length).toBe(0);
+    expect(newState.offerings.length).toBe(2);
+    expect(initialState.offerings.length).toBe(0);
 });
 
 
-test('UPDATE_CATEGORIES', () => {
+test('UPDATE_SUBJECTS', () => {
     let newState = reducer(initialState, {
-        type: UPDATE_CATEGORIES,
-        categories: [{}, {}]
+        type: UPDATE_SUBJECTS,
+        subjects: [{}, {}]
     });
 
-    expect(newState.categories.length).toBe(2);
-    expect(initialState.categories.length).toBe(1);
+    expect(newState.subjects.length).toBe(2);
+    expect(initialState.subjects.length).toBe(1);
 });
 
 
-test('UPDATE_CURRENT_CATEGORY', () => {
+test('UPDATE_CURRENT_SUBJECT', () => {
     let newState = reducer(initialState, {
-        type: UPDATE_CURRENT_CATEGORY,
+        type: UPDATE_CURRENT_SUBJECT,
         currentCategory: '2'
     });
 
@@ -82,7 +82,7 @@ test('ADD_TO_CART', () => {
 test('ADD_MULTIPLE_TO_CART', () => {
     let newState = reducer(initialState, {
       type: ADD_MULTIPLE_TO_CART,
-      products: [{}, {}]
+      offerings: [{}, {}]
     });
   
     expect(newState.cart.length).toBe(4);

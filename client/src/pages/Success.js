@@ -14,11 +14,11 @@ function Success() {
     async function saveOrder() {
 
         const cart = await idbPromise('cart', 'get');
-        const products = cart.map(item => item._id);
+        const offerings = cart.map(item => item._id);
 
-        if (products.length) {
-            const { data } = await addOrder({ variables: { products } });
-            const productData = data.addOrder.products;
+        if (offerings.length) {
+            const { data } = await addOrder({ variables: { offerings } });
+            const productData = data.addOrder.offerings;
           
             productData.forEach((item) => {
               idbPromise('cart', 'delete', item);
