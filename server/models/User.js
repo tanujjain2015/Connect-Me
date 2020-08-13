@@ -26,9 +26,13 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
-  role: {
-    type: Array,
-    default: ['Tutor', 'Student'],
+  // role: {
+  //   type: Array,
+  //   default: ['Tutor', 'Student'],
+  // },
+  tutor: { 
+    type: Boolean, 
+    default: false
   },
   bio: {
     type: String,
