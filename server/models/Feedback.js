@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const feedbackSchema = new Schema({
-  name: {
+  feedback: {
     type: String,
     required: true,
     trim: true
