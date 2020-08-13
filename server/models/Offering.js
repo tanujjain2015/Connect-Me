@@ -2,18 +2,18 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const productSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  description: {
-    type: String
-  },
-  image: {
-    type: String
-  },
+const offeringSchema = new Schema({
+  // name: {
+  //   type: String,
+  //   required: true,
+  //   trim: true
+  // },
+  // description: {
+  //   type: String
+  // },
+  // image: {
+  //   type: String
+  // },
   price: {
     type: Number,
     required: true,
@@ -24,15 +24,14 @@ const productSchema = new Schema({
     min: 0,
     default: 0
   },
-  category: {
+  subject: {
     type: Schema.Types.ObjectId,
-    ref: 'Category',
+    ref: 'Subject',
     required: true
   }
 });
 
-const Product = mongoose.model('Product', productSchema);
+const Offering = mongoose.model('Offering', offeringSchema);
 
-module.exports = Product;
+module.exports = Offering;
 
-//Offerings

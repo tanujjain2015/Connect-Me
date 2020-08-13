@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const categorySchema = new Schema({
+const subjectSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -10,9 +10,6 @@ const categorySchema = new Schema({
   }
 });
 
-const Category = mongoose.model('Category', categorySchema);
+const Subject = mongoose.model('Subject', subjectSchema);
 
-module.exports = Category;
-
-
-//repurpose for Subject
+module.exports = Subject;
