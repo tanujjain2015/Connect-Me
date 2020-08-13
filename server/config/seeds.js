@@ -1,5 +1,5 @@
 const db = require('./connection');
-const { User, Subject, Offering, Feedback } = require('../models');
+const { User, Subject, Offering, Feedback, Order } = require('../models');
 
 db.once('open', async () => {
   //Feedback Seeds
@@ -108,6 +108,25 @@ db.once('open', async () => {
 
   console.log('offerings seeded');
 
+  //Order Seeds
+  await Order.deleteMany();
+
+  const orders = await Order.insertMany([
+    {
+      purchaseDate: '',
+      offerings: [ //need to change the name in the schema
+        {
+          offerings: [offerings[0]._id, offerings[1]._id]
+        }
+      ]
+    }
+  ]);
+
+  console.log('orders seeded');
+
+
+
+//User seeds
   await User.deleteMany();
 
   await User.create({
@@ -115,7 +134,7 @@ db.once('open', async () => {
     lastName: 'Washington',
     email: 'pamela@testmail.com',
     password: 'password12345',
-    orders: [
+    orders: [ //need to change the name in the schema
       {
         // products: [products[0]._id, products[0]._id, products[1]._id]
       }
