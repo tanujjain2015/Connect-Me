@@ -6,11 +6,11 @@ db.once('open', async () => {
   await Feedback.deleteMany();
 
   const feedbacks = await Feedback.insertMany([
-    { feedback: '' },
-    { feedback: '' },
-    { feedback: '' },
-    { feedback: '' },
-    { feedback: '' }
+    { feedback: 'This is feedback 1' },
+    { feedback: 'This is feedback 2' },
+    { feedback: 'This is feedback 3' },
+    { feedback: 'This is feedback 4' },
+    { feedback: 'This is feedback 5' }
   ]);
 
   console.log('feedback seeded');
@@ -40,7 +40,7 @@ db.once('open', async () => {
     },
     {
       name: '',
-      price: 90.00,
+      price: 110.00,
       quantity: 1,
       subject: subjects[1]._id
     },
@@ -134,18 +134,39 @@ db.once('open', async () => {
     lastName: 'Washington',
     email: 'pamela@testmail.com',
     password: 'password12345',
-    orders: [ //need to change the name in the schema
+    tutor: true,
+    bio: "filling it up for time being",
+    image: "TBD",
+    location: "USA",
+    timezone: "UTC",
+    // orders: [ //need to change the name in the schema
+    //   {
+    //     // products: [products[0]._id, products[0]._id, products[1]._id]
+    //   }
+    // ],
+    feedback: [
       {
-        // products: [products[0]._id, products[0]._id, products[1]._id]
+        feedbacks: [feedbacks[0]._id, feedbacks[3]._id]
       }
     ]
+
   });
 
   await User.create({
     firstName: 'Elijah',
     lastName: 'Holt',
     email: 'eholt@testmail.com',
-    password: 'password12345'
+    password: 'password12345',
+    tutor: false,
+    bio: "filling it up for time being",
+    image: "TBD",
+    location: "Brazil",
+    timezone: "UTC + 3",
+    orders: [ //need to change the name in the schema
+      {
+        // products: [products[0]._id, products[0]._id, products[1]._id]
+      }
+    ],
   });
 
   console.log('users seeded');
