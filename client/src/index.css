@@ -1,7 +1,15 @@
 :root {
-  --primary: #232F3E;
-  --secondary: #F3A847;
-  --tertiary: #B12704;
+  --primary: white;
+  --secondary: #8cb369;
+  --tertiary: #f4e285;
+  --quaternary: #5b8e7d;
+  --quinary: #f4a259;
+  --senary: #bc4b51;
+  --septenary: #003049;
+  --octonary: #d62828;
+  --nonary: #f77f00;
+  --denary: #fcbf49;
+  --pink: #e39695;
   --light: #fafafa;
   --dark: #272f32;
   --error: rgb(228, 46, 1);
