@@ -64,11 +64,11 @@ const resolvers = {
         // generate offering id
         const offering = await stripe.offerings.create({
           name: offering[i].name,
-          // description: products[i].description,
-          // images: [`${url}/images/${products[i].image}`]
+          // description: offerings[i].description,
+          // images: [`${url}/images/${offerings[i].image}`]
         });
 
-        // generate price id using the product id
+        // generate price id using the offering id
         const price = await stripe.prices.create({
           offering: offering.id,
           unit_amount: offerings[i].price * 100,

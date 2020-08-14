@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_CATEGORIES } from "../../utils/queries";
-import {UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY} from '../../utils/actions';
+import { QUERY_SUBJECTS } from "../../utils/queries";
+import {UPDATE_SUBJECTS, UPDATE_CURRENT_SUBJECT} from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -12,28 +12,28 @@ function CategoryMenu() {
   });
   const dispatch = useDispatch();
 
-  const { categories } = state;
-  const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
+  const { subjects } = state;
+  const { loading, data: categoryData } = useQuery(QUERY_SUBJECTS);
 
 
   useEffect(() => {
     //if categoryData exists or has changed from the response of useQuery, then run dispatch()
 
     if(categoryData) {
-      //execute our dispatch function with our action object indicating the type of action and the data to set our state for categories to
+      //execute our dispatch function with our action object indicating the type of action and the data to set our state for subjects to
       dispatch({
-        type: UPDATE_CATEGORIES,
-        categories: categoryData.categories
+        type: UPDATE_SUBJECTS,
+        subjects: categoryData.subjects
       });
 
-      categoryData.categories.forEach(category => {
-        idbPromise('subjects', 'put', category)
+      categoryData.subjects.forEach(subject => {
+        idbPromise('subjects', 'put', subject)
       }) 
     } else if (!loading) {
-      idbPromise('subjects', 'get').then(categories => {
+      idbPromise('subjects', 'get').then(subjects => {
         dispatch({
-          type: UPDATE_CATEGORIES,
-          categories: categories
+          type: UPDATE_SUBJECTS,
+          subjects: subjects
         })
       })
     }
@@ -42,15 +42,15 @@ function CategoryMenu() {
 
   const handleClick = id => {
     dispatch({
-      type: UPDATE_CURRENT_CATEGORY,
-      currentCategory: id
+      type: UPDATE_CURRENT_SUBJECT,
+      currentSubject: id
     });
   };
 
   return (
     <div>
-      <h2>Choose a Category:</h2>
-      {categories.map(item => (
+      <h2>Choose a Subject:</h2>
+      {subjects.map(item => (
         <button
           key={item._id}
           onClick={() => {
