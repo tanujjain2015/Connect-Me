@@ -57,6 +57,12 @@ const resolvers = {
     offering: async (parent, { _id }) => {
       return await Offering.findById(_id).populate('subject');
     },
+
+    //Retrieve offering by userID
+    offeringbyUserID: async (parent, { userid }, context) => {
+      return await Offering.find({userid: userid}).populate('subject');
+    },
+    
   
     order: async (parent, { _id }, context) => {
       if (context.user) {
@@ -112,6 +118,7 @@ const resolvers = {
 
     }
   },
+  
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);

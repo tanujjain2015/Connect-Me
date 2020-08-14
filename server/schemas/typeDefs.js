@@ -56,6 +56,7 @@ const typeDefs = gql`
     subjects: [Subject]
     offerings(subject: ID, name: String): [Offering]
     offering(_id: ID!): Offering 
+    offeringbyUserID(userid: String!): Offering 
     feedback: Feedback
     order(_id: ID!): Order
     checkout(offerings: [ID]!): Checkout
