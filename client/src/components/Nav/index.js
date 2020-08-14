@@ -1,6 +1,8 @@
 import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
+// import { MDBCol, MDBIcon } from "mdbreact";
+
 
 function Nav() {
 
@@ -9,8 +11,13 @@ function Nav() {
       return (
         <ul className="flex-row">
           <li className="mx-1">
-            <Link to="/orderHistory">
-              Order History
+            <Link to="/mySchedule">
+              My Schedule
+            </Link>
+          </li>
+          <li className="mx-1">
+            <Link to="/mySchedule">
+              My Profile
             </Link>
           </li>
           <li className="mx-1">
@@ -24,6 +31,11 @@ function Nav() {
     } else {
       return (
         <ul className="flex-row">
+          <li className="mx-1">
+            <Link to="/tutorsignup">
+              Tutor on Connnect Me
+            </Link>
+          </li>
           <li className="mx-1">
             <Link to="/signup">
               Signup
@@ -43,8 +55,8 @@ function Nav() {
     <header className="flex-row px-1">
       <h1>
         <Link to="/">
-          <span role="img" aria-label="shopping bag">🛍</span>
-          -Connect-Me
+          {/* <span role="img" aria-label="shopping bag">🛍</span> */}
+          Connect Me
         </Link>
       </h1>
 
