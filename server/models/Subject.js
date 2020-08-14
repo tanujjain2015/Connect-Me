@@ -5,8 +5,8 @@ const { Schema } = mongoose;
 const subjectSchema = new Schema({
   subject: {
     type: String,
-    required: true,
-    trim: true
+    required: true
+    //trim: true
   }
 });
 

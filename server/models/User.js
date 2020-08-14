@@ -36,7 +36,7 @@ const userSchema = new Schema({
   },
   bio: {
     type: String,
-    required: true,
+    required: false,
     minlength: 10
   },
   image: {
@@ -44,11 +44,11 @@ const userSchema = new Schema({
   },
   location: {
     type: String,
-    required: true
+    required: false
   },
   timezone: {
     type: String,
-    required: true
+    required: false
   },
   orders: [Order.schema],
   feedback: [Feedback.schema],

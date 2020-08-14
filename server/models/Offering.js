@@ -28,6 +28,10 @@ const offeringSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Subject',
     required: true
+  },
+  userid: {
+    type: String,
+    required: false
   }
 });
 
