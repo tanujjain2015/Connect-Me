@@ -73,7 +73,7 @@ const Profile = () => {
         //     <button type="submit" classNameNameNameName = "btn btn-primary"><FaEdit/></button>
         // </form>
 
-            <form className = "mx-auto my-5">
+            <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark">
                 <div className = "form-row">
                     <div className = "form-group col-md-6">
                         <label htmlFor = "firstName">First Name</label>
@@ -93,7 +93,7 @@ const Profile = () => {
 
                 <div className = "form-group">
                     <label htmlFor="bio">About Me</label>
-                    <textarea type = "text" className = "form-control border border-info" id = "bio" value = "This should include the users bio once the user enters informations about them" rows = "4" />
+                    <textarea type = "text" className = "form-control border border-info" id = "bio" value = "This should include the users bio once the user enters information about them" rows = "4" />
                 </div>
 
                 <button type="submit" className = "btn btn-primary ml-auto"><FaEdit/></button>
