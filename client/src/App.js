@@ -19,6 +19,10 @@ import store from './redux/store';
 //Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// const client = new ApolloClient({
+//   uri: 'http://localhost:3001/graphql'
+// });
+
 const client = new ApolloClient({
   request: (operation) => {
     const token = localStorage.getItem('id_token')
@@ -28,7 +32,8 @@ const client = new ApolloClient({
       }
     })
   },
-  uri: 'http://localhost:3001/graphql',
+  // uri: 'http://localhost:3001/graphql',
+  uri: '/graphql',
 })
 
 
