@@ -2,11 +2,12 @@ import React from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import { QUERY_PROFILE, QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
-import Preview from '../assets/preview.jpg'
+//import Preview from '../assets/preview.jpg'
+import { Link } from "react-router-dom";
 import { useQuery } from '@apollo/react-hooks';
 
 //Icons
-import { FaEdit, FaSave } from "react-icons/fa";
+import { FaEdit, FaHome } from "react-icons/fa";
 
 //Bootstarp imports
 //import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
@@ -96,7 +97,8 @@ const Profile = () => {
                     <textarea type = "text" className = "form-control border border-info" id = "bio" value = "This should include the users bio once the user enters information about them" rows = "4" />
                 </div>
 
-                <button type="submit" className = "btn btn-primary ml-auto"><FaEdit/></button>
+                <button type="submit" className = "btn btn-light ml-auto"><Link to="/editProfile">Edit</Link> <FaEdit/></button>
+                <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link><FaHome/></button>
             </form>
    
     )
