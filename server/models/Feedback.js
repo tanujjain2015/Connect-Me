@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const feedbackSchema = new Schema({
   feedback: {
     type: String,
-    required: true,
+    //required: true,
     trim: true
   }
 });
