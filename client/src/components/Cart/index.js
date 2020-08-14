@@ -27,7 +27,7 @@ const Cart = () => {
             const cart = await idbPromise('cart', 'get');
             dispatch({
                 type: ADD_MULTIPLE_TO_CART,
-                products: [...cart]
+                offerings: [...cart]
             })
         };
 
@@ -62,7 +62,7 @@ const Cart = () => {
         })
 
         getCheckout({
-            variables: {products: productIds}
+            variables: {offerings: productIds}
         })
     }
 
