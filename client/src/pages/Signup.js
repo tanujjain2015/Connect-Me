@@ -7,15 +7,18 @@ import { ADD_USER } from "../utils/mutations";
 //import ImageUploader from 'react-images-upload';
 
 function Signup(props) {
-  const [formState, setFormState] = useState({ email: '', password: '' });
-  const [addUser] = useMutation(ADD_USER);
+  const [formState, setFormState] = useState({ firstName: '', lastName: '',email: '', password: '' });
+  const [addUser, {error : mutationError}] = useMutation(ADD_USER);
+  console.log(mutationError);
+  
 
   const handleFormSubmit = async event => {
     event.preventDefault();
     const mutationResponse = await addUser({
       variables: {
+        firstName: formState.firstName, lastName: formState.lastName,
         email: formState.email, password: formState.password,
-        firstName: formState.firstName, lastName: formState.lastName
+        
       }
     });
     const token = mutationResponse.data.addUser.token;
