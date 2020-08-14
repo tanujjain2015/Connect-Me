@@ -7,10 +7,10 @@ const orderSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  products: [
+  offerings: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Product'
+      ref: 'Offering'
     }
   ]
 });
@@ -18,3 +18,5 @@ const orderSchema = new Schema({
 const Order = mongoose.model('Order', orderSchema);
 
 module.exports = Order;
+
+//remains as is

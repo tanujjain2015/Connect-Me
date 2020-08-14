@@ -1,25 +1,34 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type Category {
+
+  # type File {
+  #     filename: String!
+  #     mimetype: String!
+  #     encoding: String!
+  #   }
+
+
+  type Subject {
     _id: ID
-    name: String
+    subject: String
   }
 
-  type Product {
+  type Offering {
     _id: ID
-    name: String
-    description: String
-    image: String
+    # name: String
+    # description: String
+    # image: String
     quantity: Int
     price: Float
-    category: Category
+    subject: Subject
+    userid: String
   }
 
   type Order {
     _id: ID
     purchaseDate: String
-    products: [Product]
+    offerings: [Offering]
   }
 
   type User {
@@ -27,7 +36,22 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
+    password: String
+    role: String
+    tutor: Boolean
+    bio: String
+    profileImg: String
+    location: String
+    timezone: String
     orders: [Order]
+    feedback: [Feedback]
+  }
+
+  type Feedback {
+    _id: ID
+    feedback: String,
+    createdAt: String,
+    userId: String
   }
 
   type Auth {
@@ -36,20 +60,35 @@ const typeDefs = gql`
   }
 
   type Query {
-    categories: [Category]
-    products(category: ID, name: String): [Product]
-    product(_id: ID!): Product
-    user: User
+    me: User
+    users: [User]
+    user(email: String!): User
+    subjects: [Subject]
+    offerings(subject: ID, name: String): [Offering]
+    offering(_id: ID!): Offering 
+    offeringbyUserID(userid: String!): Offering 
+    feedback: Feedback
     order(_id: ID!): Order
-    checkout(products: [ID]!): Checkout
+    checkout(offerings: [ID]!): Checkout
   }
 
   type Mutation {
+    # singleUpload(file: Upload!): File!
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    addSubject(subject: String!): Subject
+    removeSubject(_id: ID!): Subject 
     addOrder(products: [ID]!): Order
     updateUser(firstName: String, lastName: String, email: String, password: String): User
-    updateProduct(_id: ID!, quantity: Int!): Product
+    addOffering(input: OfferingDetails) : Offering
+    updateOffering(_id: ID!, quantity: Int!): Offering
     login(email: String!, password: String!): Auth
+  }
+
+  input OfferingDetails {
+    subjectId: ID
+    quantity: Int
+    price: Float
+    userid: String
   }
 
   type Checkout {

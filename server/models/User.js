@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
 const Order = require('./Order');
+const Feedback = require('./Feedback');
 
 const userSchema = new Schema({
   firstName: {
@@ -18,14 +19,40 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    match: [/.+@.+\..+/, 'Must match an email address!']
   },
   password: {
     type: String,
     required: true,
     minlength: 5
   },
-  orders: [Order.schema]
+  // role: {
+  //   type: Array,
+  //   default: ['Tutor', 'Student'],
+  // },
+  tutor: { 
+    type: Boolean, 
+    default: false
+  },
+  bio: {
+    type: String,
+    required: false,
+    minlength: 10
+  },
+  profileImg: {
+    type: String,
+  },
+  location: {
+    type: String,
+    required: false
+  },
+  timezone: {
+    type: String,
+    required: false
+  },
+  orders: [Order.schema],
+  feedback: [Feedback.schema],
 });
 
 // set up pre-save middleware to create password
