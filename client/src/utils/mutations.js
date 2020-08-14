@@ -43,6 +43,30 @@ export const ADD_USER = gql`
 `;
 
 
-
-
-
+export const UPDATE_USER = gql`
+    mutation updateUser(
+        $input: userDetails
+    ) {
+      updateUser(
+        input: $input
+        ) {
+          _id
+          firstName
+          lastName
+          email
+          password
+          role
+          tutor
+          bio
+          image
+          location
+          timezone
+          orders {
+            _id
+          }
+          feedback {
+            _id
+          }
+        }
+    }
+`;
