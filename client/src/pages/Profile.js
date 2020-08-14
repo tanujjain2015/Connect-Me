@@ -2,11 +2,12 @@ import React from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import { QUERY_PROFILE, QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
-import Preview from '../assets/preview.jpg'
+//import Preview from '../assets/preview.jpg'
+import { Link } from "react-router-dom";
 import { useQuery } from '@apollo/react-hooks';
 
 //Icons
-import { FaEdit, FaSave } from "react-icons/fa";
+import { FaEdit, FaHome } from "react-icons/fa";
 
 //Bootstarp imports
 //import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
@@ -40,49 +41,65 @@ const Profile = () => {
     }
 
     return (
-     <>
-        <div className ="card mx-auto my-5" style={{width: '18rem'}}>
-            <img className = "card-img-top" src = "../assets/preview1.jpg"  alt ="Card Image Top" />
-            <div className = "card-body">
-                <h5 className = "card-title"> Viweing Your Profile </h5>
-                <p className = "card-text">About Me {user.bio}</p>
-            </div>
+     
+        // <form classNameNameNameName = "mx-5 my-5">
+        //     <div classNameNameNameName = "form-group row">
+        //         <label htmlFor="firstName"classNameNameNameName = "col-sm-2 col-form-label">First Name:</label>
+        //         <div classNameNameNameName = "col-sm-10">
+        //             <input type="text"  classNameNameNameName="form-control-plaintext" id="firstName" value = {user.firstName}/>
+        //         </div>
+        //     </div>
 
-            <ul className = "list-group list-group-flush">
-                <li className = "list-group-item">First Name : {user.firstName}</li>
-                <li className = "list-group-item">Last Name: {user.lastName}</li>
-                <li className = "list-group-item">Email: {user.email}</li>
-            </ul>
+        //     <div classNameNameNameName = "form-group row">
+        //         <label htmlFor="lastName"classNameNameNameName = "col-sm-2 col-form-label">Last Name:</label>
+        //         <div classNameNameNameName = "col-sm-10">
+        //             <input htmltype="text"  classNameNameNameName="form-control-plaintext" id="lastName" value = {user.lastName} />
+        //         </div>
+        //     </div>
 
-            <div className = "card-body">
-                <a href ="#" className="card-link"> <FaEdit/></a>
-                <a href="#" className ="card-link"><FaSave/></a>
-            </div>
- 
-            
-            {/* <Card style={{ width: '18rem' }}>
-             <Card.Img variant="top" src="#" />
-                 <Card.Body>
-                    <Card.Title>Viewing {userParam ? `${user.firstName}'s` : 'your'} profile </Card.Title>
-                    <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk of
-                     the card's content.
-                     </Card.Text>
-                 </Card.Body>
-            <ListGroup className="list-group-flush">
-                <ListGroupItem>Cras justo odio</ListGroupItem>
-                 <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-                    <ListGroupItem>Vestibulum at eros</ListGroupItem>
-             </ListGroup>
-            <Card.Body>
-                <Card.Link href="#">Card Link</Card.Link>
-                 <Card.Link href="#">Another Link</Card.Link>
-            </Card.Body>
-         </Card> */}
-        </div>
-    </>
-    
-       
+        //     <div classNameNameNameName = "form-group row">
+        //         <label htmlFor="email"classNameNameNameName = "col-sm-2 col-form-label">Email:</label>
+        //         <div classNameNameNameName = "col-sm-10">
+        //             <input htmltype="text"  classNameNameNameName="form-control-plaintext" id="email" value = {user.email} />
+        //         </div>
+        //     </div>
+
+        //     <div classNameNameNameName = "form-group row">
+        //         <label htmlFor="firstName"classNameNameNameName = "col-sm-2 col-form-label">About Me:</label>
+        //         <div classNameNameNameName = "col-sm-10">
+        //             <textarea htmltype="text" classNameNameNameName="md-textarea form-control" rows="3" id="bio">{user.bio}</textarea>
+        //         </div>
+        //     </div>
+
+        //     <button type="submit" classNameNameNameName = "btn btn-primary"><FaEdit/></button>
+        // </form>
+
+            <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark">
+                <div className = "form-row">
+                    <div className = "form-group col-md-6">
+                        <label htmlFor = "firstName">First Name</label>
+                        <input type = "text" class="form-control border border-info" id = "firstName" value = {user.firstName} />
+                    </div>
+
+                    <div className = "form-group col-md-6">
+                        <label htmlFor = "lastName">Last Name</label>
+                        <input  type = "text" class="form-control border border-info" id = "lastName" value = {user.lastName} />
+                    </div>
+                </div>
+
+                <div className = "form-group">
+                    <label htmlFor="email">Email</label>
+                    <input type = "text" className = "form-control border border-info" id = "email" value = {user.email} />
+                </div>
+
+                <div className = "form-group">
+                    <label htmlFor="bio">About Me</label>
+                    <textarea type = "text" className = "form-control border border-info" id = "bio" value = "This should include the users bio once the user enters information about them" rows = "4" />
+                </div>
+
+                <button type="submit" className = "btn btn-light ml-auto"><Link to="/editProfile">Edit</Link> <FaEdit/></button>
+                <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link><FaHome/></button>
+            </form>
    
     )
 }
