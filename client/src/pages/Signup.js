@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/react-hooks';
 import Auth from "../utils/auth";
 import { ADD_USER } from "../utils/mutations";
+import ImageUpload from "../components/ImageUpload";
 
-//import ImageUploader from 'react-images-upload';
+
 
 function Signup(props) {
   const [formState, setFormState] = useState({ email: '', password: ''});
@@ -30,6 +31,8 @@ function Signup(props) {
       [name]: value
     });
   };
+
+
 
   //Image upload ===============================================================
   
@@ -139,6 +142,14 @@ function Signup(props) {
                 maxFileSize={5242880}
             />
         </div> */}
+
+        <div className="">
+          <ImageUpload>
+
+          </ImageUpload>
+        </div>
+
+        
 
         <div className="flex-row flex-end">
           <button type="submit">
