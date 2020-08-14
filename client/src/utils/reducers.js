@@ -1,7 +1,7 @@
 import {
-    UPDATE_PRODUCTS,
-    UPDATE_CATEGORIES,
-    UPDATE_CURRENT_CATEGORY,
+    UPDATE_OFFERINGS,
+    UPDATE_SUBJECTS,
+    UPDATE_CURRENT_SUBJECT,
     ADD_TO_CART,
     ADD_MULTIPLE_TO_CART,
     REMOVE_FROM_CART,
@@ -12,53 +12,53 @@ import {
 
 
 const defaultState = {
-    products: [],
+    offerings: [],
     cart: [],
     cartOpen: false,
-    categories: [],
-    currentCategory: '',
+    subjects: [],
+    currentSubject: '',
 }
 
 
 
 const reducer = (state=defaultState, action) => {
     switch (action.type) {
-        //if action type value is the value of 'UPDATE_PRODUCTS', return a new state object with an updated products array 
-        case UPDATE_PRODUCTS:
+        //if action type value is the value of 'UPDATE_OFFERINGS', return a new state object with an updated offerings array 
+        case UPDATE_OFFERINGS:
             return {
                 ...state,
-                products: [...action.products]
+                offerings: [...action.offerings]
             };
 
-            //if action type value is value of 'UPDATE_CATEGORIES', return a new state object with an updated categories array
-        case UPDATE_CATEGORIES:
+            //if action type value is value of 'UPDATE_SUBJECTS', return a new state object with an updated subjects array
+        case UPDATE_SUBJECTS:
             return {
                 ...state,
-                categories: [...action.categories]
+                subjects: [...action.subjects]
             };
         
-        case UPDATE_CURRENT_CATEGORY: 
+        case UPDATE_CURRENT_SUBJECT: 
             return {
                 ...state,
-                currentCategory: action.currentCategory
+                currentSubject: action.currentSubject
             };
 
         case ADD_TO_CART: 
             return {
                 ...state,
                 cartOpen: true,
-                cart: [...state.cart, action.product]
+                cart: [...state.cart, action.offering]
             };
 
         case ADD_MULTIPLE_TO_CART:
             return {
                 ...state,
-                cart: [...state.cart, ...action.products]
+                cart: [...state.cart, ...action.offerings]
             };
 
         case REMOVE_FROM_CART:
-            let newState = state.cart.filter(product => {
-                return product._id !== action._id;
+            let newState = state.cart.filter(offering => {
+                return offering._id !== action._id;
             });
             
             return {
@@ -71,12 +71,12 @@ const reducer = (state=defaultState, action) => {
             return {
                 ...state,
                 cartOpen: true,
-                cart: state.cart.map(product => {
-                    if(action._id === product._id) {
-                        product.purchaseQuantity = action.purchaseQuantity;
+                cart: state.cart.map(offering => {
+                    if(action._id === offering._id) {
+                        offering.purchaseQuantity = action.purchaseQuantity;
                     }
 
-                    return product;
+                    return offering;
                 })
             };
 
