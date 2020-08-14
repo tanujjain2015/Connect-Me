@@ -90,3 +90,41 @@ export const QUERY_CHECKOUT = gql`
     }
   }
 `;
+
+//QUERY_ME
+export const QUERY_ME = gql`
+  {
+    me {
+      _id
+      firstName
+      lastName
+      email
+      tutor
+      bio
+      image
+      # orders {
+      #   _id
+      #   purchaseDate
+      # }
+    }
+  }
+`;
+
+//query user for myprofile
+export const QUERY_PROFILE = gql`
+query user($email: String!) {
+  user(email: $email) {
+    _id
+    firstName
+    lastName
+    email
+    tutor
+    bio
+    image
+    # orders {
+    #   _id
+    #   purchaseDate
+    # }
+  }
+}
+`;
