@@ -3,14 +3,21 @@ import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/react-hooks';
 import Auth from "../utils/auth";
 import { ADD_USER } from "../utils/mutations";
+import ImageUpload from "../components/ImageUpload";
 
-//import ImageUploader from 'react-images-upload';
+
 
 function Signup(props) {
+<<<<<<< HEAD
   const [formState, setFormState] = useState({ firstName: '', lastName: '',email: '', password: '' });
   const [addUser, {error : mutationError}] = useMutation(ADD_USER);
   console.log(mutationError);
   
+=======
+  const [formState, setFormState] = useState({ email: '', password: ''});
+  const [addUser] = useMutation(ADD_USER);
+  //console.log(addUser);
+>>>>>>> 0acb02124f7e2c4d49ed90fa9e17aaad06c60188
 
   const handleFormSubmit = async event => {
     event.preventDefault();
@@ -32,6 +39,8 @@ function Signup(props) {
       [name]: value
     });
   };
+
+
 
   //Image upload ===============================================================
   
@@ -88,7 +97,7 @@ function Signup(props) {
           />
         </div>
 
-        <div className="flex-row space-between my-2">
+        {/* <div className="flex-row space-between my-2">
           <label htmlFor="tutor">Do you wish to be a tutor?</label>
           <input
             value ="tutor"
@@ -97,9 +106,9 @@ function Signup(props) {
             id="tutor"
             onChange={handleChange}
           />
-        </div>
+        </div> */}
 
-        <div className="flex-row space-between my-2">
+        {/* <div className="flex-row space-between my-2">
           <label htmlFor="locations">Choose a location</label>
           <select id="locations" name ="locations" onChange={handleChange}>
             <option value="USA">USA</option>
@@ -108,15 +117,15 @@ function Signup(props) {
             <option value="Europe">Europe</option>
             <option value="Canada">Canada</option>
             <option value="Mexico">Mexico</option>
-          </select>
+          </select> */}
           {/* <input
             // placeholder="choose your country"
             // type="locations"
             onChange={handleChange}
           />  */}
-        </div>
+        {/* </div> */}
 
-        <div className="flex-row space-between my-2">
+        {/* <div className="flex-row space-between my-2">
           <label htmlFor="subjcets">Pick desired Subjects</label>
           <select id="subjects" name ="subjects" multiple onChange={handleChange}>
             <option value="Computer Science">Computer Science</option>
@@ -124,13 +133,13 @@ function Signup(props) {
             <option value="Maths">Maths</option>
             <option value="Biology">Biology</option>
             <option value="Geography">Geography</option>
-          </select>
+          </select> */}
           {/* <input
             placeholder="choose your country"
             type="locations"
             onChange={handleChange}
           />  */}
-        </div>
+        {/* </div> */}
 
         {/* <div className = "flex-row flex-end">
         <ImageUploader
@@ -141,6 +150,14 @@ function Signup(props) {
                 maxFileSize={5242880}
             />
         </div> */}
+
+        <div className="">
+          <ImageUpload>
+
+          </ImageUpload>
+        </div>
+
+        
 
         <div className="flex-row flex-end">
           <button type="submit">
@@ -154,3 +171,6 @@ function Signup(props) {
 }
 
 export default Signup;
+
+
+

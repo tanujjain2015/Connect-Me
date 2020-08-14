@@ -16,7 +16,7 @@ function Nav() {
             </Link>
           </li>
           <li className="mx-1">
-            <Link to="/mySchedule">
+            <Link to="/profile">
               My Profile
             </Link>
           </li>
