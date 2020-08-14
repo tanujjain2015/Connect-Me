@@ -11,7 +11,7 @@ function Nav() {
       return (
         <ul className="flex-row">
           <li className="mx-1">
-            <Link to="/mySchedule">
+            <Link to="/myschedule">
               My Schedule
             </Link>
           </li>
@@ -32,9 +32,9 @@ function Nav() {
       return (
         <ul className="flex-row">
           <li className="mx-1">
-            <Link to="/tutorsignup">
+            {/* <Link to="/tutorsignup">
               Tutor on Connnect Me
-            </Link>
+            </Link> */}
           </li>
           <li className="mx-1">
             <Link to="/signup">
