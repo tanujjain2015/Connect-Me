@@ -4,6 +4,8 @@ import { useMutation } from '@apollo/react-hooks';
 import Auth from "../utils/auth";
 import { ADD_USER } from "../utils/mutations";
 
+//import ImageUploader from 'react-images-upload';
+
 function Signup(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [addUser] = useMutation(ADD_USER);
@@ -28,6 +30,9 @@ function Signup(props) {
     });
   };
 
+  //Image upload ===============================================================
+  
+
   return (
     <div className="container my-1">
       <Link to="/login">
@@ -46,6 +51,7 @@ function Signup(props) {
             onChange={handleChange}
           />
         </div>
+
         <div className="flex-row space-between my-2">
           <label htmlFor="lastName">Last Name:</label>
           <input
@@ -56,6 +62,7 @@ function Signup(props) {
             onChange={handleChange}
           />
         </div>
+
         <div className="flex-row space-between my-2">
           <label htmlFor="email">Email:</label>
           <input
@@ -66,6 +73,7 @@ function Signup(props) {
             onChange={handleChange}
           />
         </div>
+
         <div className="flex-row space-between my-2">
           <label htmlFor="pwd">Password:</label>
           <input
@@ -76,6 +84,61 @@ function Signup(props) {
             onChange={handleChange}
           />
         </div>
+
+        <div className="flex-row space-between my-2">
+          <label htmlFor="tutor">Do you wish to be a tutor?</label>
+          <input
+            value ="tutor"
+            name="tutor"
+            type="checkbox"
+            id="tutor"
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="flex-row space-between my-2">
+          <label htmlFor="locations">Choose a location</label>
+          <select id="locations" name ="locations" onChange={handleChange}>
+            <option value="USA">USA</option>
+            <option value="India">India</option>
+            <option value="Brazil">Brazil</option>
+            <option value="Europe">Europe</option>
+            <option value="Canada">Canada</option>
+            <option value="Mexico">Mexico</option>
+          </select>
+          {/* <input
+            // placeholder="choose your country"
+            // type="locations"
+            onChange={handleChange}
+          />  */}
+        </div>
+
+        <div className="flex-row space-between my-2">
+          <label htmlFor="subjcets">Pick desired Subjects</label>
+          <select id="subjects" name ="subjects" multiple onChange={handleChange}>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Science">Science</option>
+            <option value="Maths">Maths</option>
+            <option value="Biology">Biology</option>
+            <option value="Geography">Geography</option>
+          </select>
+          {/* <input
+            placeholder="choose your country"
+            type="locations"
+            onChange={handleChange}
+          />  */}
+        </div>
+
+        {/* <div className = "flex-row flex-end">
+        <ImageUploader
+                withIcon={true}
+                buttonText='Choose images'
+                onChange={this.onDrop}
+                imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                maxFileSize={5242880}
+            />
+        </div> */}
+
         <div className="flex-row flex-end">
           <button type="submit">
             Submit
