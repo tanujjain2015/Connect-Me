@@ -4,6 +4,8 @@ import { useMutation } from '@apollo/react-hooks';
 import Auth from "../utils/auth";
 import { ADD_USER } from "../utils/mutations";
 
+//import ImageUploader from 'react-images-upload';
+
 function Signup(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [addUser] = useMutation(ADD_USER);
@@ -27,6 +29,9 @@ function Signup(props) {
       [name]: value
     });
   };
+
+  //Image upload ===============================================================
+  
 
   return (
     <div className="container my-1">
@@ -124,6 +129,15 @@ function Signup(props) {
           />  */}
         </div>
 
+        {/* <div className = "flex-row flex-end">
+        <ImageUploader
+                withIcon={true}
+                buttonText='Choose images'
+                onChange={this.onDrop}
+                imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                maxFileSize={5242880}
+            />
+        </div> */}
 
         <div className="flex-row flex-end">
           <button type="submit">
