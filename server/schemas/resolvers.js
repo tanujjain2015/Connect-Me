@@ -5,6 +5,37 @@ const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc'); //replace 
 
 const resolvers = {
   Query: {
+    me: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id })
+          .select('-__v -password')
+          .populate('User');
+    
+        return userData;
+      }
+    
+      throw new AuthenticationError('Not logged in');
+    },
+        // get all users
+    users: async () => {
+      return User.find()
+        .select('-__v -password')
+        .populate('User');
+    },
+    user: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate({
+          path: 'orders.offerings',
+          populate: 'subject'
+        });
+
+        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+
+        return user;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
     subjects: async () => {
       return await Subject.find();
     },
@@ -26,20 +57,7 @@ const resolvers = {
     offering: async (parent, { _id }) => {
       return await Offering.findById(_id).populate('subject');
     },
-    user: async (parent, args, context) => {
-      if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: 'orders.offerings',
-          populate: 'subject'
-        });
-
-        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
-
-        return user;
-      }
-
-      throw new AuthenticationError('Not logged in');
-    },
+  
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
@@ -93,9 +111,6 @@ const resolvers = {
       return { session: session.id}
 
     }
-
-
-
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -104,6 +119,44 @@ const resolvers = {
 
       return { token, user };
     },
+    addSubject: async (parent, args, context) => {
+      //console.log(context.user.tutor)
+      console.log(args);
+      console.log(context.user);
+      if (context.user ) {
+        const subject = await Subject.create(args);
+        console.log(subject);
+        return subject;
+      }
+    
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    removeSubject: async (parent, {subjectid}, context) => {
+      if (context.user) {
+        //console.log(context.user);
+        console.log(subjectid);
+        //const bookCreate = await Book.create({ ...input, username: context.user.username });
+
+        const updatedSubject = await Subject.findByIdAndUpdate(
+          { _id: subjectid },
+          { $pull: {_id: subjectid} },
+          { new: true, runValidators: true }
+        );
+    
+        return updatedSubject;
+      }
+    
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    addOffering: async (parent,  {input}, context) => {
+      if (context.user ) {
+        //const subjectDetails = await Offering.findById(input.subjectId)
+        const offering = await Offering.create(input);
+        return offering;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    
     addOrder: async (parent, { offerings }, context) => {
       console.log(context);
       if (context.user) {
@@ -123,11 +176,7 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    updateOffering: async (parent, { _id, quantity }) => {
-      const decrement = Math.abs(quantity) * -1;
-
-      return await Offering.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
-    },
+    
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
