@@ -105,7 +105,7 @@ const Profile = () => {
 
                 <div className = "form-group">
                     <div className = "form-check">
-                        <input className = "form-check-input" type="checkbox" id="tutor" />
+                        <input className = "form-check-input" type="checkbox" id="tutor"/>
                         <label className = "form-check-label" htmlFor = "tutor">
                             I am a tutor
                         </label>
