@@ -92,8 +92,8 @@ const Profile = () => {
                     </div>
 
                     <div className="form-group col-md-4">
-                        <label htmlFor="zone">Timezone</label>
-                        <select id = "zone" name="zone" className = "form-control border border-info" multiple>
+                        <label htmlFor="subject">Pick Subjects</label>
+                        <select id = "subject" name="subject" className = "form-control border border-info" multiple>
                             <option value="Computer Science">Computer Science</option>
                             <option value="Science">Science</option>
                             <option value="Maths">Maths</option>
