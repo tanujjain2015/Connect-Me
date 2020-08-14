@@ -1,42 +1,12 @@
 import gql from 'graphql-tag';
 
 export const QUERY_OFFERINGS = gql`
-
-  query{
-      me {
+  query getOfferings($subject: ID) {
+    offerings(subject: $subject) {
       _id
-      firstName
-      LastName
-      email
-      role
-      tutor
-      bio
-      image
-      location
-      timezone
-      orders
-      feedback
-      savedBooks {
-          _id
-          bookId
-          authors
-          image
-          link
-          title
-      }
-      }
-    }
-  query getProducts($category: ID) {
-    products(category: $category) {
-      _id
-      name
-      description
+      subject
       price
       quantity
-      image
-      subject {
-        _id
-      }
     }
   }
 `;
