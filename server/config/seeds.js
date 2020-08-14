@@ -12,124 +12,27 @@ db.once('open', async () => {
     { feedback: 'This is feedback 4' },
     { feedback: 'This is feedback 5' }
   ]);
-
   console.log('feedback seeded');
 
   //Subject Seeds
   await Subject.deleteMany();
 
   const subjects = await Subject.insertMany([
-    { name: 'Computer Science' },
-    { name: 'Science' },
-    { name: 'Maths' },
-    { name: 'Biology' },
-    { name: 'Geography' }
+    { subject: 'Computer Science' },
+    { subject: 'Science' },
+    { subject: 'Maths' },
+    { subject: 'Biology' },
+    { subject: 'Geography' }
   ]);
 
   console.log('subjects seeded');
-
-//Offering Seeds
-  await Offering.deleteMany();
-
-  const offerings = await Offering.insertMany([
-    {
-      name: '',
-      price: 90.00,
-      quantity: 1,
-      subject: subjects[0]._id
-    },
-    {
-      name: '',
-      price: 110.00,
-      quantity: 1,
-      subject: subjects[1]._id
-    },
-    {
-      name: '',
-      price: 90.00,
-      quantity: 1,
-      subject: subjects[2]._id
-    },
-    {
-      name: '',
-      price: 90.00,
-      quantity: 1,
-      subject: subjects[3]._id
-    },
-    {
-      name: '',
-      price: 90.00,
-      quantity: 1,
-      subject: subjects[4]._id
-    },
-    {
-      name: '',
-      price: 90.00,
-      quantity: 1,
-      subject: subjects[0]._id
-    },
-    {
-      name: '',
-      price: 90.00,
-      quantity: 1,
-      subject: subjects[0]._id
-    },
-    {
-      name: '',
-      price: 90.00,
-      quantity: 1,
-      subject: subjects[0]._id
-    },
-    {
-      name: '',
-      price: 90.00,
-      quantity: 1,
-      subject: subjects[0]._id
-    },
-    {
-      name: '',
-      price: 90.00,
-      quantity: 1,
-      subject: subjects[0]._id
-    },
-    {
-      name: '',
-      price: 90.00,
-      quantity: 1,
-      subject: subjects[0]._id
-    },
-    {
-      name: '',
-      price: 90.00,
-      quantity: 1,
-      subject: subjects[0]._id
-    }
-  ]);
-
-  console.log('offerings seeded');
-
-  //Order Seeds
-  await Order.deleteMany();
-
-  const orders = await Order.insertMany([
-    {
-      purchaseDate: '',
-      offerings: [ //need to change the name in the schema
-        {
-          offerings: [offerings[0]._id, offerings[1]._id]
-        }
-      ]
-    }
-  ]);
-
-  console.log('orders seeded');
-
 
 
 //User seeds
   await User.deleteMany();
 
-  await User.create({
+  const users = await User.create(
+    {
     firstName: 'Pamela',
     lastName: 'Washington',
     email: 'pamela@testmail.com',
@@ -150,10 +53,10 @@ db.once('open', async () => {
       }
     ]
 
-  });
+  },
 
-  await User.create({
-    firstName: 'Elijah',
+ {
+  firstName: 'Elijah',
     lastName: 'Holt',
     email: 'eholt@testmail.com',
     password: 'password12345',
@@ -162,14 +65,114 @@ db.once('open', async () => {
     image: "TBD",
     location: "Brazil",
     timezone: "UTC + 3",
-    orders: [ //need to change the name in the schema
-      {
-        // products: [products[0]._id, products[0]._id, products[1]._id]
-      }
-    ],
-  });
+    // orders: [
+    //   {
+    //      ordervalues: [offerings[0]._id, offerings[1]._id, offerings[2]._id]
+    //   }
+    //]
+  }
+  
+  );
+ console.log('users seeded');
 
-  console.log('users seeded');
+  //Offering Seeds
+  await Offering.deleteMany();
+
+  const offerings = await Offering.insertMany([
+    {
+      price: 90.00,
+      quantity: 1,
+      userid: users[0]._id,
+      subject: subjects[0]._id
+    },
+    {
+      price: 110.00,
+      quantity: 1,
+      userid: users[0]._id,
+      subject: subjects[1]._id
+    }
+    // {
+    //   name: '',
+    //   price: 90.00,
+    //   quantity: 1,
+    //   subject: subjects[2]._id
+    // },
+    // {
+    //   name: '',
+    //   price: 90.00,
+    //   quantity: 1,
+    //   subject: subjects[3]._id
+    // },
+    // {
+    //   name: '',
+    //   price: 90.00,
+    //   quantity: 1,
+    //   subject: subjects[4]._id
+    // },
+    // {
+    //   name: '',
+    //   price: 90.00,
+    //   quantity: 1,
+    //   subject: subjects[0]._id
+    // },
+    // {
+    //   name: '',
+    //   price: 90.00,
+    //   quantity: 1,
+    //   subject: subjects[0]._id
+    // },
+    // {
+    //   name: '',
+    //   price: 90.00,
+    //   quantity: 1,
+    //   subject: subjects[0]._id
+    // },
+    // {
+    //   name: '',
+    //   price: 90.00,
+    //   quantity: 1,
+    //   subject: subjects[0]._id
+    // },
+    // {
+    //   name: '',
+    //   price: 90.00,
+    //   quantity: 1,
+    //   subject: subjects[0]._id
+    // },
+    // {
+    //   name: '',
+    //   price: 90.00,
+    //   quantity: 1,
+    //   subject: subjects[0]._id
+    // },
+    // {
+    //   name: '',
+    //   price: 90.00,
+    //   quantity: 1,
+    //   subject: subjects[0]._id
+    // }
+  ]);
+
+  console.log('offerings seeded');
+
+
+  // //Order Seeds
+  // await Order.deleteMany();
+
+  // const ordervalues = await Order.insertMany([
+  //   {
+  //     purchaseDate: '',
+  //     offerings: [ //need to change the name in the schema
+  //       {
+  //         offerings: [offerings[0]._id, offerings[1]._id]
+  //       }
+  //     ]
+  //   }
+  // ]);
+
+  // console.log('orders seeded');
+
+
 
   process.exit();
 });
