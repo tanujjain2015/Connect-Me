@@ -40,33 +40,45 @@ const resolvers = {
     subjects: async () => {
       return await Subject.find();
     },
-    offerings: async () => {
-      return await Offering.find();
-    },
-    offeringBySubject: async (parent, { subject }) => {
+    offerings: async (parent, { subject }) => {
       const params = {};
-      params.subject = subject;
 
-      // if (subject) {
-      //   params.subject = subject;
-      // }
+      if (subject) {
+        params.subject = subject;
+      }
 
       // if (name) {
       //   params.name = {
       //     $regex: name
       //   };
       // }
-      console.log(params);
-      return await Offering.find(params);
+
+      return await Subject.find(params).populate('subject');
     },
-    // offering: async (parent, { _id }) => {
-    //   return await Offering.findById(_id).populate('subject');
+    // offeringBySubject: async (parent, { subject }) => {
+    //   const params = {};
+    //   params.subject = subject;
+
+    //   // if (subject) {
+    //   //   params.subject = subject;
+    //   // }
+
+    //   // if (name) {
+    //   //   params.name = {
+    //   //     $regex: name
+    //   //   };
+    //   // }
+    //   console.log(params);
+    //   return await Offering.find(params);
     // },
+    offering: async (parent, { _id }) => {
+      return await Offering.findById(_id).populate('subject');
+    },
 
     //Retrieve offering by userID
-    offeringbyUserID: async (parent, { userid }, context) => {
-      return await Offering.find({userid: userid}).populate('subject');
-    },
+    // offeringbyUserID: async (parent, { userid }, context) => {
+    //   return await Offering.find({userid: userid}).populate('subject');
+    // },
     
   
     order: async (parent, { _id }, context) => {

@@ -7,7 +7,7 @@ export const QUERY_OFFERINGS = gql`
       _id
       price
       quantity
-      subject
+      # subject
     }
   }
 `;
@@ -18,6 +18,7 @@ export const QUERY_ALL_OFFERINGS = gql`
       _id
       price
       quantity
+      user
       subject {
         _id
         subject
