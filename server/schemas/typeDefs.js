@@ -41,7 +41,9 @@ const typeDefs = gql`
 
   type Feedback {
     _id: ID
-    feedback: String
+    feedback: String,
+    createdAt: String,
+    userId: String
   }
 
   type Auth {

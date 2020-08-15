@@ -7,42 +7,20 @@ import { Link } from "react-router-dom";
 import { useQuery } from '@apollo/react-hooks';
 
 //Icons
-import { FaEdit, FaSave } from "react-icons/fa";
+//import { FaEdit, FaSave } from "react-icons/fa";
 
 //Bootstarp imports
 //import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Profile = () => {
+const EditProfile = (props) => {
     const { email: userParam } = useParams();
-
     const { loading, data } = useQuery(userParam ? QUERY_PROFILE : QUERY_ME, {
         variables: { email : userParam }
     });
-
-    const user = data?.me || data?.user || {};
-
-    //redirect to personal profile page if email is the loggedin user's
-    if(Auth.loggedIn() && Auth.getProfile().data.email.toLowerCase() === `${userParam ? userParam.toLowerCase() : ''}`) {
-        return <Redirect to="/profile" />
-    }
-
-    if(loading) {
-        return <div>Loading...</div>;
-    }
-
-    //if not loggedin
-    if(!user?.email) {
-        return(
-            <h4>
-                You need to be loggedIn to see this page. Use the navigation link to Signup or Login!
-            </h4>
-        )
-    }
-
-    return (
-     
-    
+      const user = data?.me || data?.user || {};
+      
+        return (
         <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark">
                 <div className = "form-row">
                     <div className = "form-group col-md-6">
@@ -119,4 +97,4 @@ const Profile = () => {
     )
 }
 
-export default Profile;
+export default EditProfile;
