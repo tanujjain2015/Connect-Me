@@ -22,7 +22,7 @@ const typeDefs = gql`
     quantity: Int
     price: Float
     subject: Subject
-    userid: String
+    user: String
   }
 
   type Order {
@@ -64,8 +64,8 @@ const typeDefs = gql`
     users: [User]
     user(email: String!): User
     subjects: [Subject]
-    offerings(subject: ID, name: String): [Offering]
-    offering(_id: ID!): Offering 
+    offeringBySubject(subject: ID): [Offering]
+    offerings: [Offering] 
     offeringbyUserID(userid: String!): Offering 
     feedback: Feedback
     order(_id: ID!): Order
@@ -78,13 +78,28 @@ const typeDefs = gql`
     addSubject(subject: String!): Subject
     removeSubject(subjectid: String!): Subject 
     addOrder(products: [ID]!): Order
-    #updateUser(firstName: String, lastName: String, email: String, password: String): User
     updateUser(input: userDetails): User
-    addOffering(quantity: Int,price: Float,userid: String, subjectid: String) : Offering
-    updateOffering(_id: ID!, quantity: Int!): Offering
+    addOffering(quantity: Int,price: Float, userid: String, subjectid: String): Offering
+    updateOffering(_id: ID!, input: updateOffering!): Offering
     login(email: String!, password: String!): Auth
   }
+  input updateOffering {
+    quantity: Int
+    price: Float
+    #userid: String
+    #subject: subjectDetails
+  }
 
+  input orderDetails {
+    purchaseDate: String
+    offerings: [updateOffering]
+  }
+
+  input feedbackDetails {
+    feedback: String,
+    createdAt: String,
+    userId: String
+  }
   input userDetails {
     firstName: String
     lastName: String
@@ -96,7 +111,14 @@ const typeDefs = gql`
     image: String
     location: String
     timezone: String
+    orders: [orderDetails]
+    feedback: [feedbackDetails]
   }
+  
+  input subjectDetails {
+    subject: String
+  }
+  
 
   # input OfferingDetails {
   #   quantity: Int
