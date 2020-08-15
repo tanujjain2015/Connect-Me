@@ -1,170 +1,184 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, Component } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { UPDATE_USER } from '../../utils/mutations'; 
 import { useMutation } from '@apollo/react-hooks';
-import Auth from "../utils/auth";
-import { ADD_USER } from "../utils/mutations";
-import ImageUpload from "../components/ImageUpload";
 
-
-
-function Signup(props) {
-  const [formState, setFormState] = useState({ firstName: '', lastName: '',email: '', password: '' });
-  const [addUser, {error : mutationError}] = useMutation(ADD_USER);
-  console.log(mutationError);
-  
-
-  const handleFormSubmit = async event => {
-    event.preventDefault();
-    const mutationResponse = await addUser({
-      variables: {
-        firstName: formState.firstName, lastName: formState.lastName,
-        email: formState.email, password: formState.password,
-        
+//image uploading functionality
+// import ImageUploading from "react-images-uploading";
+// const maxNumber = 10;
+// const maxMbFileSize = 5 * 1024 * 1024; // 5Mb
+// class ImageUpload extends React.Component {
+//   onChange = (imageList) => {
+//     // data for submit
+//     console.log(imageList);
+//   };
+//   onError = (errors, files) => {
+//     console.log(errors, files);
+//   };
+//   render() {
+//     return (
+//       <ImageUploading
+//         onChange={this.onChange}
+//         maxNumber={maxNumber}
+//         multiple
+//         maxFileSize={maxMbFileSize}
+//         acceptType={["jpg", "gif", "png"]}
+//         onError={this.onError}
+//       >
+//         {({ imageList, onImageUpload, onImageRemoveAll }) => (
+//           // write your building UI
+//           <div>
+//             <button onClick={onImageUpload}>Upload images</button>
+//             <button onClick={onImageRemoveAll}>Remove all images</button>
+//             {imageList.map((image) => (
+//               <div key={image.key}>
+//                 <img src={image.dataURL} />
+//                 <button onClick={image.onUpdate}>Update</button>
+//                 <button onClick={image.onRemove}>Remove</button>
+//               </div>
+//             ))}
+//           </div>
+//         )}
+//       </ImageUploading>
+//     );
+//   }
+// }
+// import ImageUploader from 'react-images-upload';
+// class ImageUpload extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = { pictures: [] };
+//         this.onDrop = this.onDrop.bind(this);
+//     }
+//     onDrop(pictureFiles, pictureDataURLs) {
+//         this.setState({
+//             pictures: pictureFiles
+//         });
+//     }
+//     render() {
+//         return (
+//             <ImageUploader
+//                 withIcon={true}
+//                 buttonText='Choose images'
+//                 onChange={this.onDrop}
+//                 imgExtension={['.jpg', '.gif', '.png', '.gif']}
+//                 maxFileSize={5242880}
+//                 onError={this.onError}
+//             />
+//             <div className="">
+//             </div>
+//         );
+//     }
+// }
+// class ImageUpload extends React.Component {
+//     constructor(props){
+//       super(props)
+//       this.state = {
+//         file: null
+//       }
+//       this.handleChange = this.handleChange.bind(this)
+//     }
+//     handleChange(event) {
+//       this.setState({
+//         file: URL.createObjectURL(event.target.files[0])
+//       })
+//     }
+//     render() {
+//       return (
+//         <div>
+//           <input type="file" onChange={this.handleChange}/>
+//           <img src={this.state.file}/>
+//           {/* <button type="submit">Upload Image</button> */}
+//         </div>
+//       );
+//     }
+//   }
+// export default ImageUpload;
+// export default class ImageUpload extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.onFileChange = this.onFileChange.bind(this);
+//         this.onSubmit = this.onSubmit.bind(this);
+//         this.state = {
+//             profileImg: ''
+//         }
+//     }
+//     onFileChange(e) {
+//         this.setState({ profileImg: e.target.files[0] })
+//     }
+//     onSubmit(e) {
+//         e.preventDefault()
+//         const formData = new FormData()
+//         formData.append('profileImg', this.state.profileImg)
+//         axios.post("http://localhost:4000/api/user-profile", formData, {
+//         }).then(res => {
+//             console.log(res)
+//         })
+//     }
+//     render() {
+//         return (
+//             <div className="container">
+//                 <div className="row">
+//                     <form onSubmit={this.onSubmit}>
+//                         <div className="form-group">
+//                             <input type="file" onChange={this.onFileChange} />
+//                         </div>
+//                         <div className="form-group">
+//                             <button className="btn btn-primary" type="submit">Upload</button>
+//                         </div>
+//                     </form>
+//                 </div>
+//             </div>
+//         )
+//     }
+// }
+// function renderFunction() {
+// }
+class ImageUploadClass extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          image: null
+        };
+        this.onImageChange = this.onImageChange.bind(this);
       }
-    });
-    const token = mutationResponse.data.addUser.token;
-    Auth.login(token);
-  };
-
-  const handleChange = event => {
-    const { name, value } = event.target;
-    setFormState({
-      ...formState,
-      [name]: value
-    });
-  };
-
-
-
-  //Image upload ===============================================================
-  
-
-  return (
-    <div className="container my-1">
-      <Link to="/login">
-        ← Go to Login
-      </Link>
-
-      <h2>Signup</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="firstName">First Name:</label>
-          <input
-            placeholder="First"
-            name="firstName"
-            type="firstName"
-            id="firstName"
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="flex-row space-between my-2">
-          <label htmlFor="lastName">Last Name:</label>
-          <input
-            placeholder="Last"
-            name="lastName"
-            type="lastName"
-            id="lastName"
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="flex-row space-between my-2">
-          <label htmlFor="email">Email:</label>
-          <input
-            placeholder="youremail@test.com"
-            name="email"
-            type="email"
-            id="email"
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="flex-row space-between my-2">
-          <label htmlFor="pwd">Password:</label>
-          <input
-            placeholder="******"
-            name="password"
-            type="password"
-            id="pwd"
-            onChange={handleChange}
-          />
-        </div>
-
-        {/* <div className="flex-row space-between my-2">
-          <label htmlFor="tutor">Do you wish to be a tutor?</label>
-          <input
-            value ="tutor"
-            name="tutor"
-            type="checkbox"
-            id="tutor"
-            onChange={handleChange}
-          />
-        </div> */}
-
-        {/* <div className="flex-row space-between my-2">
-          <label htmlFor="locations">Choose a location</label>
-          <select id="locations" name ="locations" onChange={handleChange}>
-            <option value="USA">USA</option>
-            <option value="India">India</option>
-            <option value="Brazil">Brazil</option>
-            <option value="Europe">Europe</option>
-            <option value="Canada">Canada</option>
-            <option value="Mexico">Mexico</option>
-          </select> */}
-          {/* <input
-            // placeholder="choose your country"
-            // type="locations"
-            onChange={handleChange}
-          />  */}
-        {/* </div> */}
-
-        {/* <div className="flex-row space-between my-2">
-          <label htmlFor="subjcets">Pick desired Subjects</label>
-          <select id="subjects" name ="subjects" multiple onChange={handleChange}>
-            <option value="Computer Science">Computer Science</option>
-            <option value="Science">Science</option>
-            <option value="Maths">Maths</option>
-            <option value="Biology">Biology</option>
-            <option value="Geography">Geography</option>
-          </select> */}
-          {/* <input
-            placeholder="choose your country"
-            type="locations"
-            onChange={handleChange}
-          />  */}
-        {/* </div> */}
-
-        {/* <div className = "flex-row flex-end">
-        <ImageUploader
-                withIcon={true}
-                buttonText='Choose images'
-                onChange={this.onDrop}
-                imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                maxFileSize={5242880}
-            />
-        </div> */}
-
-        <div className="">
-          <ImageUpload>
-
-          </ImageUpload>
-        </div>
-
-
-
-        <div className="flex-row flex-end">
-          <button type="submit">
-            Submit
-          </button>
-        </div>
-      </form>
-    </div>
-  );
-
+     onImageChange = event => {
+      if (event.target.files && event.target.files[0]) {
+        let img = event.target.files[0];
+        console.log(img);
+        this.setState({
+          image: URL.createObjectURL(img)
+        });
+        const imagePath = '../../images/'+img.name
+        console.log(imagePath);
+        // const userDetail = {}
+        // userDetail.image = imagePath;
+        return imagePath
+        // const [updateUser] = useMutation(UPDATE_USER);
+        // const { data } = updateUser({ variables: {input: userDetail}});
+      }
+    }
 }
-
-export default Signup;
-
-
-
+        const ImageUpload = () => {
+            const imageUpl = new ImageUploadClass()
+            const userDetail = {}
+            userDetail.image = imageUpl.onImageChange();
+            console.log(userDetail);
+            const [updateUser] = useMutation(UPDATE_USER);
+            const { data } = updateUser({ variables: {input: userDetail}});
+            // render() {
+                return (
+                    <div>
+                    <div>
+                        <div>
+                        <img src={this.state.image} />
+                        <h1>Select Image</h1>
+                        <input type="file" name="myImage" onChange={imageUpl.onImageChange} />
+                        </div>
+                    </div>
+                    </div>
+                )
+            // }
+        };
+  export default ImageUpload;
