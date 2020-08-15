@@ -12,8 +12,13 @@ function Signup(props) {
     event.preventDefault();
     const mutationResponse = await addUser({
       variables: {
-        firstName: formState.firstName, lastName: formState.lastName,
-        email: formState.email, password: formState.password,
+        firstName: formState.firstName, 
+        lastName: formState.lastName,
+        email: formState.email, 
+        password: formState.password,
+        location: formState.location,
+        tutor: formState.tutor,
+        bio: formState.bio
       }
     });
     const token = mutationResponse.data.addUser.token;
@@ -74,32 +79,32 @@ function Signup(props) {
             onChange={handleChange}
           />
         </div>
-        {/* <div className="flex-row space-between my-2">
-          <label htmlFor="tutor">Do you wish to be a tutor?</label>
-          <input
-            value ="tutor"
-            name="tutor"
-            type="checkbox"
-            id="tutor"
+        <div className="flex-row space-between my-2">
+          <label htmlFor="tutor">Signing up as?</label>
+          <select id="tutor" name ="tutor" onChange={handleChange}>
+            <option value="Student">Student</option>
+            <option value="Tutor">Tutor</option>
+          </select>
+        </div>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="location">Choose a location</label>
+          <select id="location" name ="location" onChange={handleChange}>
+            <option value="AMER">AMER</option>
+            <option value="EMEA">EMEA</option>
+            <option value="APAC">APAC</option>
+          </select>
+        </div>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="pwd">Bio:</label>
+          <textarea
+            placeholder="Provide some description about you and your skill set and what are you looking for..."
+            name="bio"
+            type="text"
+            id="bio"
+            rows = "6" 
             onChange={handleChange}
           />
-        </div> */}
-        {/* <div className="flex-row space-between my-2">
-          <label htmlFor="locations">Choose a location</label>
-          <select id="locations" name ="locations" onChange={handleChange}>
-            <option value="USA">USA</option>
-            <option value="India">India</option>
-            <option value="Brazil">Brazil</option>
-            <option value="Europe">Europe</option>
-            <option value="Canada">Canada</option>
-            <option value="Mexico">Mexico</option>
-          </select> */}
-          {/* <input
-            // placeholder="choose your country"
-            // type="locations"
-            onChange={handleChange}
-          />  */}
-        {/* </div> */}
+        </div>
         {/* <div className="flex-row space-between my-2">
           <label htmlFor="subjcets">Pick desired Subjects</label>
           <select id="subjects" name ="subjects" multiple onChange={handleChange}>
@@ -115,15 +120,7 @@ function Signup(props) {
             onChange={handleChange}
           />  */}
         {/* </div> */}
-        {/* <div className = "flex-row flex-end">
-        <ImageUploader
-                withIcon={true}
-                buttonText='Choose images'
-                onChange={this.onDrop}
-                imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                maxFileSize={5242880}
-            />
-        </div> */}
+
         <div className="">
           <ImageUpload>
           </ImageUpload>

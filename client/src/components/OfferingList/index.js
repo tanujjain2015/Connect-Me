@@ -73,10 +73,11 @@ function OfferingList() {
                 <OfferingItem
                   key= {offering._id}
                   _id={offering._id}
-                  image={offering.image}
-                  name={offering.name}
+                  // image={offering.image}
+                  // name={offering.name}
                   price={offering.price}
                   quantity={offering.quantity}
+                  subject={offering.subject}
                 />
             ))}
         </div>

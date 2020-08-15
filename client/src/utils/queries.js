@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 export const QUERY_OFFERINGS = gql`
-  query getOfferings($subject: ID) {
+  query offeringBySubject($subject: ID) {
     offerings(subject: $subject) {
       _id
       price
@@ -15,6 +15,8 @@ export const QUERY_OFFERINGS = gql`
     }
   }
 `;
+
+
 export const QUERY_ALL_OFFERINGS = gql`
   {
     offerings {
@@ -76,7 +78,7 @@ export const QUERY_ME = gql`
       tutor
       bio
       location
-      timezone
+      # timezone
   	}
   }
 `;

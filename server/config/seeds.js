@@ -41,7 +41,7 @@ db.once('open', async () => {
     bio: "filling it up for time being",
     image: "TBD",
     location: "USA",
-    timezone: "UTC",
+    // timezone: "UTC",
     // orders: [ //need to change the name in the schema
     //   {
     //     // products: [products[0]._id, products[0]._id, products[1]._id]
@@ -64,7 +64,7 @@ db.once('open', async () => {
     bio: "filling it up for time being",
     image: "TBD",
     location: "Brazil",
-    timezone: "UTC + 3",
+    // timezone: "UTC + 3",
     // orders: [
     //   {
     //      ordervalues: [offerings[0]._id, offerings[1]._id, offerings[2]._id]
