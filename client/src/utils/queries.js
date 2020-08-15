@@ -1,24 +1,23 @@
 import gql from 'graphql-tag';
-
 export const QUERY_OFFERINGS = gql`
-
   query getOfferings($subject: ID) {
     offerings(subject: $subject) {
       _id
       price
       quantity
-      # subject
+      subject{
+        _id
+        subject
+      }
     }
   }
 `;
-
 export const QUERY_ALL_OFFERINGS = gql`
   {
     offerings {
       _id
       price
       quantity
-      user
       subject {
         _id
         subject
@@ -26,7 +25,6 @@ export const QUERY_ALL_OFFERINGS = gql`
     }
   }
 `;
-
 export const QUERY_SUBJECTS = gql`
 {
   subjects {
@@ -35,8 +33,6 @@ export const QUERY_SUBJECTS = gql`
   }
 }
 `;
-
-
 export const QUERY_USER = gql`
 {
   users {
@@ -55,8 +51,6 @@ export const QUERY_USER = gql`
   }
 }
 `;
-
-
 export const QUERY_CHECKOUT = gql`
   query getCheckout($offerings: [ID]!) {
     checkout(offerings: $offerings) {
@@ -64,7 +58,6 @@ export const QUERY_CHECKOUT = gql`
     }
   }
 `;
-
 //QUERY_ME
 export const QUERY_ME = gql`
   {
@@ -75,7 +68,7 @@ export const QUERY_ME = gql`
       email
       tutor
       bio
-      image
+      # image
       role
       tutor
       bio
@@ -84,7 +77,6 @@ export const QUERY_ME = gql`
   	}
   }
 `;
-
 export const QUERY_USER_BY_SUBJECT= gql`
 {
   user(email: String) {
@@ -105,7 +97,6 @@ export const QUERY_USER_BY_SUBJECT= gql`
   }
 }
 `;
-
 //query user for myprofile
 export const QUERY_PROFILE = gql`
 query user($email: String!) {
@@ -116,7 +107,6 @@ query user($email: String!) {
     email
     tutor
     bio
-    image
     # orders {
     #   _id
     #   purchaseDate
