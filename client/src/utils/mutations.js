@@ -18,8 +18,8 @@ export const ADD_ORDER = gql`
       purchaseDate
       offerings {
         _id
-      name
-      description
+      # name
+      # description
       price
       quantity
       subject {
@@ -69,6 +69,22 @@ export const UPDATE_USER = gql`
           }
         }
     }
+`;
+
+
+export const ADD_OFFERING = gql`
+mutation addOffering($quantity: Int,$price: Float,$userid: String, $subjectid: String) {
+  addOffering(quantity: $quantity,price: $price,userid: $userid, subjectid: $subjectid) {
+     _id
+    quantity
+    price
+    subject {
+      _id
+      subject
+    }
+   userid
+	}
+}
 `;
 
 
