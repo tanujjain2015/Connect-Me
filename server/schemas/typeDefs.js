@@ -16,9 +16,6 @@ type File {
 
   type Offering {
     _id: ID
-    # name: String
-    # description: String
-    # image: String
     quantity: Int
     price: Float
     subject: Subject
@@ -65,7 +62,9 @@ type File {
     user(email: String!): User
     subjects: [Subject]
     offeringBySubject(subject: ID): [Offering]
-    offerings: [Offering] 
+    offerings(subject: ID, subject: String): [Offering]
+    # offerings: [Offering] 
+    offering(_id: ID!): Offering
     offeringbyUserID(userid: String!): Offering 
     feedback: Feedback
     order(_id: ID!): Order
