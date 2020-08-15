@@ -2,31 +2,6 @@ import gql from 'graphql-tag';
 
 export const QUERY_OFFERINGS = gql`
 
-  # query{
-  #     me {
-  #     _id
-  #     firstName
-  #     LastName
-  #     email
-  #     role
-  #     tutor
-  #     bio
-  #     image
-  #     location
-  #     timezone
-  #     orders
-  #     feedback
-  #     savedBooks {
-  #         _id
-  #         bookId
-  #         authors
-  #         image
-  #         link
-  #         title
-  #     }
-  #     }
-  #   }
-
   query getOfferings($subject: ID) {
     offerings(subject: $subject) {
       _id
@@ -41,12 +16,11 @@ export const QUERY_ALL_OFFERINGS = gql`
   {
     offerings {
       _id
-      name
-      description
       price
       quantity
       subject {
-        name
+        _id
+        subject
       }
     }
   }
@@ -56,26 +30,25 @@ export const QUERY_SUBJECTS = gql`
 {
   subjects {
     _id
-    # name
+    subject
   }
 }
 `;
 
+
 export const QUERY_USER = gql`
 {
-  user {
+  users {
     firstName
     lastName
+    email
     orders {
       _id
       purchaseDate
       offerings {
         _id
-        name
-        description
         price
         quantity
-        image
       }
     }
   }
@@ -101,12 +74,35 @@ export const QUERY_ME = gql`
       email
       tutor
       bio
-      # orders {
-      #   _id
-      #   purchaseDate
-      # }
+      image
+      role
+      tutor
+      bio
+      location
+      timezone
+  	}
+  }
+`;
+
+export const QUERY_USER_BY_SUBJECT= gql`
+{
+  user(email: String) {
+    firstName
+    lastName
+    orders {
+      _id
+      purchaseDate
+      offerings {
+        _id
+        name
+        description
+        price
+        quantity
+        image
+      }
     }
   }
+}
 `;
 
 //query user for myprofile

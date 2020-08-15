@@ -29,7 +29,7 @@ const offeringSchema = new Schema({
     ref: 'Subject',
     required: true
   },
-  userid: {
+  user: {
     type: String,
     required: false
   }

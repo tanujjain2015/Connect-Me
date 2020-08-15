@@ -40,24 +40,28 @@ const resolvers = {
     subjects: async () => {
       return await Subject.find();
     },
-    offerings: async (parent, { subject, name }) => {
+    offerings: async () => {
+      return await Offering.find();
+    },
+    offeringBySubject: async (parent, { subject }) => {
       const params = {};
+      params.subject = subject;
 
-      if (subject) {
-        params.subject = subject;
-      }
+      // if (subject) {
+      //   params.subject = subject;
+      // }
 
-      if (name) {
-        params.name = {
-          $regex: name
-        };
-      }
-
-      return await Offering.find(params).populate('subject');
+      // if (name) {
+      //   params.name = {
+      //     $regex: name
+      //   };
+      // }
+      console.log(params);
+      return await Offering.find(params);
     },
-    offering: async (parent, { _id }) => {
-      return await Offering.findById(_id).populate('subject');
-    },
+    // offering: async (parent, { _id }) => {
+    //   return await Offering.findById(_id).populate('subject');
+    // },
 
     //Retrieve offering by userID
     offeringbyUserID: async (parent, { userid }, context) => {
@@ -122,6 +126,34 @@ const resolvers = {
   
   Mutation: {
 
+    singleUpload: (parent, args) => {
+      return args.file.then(file => {
+        const {createReadStream, filename, mimetype} = file
+
+        const fileStream = createReadStream()
+
+        fileStream.pipe(fs.createWriteStream(`./uploadedFiles/${filename}`))
+
+        return file;
+      });
+    },
+
+    singleUploadStream: async (parent, args) => {
+      const file = await args.file
+      const {createReadStream, filename, mimetype} = file
+      const fileStream = createReadStream()
+
+      //Here stream it to S3
+      // Enter your bucket name here next to "Bucket: "
+      const uploadParams = {Bucket: 'apollo-file-upload-test', Key: filename, Body: fileStream};
+      const result = await s3.upload(uploadParams).promise()
+
+      console.log(result)
+
+
+      return file;
+    },
+
     addUser: async (parent, args) => {
       console.log(args);
       const user = await User.create(args);
@@ -129,6 +161,14 @@ const resolvers = {
 
 
       return { token, user };
+    },
+    updateUser: async (parent, {input}, context) => {
+      console.log(input)
+      if (context.user) {
+        return await User.findByIdAndUpdate(context.user._id, input, { new: true });
+      }
+
+      throw new AuthenticationError('Not logged in');
     },
     addSubject: async (parent, args, context) => {
       //console.log(context.user.tutor)
@@ -153,26 +193,22 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     addOffering: async (parent, args, context) => {
+      console.log(args)
       if (context.user ) {
-        // console.log(context.user);
-        // console.log(args);
-        // console.log(args.quantity);
-        // console.log(args.price);
-        // console.log(args.userid);
-        // console.log(args.subjectid);
         const subjectDetails = await Subject.findById(args.subjectid);
-        console.log(subjectDetails);
-        // var input = {};
-        // input.quantity = args.quantity;
-        // input.price = args.price;
-        // input.userid = args.userid;
-        // input.subject = subjectDetails;
-        // console.log(input);
         args.subject = subjectDetails;
-
-        const offering = await (await Offering.create(args));
-        //console.log(offering);
-        //return offering;
+        // const userDetails = await User.findById(args.userid);
+        // console.log(userDetails);
+        // args.user = userDetails;
+        const offering =  await Offering.create(args);
+        return offering;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    updateOffering: async (parent, args, context) => {
+      if (context.user ) {
+        console.log(args);
+        const offering =  await Offering.findByIdAndUpdate(args._id, args.input, { new: true });
         return offering;
       }
       throw new AuthenticationError('You need to be logged in!');
@@ -186,14 +222,6 @@ const resolvers = {
         await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
 
         return order;
-      }
-
-      throw new AuthenticationError('Not logged in');
-    },
-    updateUser: async (parent, {input}, context) => {
-      console.log(input)
-      if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, input, { new: true });
       }
 
       throw new AuthenticationError('Not logged in');
