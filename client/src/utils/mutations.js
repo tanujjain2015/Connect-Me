@@ -82,7 +82,7 @@ mutation addOffering($quantity: Int,$price: Float,$userid: String, $subjectid: S
       _id
       subject
     }
-   userid
+   user
 	}
 }
 `;
