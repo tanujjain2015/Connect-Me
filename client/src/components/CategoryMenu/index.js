@@ -11,6 +11,7 @@ function CategoryMenu() {
   const dispatch = useDispatch();
   const { subjects } = state;
   const { loading, data: categoryData } = useQuery(QUERY_SUBJECTS);
+
   useEffect(() => {
     //if categoryData exists or has changed from the response of useQuery, then run dispatch()
     if(categoryData) {

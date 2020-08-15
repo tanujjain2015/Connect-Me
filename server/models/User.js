@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
 const Order = require('./Order');
 const Feedback = require('./Feedback');
+const Subject = require('./Subject');
 
 const userSchema = new Schema({
   firstName: {
@@ -27,13 +28,10 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
-  // role: {
-  //   type: Array,
-  //   default: ['Tutor', 'Student'],
-  // },
   tutor: { 
-    type: Boolean, 
-    default: false
+    type: String, 
+    required: false
+    // default: false
   },
   bio: {
     type: String,
@@ -47,10 +45,10 @@ const userSchema = new Schema({
     type: String,
     required: false
   },
-  timezone: {
-    type: String,
-    required: false
-  },
+  // timezone: {
+  //   type: String,
+  //   required: false
+  // },
   orders: [Order.schema],
   feedback: [Feedback.schema],
 });
