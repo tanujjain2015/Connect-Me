@@ -13,7 +13,7 @@ function CategoryMenu() {
   const dispatch = useDispatch();
 
   const { subjects } = state;
-  const { loading, data: categoryData } = useQuery(QUERY_OFFERINGS);
+  const { loading, data: categoryData } = useQuery(QUERY_SUBJECTS);
 
 
   useEffect(() => {
@@ -57,7 +57,7 @@ function CategoryMenu() {
             handleClick(item._id);
           }}
         >
-          {item.name}
+          {item.subject}
         </button>
       ))}
     </div>
