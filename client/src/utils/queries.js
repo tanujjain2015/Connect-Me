@@ -41,12 +41,11 @@ export const QUERY_ALL_OFFERINGS = gql`
   {
     offerings {
       _id
-      name
-      description
       price
       quantity
       subject {
-        name
+        _id
+        subject
       }
     }
   }
@@ -56,26 +55,24 @@ export const QUERY_SUBJECTS = gql`
 {
   subjects {
     _id
-    # name
+    subject
   }
 }
 `;
 
 export const QUERY_USER = gql`
 {
-  user {
+  users {
     firstName
     lastName
+    email
     orders {
       _id
       purchaseDate
       offerings {
         _id
-        # name
-        # description
         price
         quantity
-        # image
       }
     }
   }
@@ -102,11 +99,12 @@ export const QUERY_ME = gql`
       tutor
       bio
       image
-      # orders {
-      #   _id
-      #   purchaseDate
-      # }
-    }
+      role
+      tutor
+      bio
+      location
+      timezone
+  	}
   }
 `;
 
