@@ -101,7 +101,6 @@ export const QUERY_ME = gql`
       email
       tutor
       bio
-      image
       # orders {
       #   _id
       #   purchaseDate
@@ -120,7 +119,6 @@ query user($email: String!) {
     email
     tutor
     bio
-    image
     # orders {
     #   _id
     #   purchaseDate

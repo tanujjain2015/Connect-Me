@@ -13,24 +13,42 @@ import { useQuery } from '@apollo/react-hooks';
 //import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const EditProfile = (props) => {
-    const { email: userParam } = useParams();
-    const { loading, data } = useQuery(userParam ? QUERY_PROFILE : QUERY_ME, {
-        variables: { email : userParam }
-    });
-      const user = data?.me || data?.user || {};
+class EditProfile extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {value: ''};
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit =  this.handleSubmit.bind(this);
+    }
+
+    handleChange(event){
+        this.setState({value: event.target.value});
+    }
+
+    handleSubmit(event){
+        event.preventDefault();
+    }
+
+    // const { email: userParam } = useParams();
+    // const { loading, data } = useQuery(userParam ? QUERY_PROFILE : QUERY_ME, {
+    //     variables: { email : userParam }
+    // });
+    //   const user = data?.me || data?.user || {};
+
+    render(){
       
         return (
-        <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark">
+        <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark" onSubmit={this.handleSubmit}>
                 <div className = "form-row">
                     <div className = "form-group col-md-6">
                         <label htmlFor = "firstName">First Name</label>
-                        <input name={user.firstName} type = "text" class="form-control border border-info" id = "firstName" value = {user.firstName} />
+                        <input name={this.state.value} type = "text" className="form-control border border-info" id = "firstName" value = {this.state.value} onChange = {this.handleChange} />
                     </div>
+                </div>
 
-                    <div className = "form-group col-md-6">
+                    {/* <div className = "form-group col-md-6">
                         <label htmlFor = "lastName">Last Name</label>
-                        <input  type = "text" class="form-control border border-info" id = "lastName" value = {user.lastName} />
+                        <input  type = "text" className="form-control border border-info" id = "lastName" value = {user.lastName} />
                     </div>
                 </div>
 
@@ -88,13 +106,14 @@ const EditProfile = (props) => {
                             I am a tutor
                         </label>
                     </div>
-                </div>
+                </div> */}
 
-                <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Save</Link></button>
+                <button type="submit" className = "btn btn-light ml-auto">Save</button>
                 <button type="submit" className = "btn btn-light ml-auto"><Link to="/profile">Cancel</Link></button>
             </form>
    
     )
+    }
 }
 
 export default EditProfile;

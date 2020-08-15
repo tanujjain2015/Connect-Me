@@ -78,12 +78,12 @@ const Profile = () => {
                 <div className = "form-row">
                     <div className = "form-group col-md-6">
                         <label htmlFor = "firstName">First Name</label>
-                        <input type = "text" class="form-control border border-info" id = "firstName" value = {user.firstName} />
+                        <input type = "text" readOnly className="form-control border border-info" id = "firstName" value = {user.firstName} />
                     </div>
 
                     <div className = "form-group col-md-6">
                         <label htmlFor = "lastName">Last Name</label>
-                        <input  type = "text" class="form-control border border-info" id = "lastName" value = {user.lastName} />
+                        <input  type = "text" readOnly className="form-control border border-info" id = "lastName" value = {user.lastName} />
                     </div>
                 </div>
 
