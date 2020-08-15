@@ -5,6 +5,7 @@ import Auth from '../utils/auth';
 //import Preview from '../assets/preview.jpg'
 import { Link } from "react-router-dom";
 import { useQuery } from '@apollo/react-hooks';
+import { UPDATE_USER } from '../utils/mutations';
 
 //Icons
 import { FaEdit, FaHome } from "react-icons/fa";
