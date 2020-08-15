@@ -1,6 +1,10 @@
 import React, { useState, Component } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { UPDATE_USER, UPLOAD_FILE, UPLOAD_FILE_STREAM } from '../../utils/mutations'; 
+import { useMutation } from '@apollo/react-hooks';
+import ImageUploader from "react-images-upload";
+import { Mutation } from "react-apollo";
 
 //image uploading functionality
 // import ImageUploading from "react-images-uploading";
@@ -166,53 +170,204 @@ import axios from 'axios';
 // }
 
 
+// function renderFunction() {
 
 
-class ImageUpload extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        image: null
-      };
+// }
+
+
+// class ImageUploadClass extends Component {
+
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//           image: null
+//         };
+    
+//         this.onImageChange = this.onImageChange.bind(this);
+//       }
   
-      this.onImageChange = this.onImageChange.bind(this);
-    }
+//      onImageChange = event => {
+//       if (event.target.files && event.target.files[0]) {
+//         let img = event.target.files[0];
+//         console.log(img);
+
+//         this.setState({
+//           image: URL.createObjectURL(img)
+//         });
+
+
+//         const imagePath = '../../images/'+img.name
+//         console.log(imagePath);
+
+//         // const userDetail = {}
+//         // userDetail.image = imagePath;
+
+//         return imagePath
+
+//         // const [updateUser] = useMutation(UPDATE_USER);
+//         // const { data } = updateUser({ variables: {input: userDetail}});
+
+//       }
+//     }
+// }
+
+//         const ImageUpload = () => {
+
+//             const imageUpl = new ImageUploadClass()
+
+//             const userDetail = {}
+//             userDetail.image = imageUpl.onImageChange();
+//             console.log(userDetail);
+                      
+//             const [updateUser] = useMutation(UPDATE_USER);
+//             const { data } = updateUser({ variables: {input: userDetail}});
+
+//             // render() {
+//                 return (
+//                     <div>
+//                     <div>
+//                         <div>
+//                         <img src={this.state.image} />
+//                         <h1>Select Image</h1>
+//                         <input type="file" name="myImage" onChange={imageUpl.onImageChange} />
+//                         </div>
+//                     </div>
+//                     </div>
+//                 )
+//             // }
+    
+//         };
+
+
+//   export default ImageUpload;
+  
+
+
+
+// class ImageUpload extends Component {
+
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//           image: null
+//         };
+    
+//         this.onImageChange = this.onImageChange.bind(this);
+//       }
+  
+//      onImageChange = event => {
+//       if (event.target.files && event.target.files[0]) {
+//         let img = event.target.files[0];
+//         console.log(img);
+
+//         this.setState({
+//           image: URL.createObjectURL(img)
+//         });
+
+
+//         const imagePath = '../../images/'+img.name
+//         console.log(imagePath);
+
+//         const userDetail = {}
+//         userDetail.image = imagePath;
+
+//         // const [updateUser] = useMutation(UPDATE_USER);
+//         // const { data } = updateUser({ variables: {input: userDetail}});
+
+//       }
+//     }
+
+
+//         // function imageUpload() {
+
+//         //     const imageUpl = new ImageUpload().onImageChange()
+
+//         //     const userDetail = {}
+//         //     userDetail.image = imagePath;
+
+//         //     const [updateUser] = useMutation(UPDATE_USER);
+//         //     const { data } = updateUser({ variables: {input: userDetail}});
+
+//         // };
 
   
-    onImageChange = event => {
-      if (event.target.files && event.target.files[0]) {
-        let img = event.target.files[0];
-        console.log(img);
+//     render() {
+//       return (
+//         <div>
+//           <div>
+//             <div>
+//               <img src={this.state.image} />
+//               <h1>Select Image</h1>
+//               <input type="file" name="myImage" onChange={this.onImageChange} />
+//             </div>
+//           </div>
+//         </div>
+//       );
+//     }
+//   }
 
-        this.setState({
-          image: URL.createObjectURL(img)
-        });
 
-        const imagePath = '../../images/'+img.name
-        console.log(imagePath);
+//   export default ImageUpload;
 
-        // const addImageToUser = () => {
 
-        // }
-
-      }
-    };
+// const ImageUpload = props => {
+//     const [pictures, setPictures] = useState([]);
   
-    render() {
-      return (
-        <div>
-          <div>
-            <div>
-              <img src={this.state.image} />
-              <h1>Select Image</h1>
-              <input type="file" name="myImage" onChange={this.onImageChange} />
-            </div>
-          </div>
-        </div>
-      );
-    }
+//     const onDrop = picture => {
+//       setPictures([...pictures, picture]);
+//     };
+//     return (
+//       <ImageUploader
+//         {...props}
+//         withIcon={true}
+//         onChange={onDrop}
+//         imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+//         maxFileSize={5242880}
+//       />
+//     );
+//   };
+  
+//   export default ImageUpload;
+
+
+
+function ImageUpload() {
+
+    const state = useSelector((state) => {
+        return state
+      });
+    const dispatch = useDispatch();
+
+    return (
+
+          <header className="App-header">
+              {/* <img src={logo} className="App-logo" alt="logo" /> */}
+              <h2>Save Local</h2>
+                  <Mutation mutation={UPLOAD_FILE}>
+                      {(singleUpload, { data, loading }) => {
+                          console.log(data)
+                          return (<form onSubmit={() => {console.log("Submitted")}} encType={'multipart/form-data'}>
+                                      <input name={'document'} type={'file'} onChange={({target: { files }}) => {
+                                          const file = files[0]
+                                          file && singleUpload({ variables: { file: file } })
+                                      }}/>{loading && <p>Loading.....</p>}</form>)}
+                      }
+                  </Mutation>
+              <h2>Stream to Server</h2>
+                   <Mutation mutation={UPLOAD_FILE_STREAM}>
+                      {(singleUploadStream, { data, loading }) => {
+                          console.log(data)
+                          return (<form onSubmit={() => {console.log("Submitted")}} encType={'multipart/form-data'}>
+                                      <input name={'document'} type={'file'} onChange={({target: { files }}) => {
+                                          const file = files[0]
+                                          file && singleUploadStream({ variables: { file: file } })
+                                      }}/>{loading && <p>Loading.....</p>}</form>)}
+                      }
+                   </Mutation>
+          </header>
+
+    );
   }
-
-
-  export default ImageUpload;
   
+  export default ImageUpload;

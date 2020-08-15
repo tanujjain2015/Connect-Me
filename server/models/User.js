@@ -40,7 +40,7 @@ const userSchema = new Schema({
     required: false,
     minlength: 10
   },
-  profileImg: {
+  image: {
     type: String,
   },
   location: {

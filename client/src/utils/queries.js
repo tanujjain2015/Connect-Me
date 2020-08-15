@@ -46,11 +46,11 @@ export const QUERY_USER = gql`
       purchaseDate
       offerings {
         _id
-        name
-        description
+        # name
+        # description
         price
         quantity
-        image
+        # image
       }
     }
   }
@@ -109,21 +109,20 @@ export const QUERY_USER_BY_SUBJECT= gql`
 }
 `;
 
-#query user for myprofile
 export const QUERY_PROFILE = gql`
-query user($email: String!) {
-  user(email: $email) {
-    _id
-    firstName
-    lastName
-    email
-    tutor
-    bio
-    image
-    # orders {
-    #   _id
-    #   purchaseDate
-    # }
-  }
-}
+    query user($email: String!) {
+      user(email: $email) {
+        _id
+        firstName
+        lastName
+        email
+        tutor
+        bio
+        image
+        # orders {
+        #   _id
+        #   purchaseDate
+        # }
+      }
+    }
 `;
