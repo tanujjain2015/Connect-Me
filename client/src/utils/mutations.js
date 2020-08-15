@@ -107,3 +107,21 @@ export const UPLOAD_FILE_STREAM = gql`
     }
   }
 `;
+
+export const ADD_SUBJECT = gql`
+  mutation addSubject($subject: String!) {
+   addSubject(subject: $subject) {
+    _id
+    subject
+  }
+}
+`;
+
+export const REMOVE_SUBJECT = gql`
+  mutation removeSubject($subjectid: String!) {
+   removeSubject(subjectid: $subjectid) {
+    _id
+  }
+}
+`;
+

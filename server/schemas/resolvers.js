@@ -40,7 +40,10 @@ const resolvers = {
     subjects: async () => {
       return await Subject.find();
     },
-    offerings: async (parent, { subject }) => {
+    offerings: async () => {
+      return await Offering.find();
+    },
+    /*offerings: async (parent, { subject }) => {
       const params = {};
 
       if (subject) {
@@ -54,23 +57,25 @@ const resolvers = {
       // }
 
       return await Subject.find(params).populate('subject');
+    }*/
+    
+    offeringBySubject: async (parent, { subject }) => {
+      console.log(subject)
+      const params = {};
+      params.subject = subject;
+
+      // if (subject) {
+      //   params.subject = subject;
+      // }
+
+      // if (name) {
+      //   params.name = {
+      //     $regex: name
+      //   };
+      // }
+      console.log(params);
+      return await Offering.find(params);
     },
-    // offeringBySubject: async (parent, { subject }) => {
-    //   const params = {};
-    //   params.subject = subject;
-
-    //   // if (subject) {
-    //   //   params.subject = subject;
-    //   // }
-
-    //   // if (name) {
-    //   //   params.name = {
-    //   //     $regex: name
-    //   //   };
-    //   // }
-    //   console.log(params);
-    //   return await Offering.find(params);
-    // },
     offering: async (parent, { _id }) => {
       return await Offering.findById(_id).populate('subject');
     },
@@ -212,6 +217,7 @@ const resolvers = {
         // const userDetails = await User.findById(args.userid);
         // console.log(userDetails);
         // args.user = userDetails;
+
         const offering =  await Offering.create(args);
         return offering;
       }
