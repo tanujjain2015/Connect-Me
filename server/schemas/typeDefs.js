@@ -52,7 +52,7 @@ type File {
     user(email: String!): User
     subjects: [Subject]
     offeringBySubject(subject: ID): [Offering]
-    # offerings(subject: ID, subject: String): [Offering]
+    #offerings(subject: ID, subject: String): [Offering]
     offerings: [Offering] 
     offering(_id: ID!): Offering
     # offeringbyUserID(userid: String!): Offering 

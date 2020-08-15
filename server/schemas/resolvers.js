@@ -44,8 +44,8 @@ const resolvers = {
     offerings: async () => {
       return await Offering.find();
     },
-    // offerings: async (parent, { subject }) => {
-    //   const params = {};
+    /*offerings: async (parent, { subject }) => {
+      const params = {};
 
     //   if (subject) {
     //     params.subject = subject;
@@ -57,21 +57,14 @@ const resolvers = {
     //   //   };
     //   // }
 
-    //   return await Subject.find(params).populate('subject');
-    // },
+      return await Subject.find(params).populate('subject');
+    }*/
+    
     offeringBySubject: async (parent, { subject }) => {
+      console.log(subject)
       const params = {};
-      params.subject._id = subject;
+      params.subject = subject;
 
-      // if (subject) {
-      //   params.subject = subject;
-      // }
-
-      // if (name) {
-      //   params.name = {
-      //     $regex: name
-      //   };
-      // }
       console.log(params);
       return await Offering.find(params);
     },
@@ -218,6 +211,7 @@ const resolvers = {
         // const userDetails = await User.findById(args.userid);
         // console.log(userDetails);
         // args.user = userDetails;
+
         const offering =  await Offering.create(args);
         return offering;
       }
