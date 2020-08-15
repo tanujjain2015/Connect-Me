@@ -31,6 +31,7 @@ const offeringSchema = new Schema({
   },
   user: {
     type: String,
+    // ref: 'User',
     required: false
   }
 });
@@ -38,4 +39,3 @@ const offeringSchema = new Schema({
 const Offering = mongoose.model('Offering', offeringSchema);
 
 module.exports = Offering;
-

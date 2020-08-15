@@ -3,16 +3,16 @@ const { User, Subject, Offering, Feedback, Order } = require('../models');
 
 db.once('open', async () => {
   //Feedback Seeds
-  await Feedback.deleteMany();
+  // await Feedback.deleteMany();
 
-  const feedbacks = await Feedback.insertMany([
-    { feedback: 'This is feedback 1' },
-    { feedback: 'This is feedback 2' },
-    { feedback: 'This is feedback 3' },
-    { feedback: 'This is feedback 4' },
-    { feedback: 'This is feedback 5' }
-  ]);
-  console.log('feedback seeded');
+  // const feedbacks = await Feedback.insertMany([
+  //   { feedback: 'This is feedback 1' },
+  //   { feedback: 'This is feedback 2' },
+  //   { feedback: 'This is feedback 3' },
+  //   { feedback: 'This is feedback 4' },
+  //   { feedback: 'This is feedback 5' }
+  // ]);
+  // console.log('feedback seeded');
 
   //Subject Seeds
   await Subject.deleteMany();
@@ -47,11 +47,11 @@ db.once('open', async () => {
     //     // products: [products[0]._id, products[0]._id, products[1]._id]
     //   }
     // ],
-    feedback: [
-      {
-        feedbacks: [feedbacks[0]._id, feedbacks[3]._id]
-      }
-    ]
+    // feedback: [
+    //   {
+    //     feedbacks: [feedbacks[0]._id, feedbacks[3]._id]
+    //   }
+    // ]
 
   },
 

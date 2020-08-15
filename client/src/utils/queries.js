@@ -9,6 +9,9 @@ export const QUERY_OFFERINGS = gql`
         _id
         subject
       }
+      # user{
+      #   _id
+      # }
     }
   }
 `;

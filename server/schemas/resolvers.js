@@ -40,21 +40,24 @@ const resolvers = {
     subjects: async () => {
       return await Subject.find();
     },
-    offerings: async (parent, { subject }) => {
-      const params = {};
-
-      if (subject) {
-        params.subject = subject;
-      }
-
-      // if (name) {
-      //   params.name = {
-      //     $regex: name
-      //   };
-      // }
-
-      return await Subject.find(params).populate('subject');
+    offerings: async () => {
+      return await Offering.find();
     },
+    // offerings: async (parent, { subject }) => {
+    //   const params = {};
+
+    //   if (subject) {
+    //     params.subject = subject;
+    //   }
+
+    //   // if (name) {
+    //   //   params.name = {
+    //   //     $regex: name
+    //   //   };
+    //   // }
+
+    //   return await Subject.find(params).populate('subject');
+    // },
     // offeringBySubject: async (parent, { subject }) => {
     //   const params = {};
     //   params.subject = subject;
