@@ -8,16 +8,10 @@ import ImageUpload from "../components/ImageUpload";
 
 
 function Signup(props) {
-<<<<<<< HEAD
   const [formState, setFormState] = useState({ firstName: '', lastName: '',email: '', password: '' });
   const [addUser, {error : mutationError}] = useMutation(ADD_USER);
   console.log(mutationError);
   
-=======
-  const [formState, setFormState] = useState({ email: '', password: ''});
-  const [addUser] = useMutation(ADD_USER);
-  //console.log(addUser);
->>>>>>> 0acb02124f7e2c4d49ed90fa9e17aaad06c60188
 
   const handleFormSubmit = async event => {
     event.preventDefault();
@@ -157,7 +151,7 @@ function Signup(props) {
           </ImageUpload>
         </div>
 
-        
+
 
         <div className="flex-row flex-end">
           <button type="submit">
