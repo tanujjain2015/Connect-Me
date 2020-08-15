@@ -74,7 +74,7 @@ export const QUERY_ME = gql`
       email
       tutor
       bio
-      image
+      # image
       role
       tutor
       bio
@@ -115,7 +115,7 @@ query user($email: String!) {
     email
     tutor
     bio
-    image
+    # image
     # orders {
     #   _id
     #   purchaseDate
