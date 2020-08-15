@@ -121,6 +121,7 @@ const resolvers = {
   },
   
   Mutation: {
+
     addUser: async (parent, args) => {
       console.log(args);
       const user = await User.create(args);
@@ -143,25 +144,35 @@ const resolvers = {
     },
     removeSubject: async (parent, {subjectid}, context) => {
       if (context.user) {
-        //console.log(context.user);
-        console.log(subjectid);
-        //const bookCreate = await Book.create({ ...input, username: context.user.username });
-
-        const updatedSubject = await Subject.findByIdAndUpdate(
-          { _id: subjectid },
-          { $pull: {_id: subjectid} },
-          { new: true, runValidators: true }
+        const updatedSubject = await Subject.findByIdAndDelete(
+          { _id: subjectid }
         );
-    
         return updatedSubject;
       }
     
       throw new AuthenticationError('You need to be logged in!');
     },
-    addOffering: async (parent,  {input}, context) => {
+    addOffering: async (parent, args, context) => {
       if (context.user ) {
-        //const subjectDetails = await Offering.findById(input.subjectId)
-        const offering = await Offering.create(input);
+        // console.log(context.user);
+        // console.log(args);
+        // console.log(args.quantity);
+        // console.log(args.price);
+        // console.log(args.userid);
+        // console.log(args.subjectid);
+        const subjectDetails = await Subject.findById(args.subjectid);
+        console.log(subjectDetails);
+        // var input = {};
+        // input.quantity = args.quantity;
+        // input.price = args.price;
+        // input.userid = args.userid;
+        // input.subject = subjectDetails;
+        // console.log(input);
+        args.subject = subjectDetails;
+
+        const offering = await (await Offering.create(args));
+        //console.log(offering);
+        //return offering;
         return offering;
       }
       throw new AuthenticationError('You need to be logged in!');
@@ -179,9 +190,10 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    updateUser: async (parent, args, context) => {
+    updateUser: async (parent, {input}, context) => {
+      console.log(input)
       if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, { new: true });
+        return await User.findByIdAndUpdate(context.user._id, input, { new: true });
       }
 
       throw new AuthenticationError('Not logged in');
