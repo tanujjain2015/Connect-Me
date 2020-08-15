@@ -43,19 +43,25 @@ const resolvers = {
     offerings: async () => {
       return await Offering.find();
     },
+<<<<<<< HEAD
     /*offerings: async (parent, { subject }) => {
       const params = {};
+=======
+    // offerings: async (parent, { subject }) => {
+    //   const params = {};
+>>>>>>> 4c0291c682955e1ff44bbbe0de8f9221915325fb
 
-      if (subject) {
-        params.subject = subject;
-      }
+    //   if (subject) {
+    //     params.subject = subject;
+    //   }
 
-      // if (name) {
-      //   params.name = {
-      //     $regex: name
-      //   };
-      // }
+    //   // if (name) {
+    //   //   params.name = {
+    //   //     $regex: name
+    //   //   };
+    //   // }
 
+<<<<<<< HEAD
       return await Subject.find(params).populate('subject');
     }*/
     
@@ -76,6 +82,26 @@ const resolvers = {
       console.log(params);
       return await Offering.find(params);
     },
+=======
+    //   return await Subject.find(params).populate('subject');
+    // },
+    // offeringBySubject: async (parent, { subject }) => {
+    //   const params = {};
+    //   params.subject = subject;
+
+    //   // if (subject) {
+    //   //   params.subject = subject;
+    //   // }
+
+    //   // if (name) {
+    //   //   params.name = {
+    //   //     $regex: name
+    //   //   };
+    //   // }
+    //   console.log(params);
+    //   return await Offering.find(params);
+    // },
+>>>>>>> 4c0291c682955e1ff44bbbe0de8f9221915325fb
     offering: async (parent, { _id }) => {
       return await Offering.findById(_id).populate('subject');
     },

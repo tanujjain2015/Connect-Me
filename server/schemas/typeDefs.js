@@ -1,19 +1,14 @@
 const { gql } = require('apollo-server-express');
-
 const typeDefs = gql`
-
 type File {
     filename: String!
     mimetype: String!
     encoding: String!
   }
-
-
   type Subject {
     _id: ID
     subject: String
   }
-
   type Offering {
     _id: ID
     quantity: Int
@@ -21,13 +16,11 @@ type File {
     subject: Subject
     user: String
   }
-
   type Order {
     _id: ID
     purchaseDate: String
     offerings: [Offering]
   }
-
   type User {
     _id: ID
     firstName: String
@@ -43,19 +36,16 @@ type File {
     orders: [Order]
     feedback: [Feedback]
   }
-
   type Feedback {
     _id: ID
     feedback: String,
     createdAt: String,
     userId: String
   }
-
   type Auth {
     token: ID
     user: User
   }
-
   type Query {
     me: User
     users: [User]
@@ -65,12 +55,11 @@ type File {
     #offerings(subject: ID, subject: String): [Offering]
     offerings: [Offering] 
     offering(_id: ID!): Offering
-    offeringbyUserID(userid: String!): Offering 
+    # offeringbyUserID(userid: String!): Offering 
     feedback: Feedback
     order(_id: ID!): Order
     checkout(offerings: [ID]!): Checkout
   }
-
   type Mutation {
     singleUpload(file: Upload!): File!,
     singleUploadStream(file: Upload!): File!
@@ -89,12 +78,10 @@ type File {
     #userid: String
     #subject: subjectDetails
   }
-
   input orderDetails {
     purchaseDate: String
     offerings: [updateOffering]
   }
-
   input feedbackDetails {
     feedback: String,
     createdAt: String,
@@ -114,24 +101,18 @@ type File {
     orders: [orderDetails]
     feedback: [feedbackDetails]
   }
-  
   input subjectDetails {
     subject: String
+    # _id: ID
   }
-  
-
   # input OfferingDetails {
   #   quantity: Int
   #   price: Float
   #   userid: String
   #   subjectid: subjectid
   # }
-
- 
-
   type Checkout {
     session: ID
   }
 `;
-
 module.exports = typeDefs;

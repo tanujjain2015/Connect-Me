@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import OfferingItem from "../OfferingItem";
+<<<<<<< HEAD
 import { QUERY_ALL_OFFERINGS } from "../../utils/queries";
+=======
+import { QUERY_OFFERINGS, QUERY_ALL_OFFERINGS } from "../../utils/queries";
+>>>>>>> 4c0291c682955e1ff44bbbe0de8f9221915325fb
 import spinner from "../../assets/spinner.gif"
 import { UPDATE_OFFERINGS } from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
