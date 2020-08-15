@@ -97,6 +97,11 @@ const Profile = () => {
                     <textarea type = "text" className = "form-control border border-info" id = "bio" value = "This should include the users bio once the user enters information about them" rows = "4" />
                 </div>
 
+                {/* <div className = "form-group">
+                    <label htmlFor="bio">Bio</label>
+                    <textarea type = "text" className = "form-control border border-info" id = "bio" rows = "4" value = {user.bio} />
+                </div> */}
+
                 <button type="submit" className = "btn btn-light ml-auto"><Link to="/editProfile">Edit</Link> <FaEdit/></button>
                 <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link><FaHome/></button>
             </form>

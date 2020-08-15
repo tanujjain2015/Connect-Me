@@ -28,11 +28,11 @@ type File {
     email: String
     password: String
     role: String
-    tutor: Boolean
+    tutor: String
     bio: String
     image: String
     location: String
-    timezone: String
+    # timezone: String
     orders: [Order]
     feedback: [Feedback]
   }
@@ -63,7 +63,7 @@ type File {
   type Mutation {
     singleUpload(file: Upload!): File!,
     singleUploadStream(file: Upload!): File!
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    addUser(firstName: String!, lastName: String!, email: String!, password: String!, location: String, tutor: String, bio: String): Auth
     addSubject(subject: String!): Subject
     removeSubject(subjectid: String!): Subject 
     addOrder(products: [ID]!): Order
@@ -93,11 +93,11 @@ type File {
     email: String
     password: String
     role: String
-    tutor: Boolean
+    tutor: String
     bio: String
     image: String
     location: String
-    timezone: String
+    # timezone: String
     orders: [orderDetails]
     feedback: [feedbackDetails]
   }

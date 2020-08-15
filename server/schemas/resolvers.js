@@ -2,6 +2,7 @@ const { AuthenticationError } = require('apollo-server-express');
 const { User, Offering, Subject, Order } = require('../models');
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc'); //replace with process.env.STRIPE_KEY
+const fs = require('fs');
 
 const resolvers = {
   Query: {
@@ -58,22 +59,22 @@ const resolvers = {
 
     //   return await Subject.find(params).populate('subject');
     // },
-    // offeringBySubject: async (parent, { subject }) => {
-    //   const params = {};
-    //   params.subject = subject;
+    offeringBySubject: async (parent, { subject }) => {
+      const params = {};
+      params.subject._id = subject;
 
-    //   // if (subject) {
-    //   //   params.subject = subject;
-    //   // }
+      // if (subject) {
+      //   params.subject = subject;
+      // }
 
-    //   // if (name) {
-    //   //   params.name = {
-    //   //     $regex: name
-    //   //   };
-    //   // }
-    //   console.log(params);
-    //   return await Offering.find(params);
-    // },
+      // if (name) {
+      //   params.name = {
+      //     $regex: name
+      //   };
+      // }
+      console.log(params);
+      return await Offering.find(params);
+    },
     offering: async (parent, { _id }) => {
       return await Offering.findById(_id).populate('subject');
     },
@@ -142,21 +143,23 @@ const resolvers = {
   Mutation: {
 
     singleUpload: (parent, args) => {
+      console.log(args)
       return args.file.then(file => {
         const {createReadStream, filename, mimetype} = file
 
-        const fileStream = createReadStream()
+        const fileStream = fs.createReadStream(filename)
 
         fileStream.pipe(fs.createWriteStream(`./uploadedFiles/${filename}`))
-
+        
         return file;
       });
     },
 
     singleUploadStream: async (parent, args) => {
+      console.log(args)
       const file = await args.file
       const {createReadStream, filename, mimetype} = file
-      const fileStream = createReadStream()
+      const fileStream = fs.createReadStream(filename)
 
       //Here stream it to S3
       // Enter your bucket name here next to "Bucket: "
