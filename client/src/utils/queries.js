@@ -7,7 +7,10 @@ export const QUERY_OFFERINGS = gql`
       _id
       price
       quantity
-      subject
+      subject{
+        _id
+        subject
+      }
     }
   }
 `;
@@ -74,7 +77,7 @@ export const QUERY_ME = gql`
       email
       tutor
       bio
-      image
+      # image
       role
       tutor
       bio
