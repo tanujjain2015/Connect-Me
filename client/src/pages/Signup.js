@@ -95,7 +95,7 @@ function Signup(props) {
           </select>
         </div>
         <div className="flex-row space-between my-2">
-          <label htmlFor="pwd">Bio:</label>
+          <label htmlFor="bio">Bio:</label>
           <textarea
             placeholder="Provide some description about you and your skill set and what are you looking for..."
             name="bio"
