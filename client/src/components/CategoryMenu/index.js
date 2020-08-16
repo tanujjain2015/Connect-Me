@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_SUBJECTS } from "../../utils/queries";
+import { QUERY_SUBJECTS, QUERY_OFFERINGS } from "../../utils/queries";
 import {UPDATE_SUBJECTS, UPDATE_CURRENT_SUBJECT} from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +13,7 @@ function CategoryMenu() {
   const dispatch = useDispatch();
 
   const { subjects } = state;
-  const { loading, data: categoryData } = useQuery(QUERY_SUBJECTS);
+  const { loading, data: categoryData } = useQuery(QUERY_OFFERINGS);
 
 
   useEffect(() => {

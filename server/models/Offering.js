@@ -29,8 +29,9 @@ const offeringSchema = new Schema({
     ref: 'Subject',
     required: true
   },
-  userid: {
+  user: {
     type: String,
+    // ref: 'User',
     required: false
   }
 });
@@ -38,4 +39,3 @@ const offeringSchema = new Schema({
 const Offering = mongoose.model('Offering', offeringSchema);
 
 module.exports = Offering;
-

@@ -8,11 +8,20 @@ import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Profile from './pages/Profile';
+import EditProfile from './pages/EditProfile'
 import Nav from "./components/Nav";
 import OrderHistory from "./pages/OrderHistory";
 import Success from './pages/Success'
 import { Provider } from 'react-redux';
 import store from './redux/store';
+
+//Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// const client = new ApolloClient({
+//   uri: 'http://localhost:3001/graphql'
+// });
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -23,6 +32,7 @@ const client = new ApolloClient({
       }
     })
   },
+  // uri: 'http://localhost:3001/graphql',
   uri: '/graphql',
 })
 
@@ -39,6 +49,8 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/editProfile" component={EditProfile} />
             <Route exact path="/orderHistory" component={OrderHistory} />
             <Route exact path="/offerings/:id" component={Detail} />
             <Route exact path="/success" component={Success} />

@@ -2,6 +2,7 @@ const { AuthenticationError } = require('apollo-server-express');
 const { User, Offering, Subject, Order } = require('../models');
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc'); //replace with process.env.STRIPE_KEY
+const fs = require('fs');
 
 const resolvers = {
   Query: {
@@ -9,7 +10,8 @@ const resolvers = {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
-          .populate('User');
+          .populate('User')
+          // .populate('offerings')
     
         return userData;
       }
@@ -39,29 +41,41 @@ const resolvers = {
     subjects: async () => {
       return await Subject.find();
     },
-    offerings: async (parent, { subject, name }) => {
+    offerings: async () => {
+      return await Offering.find();
+    },
+    /*offerings: async (parent, { subject }) => {
       const params = {};
 
-      if (subject) {
-        params.subject = subject;
-      }
+    //   if (subject) {
+    //     params.subject = subject;
+    //   }
 
-      if (name) {
-        params.name = {
-          $regex: name
-        };
-      }
+    //   // if (name) {
+    //   //   params.name = {
+    //   //     $regex: name
+    //   //   };
+    //   // }
 
-      return await Offering.find(params).populate('subject');
+      return await Subject.find(params).populate('subject');
+    }*/
+    
+    offeringBySubject: async (parent, { subject }) => {
+      console.log(subject)
+      const params = {};
+      params.subject = subject;
+
+      console.log(params);
+      return await Offering.find(params);
     },
     offering: async (parent, { _id }) => {
       return await Offering.findById(_id).populate('subject');
     },
 
     //Retrieve offering by userID
-    offeringbyUserID: async (parent, { userid }, context) => {
-      return await Offering.find({userid: userid}).populate('subject');
-    },
+    // offeringbyUserID: async (parent, { userid }, context) => {
+    //   return await Offering.find({userid: userid}).populate('subject');
+    // },
     
   
     order: async (parent, { _id }, context) => {
@@ -120,11 +134,52 @@ const resolvers = {
   },
   
   Mutation: {
+
+    singleUpload: (parent, args) => {
+      console.log(args)
+      return args.file.then(file => {
+        const {createReadStream, filename, mimetype} = file
+
+        const fileStream = fs.createReadStream(filename)
+
+        fileStream.pipe(fs.createWriteStream(`./uploadedFiles/${filename}`))
+        
+        return file;
+      });
+    },
+
+    singleUploadStream: async (parent, args) => {
+      console.log(args)
+      const file = await args.file
+      const {createReadStream, filename, mimetype} = file
+      const fileStream = fs.createReadStream(filename)
+
+      //Here stream it to S3
+      // Enter your bucket name here next to "Bucket: "
+      const uploadParams = {Bucket: 'apollo-file-upload-test', Key: filename, Body: fileStream};
+      const result = await s3.upload(uploadParams).promise()
+
+      console.log(result)
+
+
+      return file;
+    },
+
     addUser: async (parent, args) => {
+      console.log(args);
       const user = await User.create(args);
       const token = signToken(user);
 
+
       return { token, user };
+    },
+    updateUser: async (parent, {input}, context) => {
+      console.log(input)
+      if (context.user) {
+        return await User.findByIdAndUpdate(context.user._id, input, { new: true });
+      }
+
+      throw new AuthenticationError('Not logged in');
     },
     addSubject: async (parent, args, context) => {
       //console.log(context.user.tutor)
@@ -140,25 +195,32 @@ const resolvers = {
     },
     removeSubject: async (parent, {subjectid}, context) => {
       if (context.user) {
-        //console.log(context.user);
-        console.log(subjectid);
-        //const bookCreate = await Book.create({ ...input, username: context.user.username });
-
-        const updatedSubject = await Subject.findByIdAndUpdate(
-          { _id: subjectid },
-          { $pull: {_id: subjectid} },
-          { new: true, runValidators: true }
+        const updatedSubject = await Subject.findByIdAndDelete(
+          { _id: subjectid }
         );
-    
         return updatedSubject;
       }
     
       throw new AuthenticationError('You need to be logged in!');
     },
-    addOffering: async (parent,  {input}, context) => {
+    addOffering: async (parent, args, context) => {
+      console.log(args)
       if (context.user ) {
-        //const subjectDetails = await Offering.findById(input.subjectId)
-        const offering = await Offering.create(input);
+        const subjectDetails = await Subject.findById(args.subjectid);
+        args.subject = subjectDetails;
+        // const userDetails = await User.findById(args.userid);
+        // console.log(userDetails);
+        // args.user = userDetails;
+
+        const offering =  await Offering.create(args);
+        return offering;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    updateOffering: async (parent, args, context) => {
+      if (context.user ) {
+        console.log(args);
+        const offering =  await Offering.findByIdAndUpdate(args._id, args.input, { new: true });
         return offering;
       }
       throw new AuthenticationError('You need to be logged in!');
@@ -172,13 +234,6 @@ const resolvers = {
         await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
 
         return order;
-      }
-
-      throw new AuthenticationError('Not logged in');
-    },
-    updateUser: async (parent, args, context) => {
-      if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, { new: true });
       }
 
       throw new AuthenticationError('Not logged in');

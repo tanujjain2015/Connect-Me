@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import OfferingItem from "../OfferingItem";
-import { QUERY_OFFERINGS } from "../../utils/queries";
+import { QUERY_OFFERINGS, QUERY_ALL_OFFERINGS } from "../../utils/queries";
 import spinner from "../../assets/spinner.gif"
 import { UPDATE_OFFERINGS } from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
@@ -19,7 +19,7 @@ function OfferingList() {
 
   const { currentSubject } = state;
   
-  const { loading, data } = useQuery(QUERY_OFFERINGS);
+  const { loading, data } = useQuery(QUERY_ALL_OFFERINGS);
 
   const offerings = data?.offerings || [];
   
@@ -69,10 +69,11 @@ function OfferingList() {
                 <OfferingItem
                   key= {offering._id}
                   _id={offering._id}
-                  image={offering.image}
-                  name={offering.name}
+                  // image={offering.image}
+                  // name={offering.name}
                   price={offering.price}
                   quantity={offering.quantity}
+                  subject={offering.subject}
                 />
             ))}
         </div>
