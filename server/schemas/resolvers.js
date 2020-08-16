@@ -101,7 +101,12 @@ const resolvers = {
       for (let i = 0; i < offerings.length; i++) {
         // generate offering id
         const offering = await stripe.offerings.create({
-          name: offering[i].name,
+          _id: offerings[i]._id,
+          // name: offerings[i].name
+          price: offerings[i].price,
+          quantity: offerings[i].quantity,
+          subject: offerings[i].subject,
+          user: offerings[i].user,
           // description: offerings[i].description,
           // images: [`${url}/images/${offerings[i].image}`]
         });

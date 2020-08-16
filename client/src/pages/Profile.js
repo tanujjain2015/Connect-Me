@@ -21,10 +21,10 @@ function Profile(props) {
   const [updateUser] = useMutation(UPDATE_USER);
   console.log(updateUser);
 
-  const state = useSelector((state) => {
-    return state
-  });
-  const dispatch = useDispatch();
+//   const state = useSelector((state) => {
+//     return state
+//   });
+//   const dispatch = useDispatch();
 
   const handleFormSubmit = (event) => {
     event.preventDefault();

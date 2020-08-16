@@ -66,7 +66,7 @@ type File {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!, location: String, tutor: String, bio: String): Auth
     addSubject(subject: String!): Subject
     removeSubject(subjectid: String!): Subject 
-    addOrder(products: [ID]!): Order
+    addOrder(offerings: [ID]!): Order
     updateUser(input: userDetails): User
     addOffering(quantity: Int,price: Float, userid: String, subjectid: String): Offering
     updateOffering(_id: ID!, input: updateOffering!): Offering

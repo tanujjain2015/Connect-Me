@@ -116,7 +116,7 @@ function Signup(props) {
           </select> */}
           {/* <input
             placeholder="choose your country"
-            type="locations"
+            type="location"
             onChange={handleChange}
           />  */}
         {/* </div> */}
