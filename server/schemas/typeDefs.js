@@ -92,7 +92,7 @@ type File {
     lastName: String
     email: String
     password: String
-    role: String
+    # role: String
     tutor: String
     bio: String
     image: String
@@ -114,5 +114,5 @@ type File {
   type Checkout {
     session: ID
   }
-`;
+`; 
 module.exports = typeDefs;

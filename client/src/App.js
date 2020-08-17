@@ -16,6 +16,7 @@ import Success from './pages/Success'
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import ProfileUpdate from './components/ProfileUpdate';
+import ManageOfferings from './components/ManageOfferings';
 // import LoginPage from "./views/LoginPage/LoginPage.js";
 // import "./assets/scss/material-kit-react.scss?v=1.9.0";
 
@@ -60,6 +61,7 @@ function App() {
             <Route exact path="/profileupdate" component={ProfileUpdate} />
             <Route exact path="/orderHistory" component={OrderHistory} />
             <Route exact path="/offerings/:id" component={Detail} />
+            <Route exact path="/manageofferings" component={ManageOfferings} />
             <Route exact path="/success" component={Success} />
             <Route component={NoMatch} />
             {/* <Route path="/login-page" component={LoginPage} /> */}
