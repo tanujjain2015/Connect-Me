@@ -166,7 +166,7 @@ import { FaEdit, FaHome } from "react-icons/fa";
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Comprehend } from "aws-sdk";
-import { Button, Box } from '@material-ui/core';
+// import { Button, Box } from '@material-ui/core';
 
 
 function Profile(props) {
