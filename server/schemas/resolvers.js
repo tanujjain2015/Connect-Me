@@ -111,7 +111,7 @@ const resolvers = {
         const product = await stripe.products.create({
           //id: offerings.id, (No ID Value hence commented out) q
           //user: context.user.email,
-          name: products[i]._id,
+          name: "maths",
           description: "Offerings"
           //price: products[i].price,
           //quantity: products[i].quantity,
