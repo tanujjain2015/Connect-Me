@@ -7,19 +7,50 @@ import { UPDATE_OFFERINGS } from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 // import { off } from '../../../../server/models/User';
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation, useParams } from "react-router-dom";
 import Auth from "../../utils/auth";
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_USER, UPDATE_USER } from "../../utils/mutations";
 
+//changes
+import { QUERY_PROFILE, QUERY_ME } from '../../utils/queries';
+
 
 
 function ProfileUpdate () {
+    let history = useHistory();
+    //changes
+    const { email: userParam } = useParams();
+    const { loading, userData } = useQuery(userParam ? QUERY_PROFILE : QUERY_ME, {
+        variables: { email : userParam }
+    });
+    const user = userData?.me || userData?.user || {};
+    console.log(user);
+    const [state, setState] = useState({open: false});
 
+
+    // const state = useSelector((state) => {
+    //     return state
+    //   });
+      const dispatch = useDispatch();
+    
+    //   const { users } = state;
+    //   const { loading, data: userData } = useQuery(QUERY_USER);
+
+    //changes
     let location = useLocation();
     console.log(location);
 
-    const [formState, setFormState] = useState({ firstName: location.user.firstName, lastName: location.user.lastName, email: location.user.email});
+    const [formState, setFormState] = useState({ 
+        firstName: location.user.firstName, 
+        lastName: location.user.lastName, 
+        email: location.user.email, 
+        password: location.user.password,
+        location: location.user.location,
+        tutor: location.user.tutor,
+        bio: location.user.bio,
+        subject: location.user.subject
+    });
     // const [state, formState] = useState({ email: props.user.email , firstName: props.user.firstName});
     const [updateUser] = useMutation(UPDATE_USER);
 
@@ -27,22 +58,48 @@ function ProfileUpdate () {
         event.preventDefault();
         const mutationResponse =  await updateUser({
           variables: {
-            firstName: formState.firstName, 
-            lastName: formState.lastName,
-            email: formState.email, 
-            password: formState.password,
-            location: formState.location,
-            tutor: formState.tutor,
-            bio: formState.bio
+            input: {...formState}
           }
         });
-        const token = mutationResponse.data.updateUser.token;
-        Auth.login(token);
-        useHistory.push('/Profile')
+
+        // console.log(mutationResponse)
+        // const token = mutationResponse.data.updateUser.token;
+        // Auth.login(token);
+
+        history.push('/')
       };
 
+
+
+    //   useEffect(() => {
+        //if categoryData exists or has changed from the response of useQuery, then run dispatch()
+    
+    //     if(userData) {
+    //       //execute our dispatch function with our action object indicating the type of action and the data to set our state for categories to
+    //       dispatch({
+    //         type: UPDATE_USER,
+    //         users: userData.users
+    //       });
+    
+    //     //   userData.users.forEach(user => {
+    //     //     idbPromise('users', 'put', user)
+    //     //   }) 
+    //     // } 
+    //     // else if (!loading) {
+    //     //   idbPromise('users', 'get').then(users => {
+    //     //     dispatch({
+    //     //       type: UPDATE_USER,
+    //     //       users: users
+    //     //     })
+    //     //   })
+    //     }
+    //   }, [userData, loading, dispatch]);
+
     return(
-        <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark" onSubmit={async event => {event.preventDefault()}}>
+        <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark" 
+            // onSubmit={async event => {event.preventDefault()}}
+            onSubmit={handleFormSubmit}
+            >
                          <div className = "form-row">
                              <div className = "form-group col-md-6">
                                 <label htmlFor = "firstName">First Name</label>
@@ -108,7 +165,7 @@ function ProfileUpdate () {
                          <div className = "form-row">
                              <div className="form-group col-md-4">
                                  <label htmlFor="location">Location</label>
-                                 <select id = "location" name='location' className = "form-control border border-info" value = {formState.location || ''} 
+                                 <select id = "location" name="location" className = "form-control border border-info" value = {formState.location || ''} 
                                     onChange={event => {
                                         const { name, value } = event.target;
                                             console.log(event);
@@ -129,7 +186,7 @@ function ProfileUpdate () {
 
                              <div className="form-group col-md-4">
                                  <label htmlFor="subject">Your Subjects</label>
-                                <select id = "subject" name="subject" className = "form-control border border-info" multiple value = {formState.subject || ''}
+                                <select id = "subject" name="subject" className = "form-control border border-info" multiple value = {[formState.subject] || ''} 
 
                                         onChange={event => {
                                             const { name, value } = event.target;
@@ -150,8 +207,13 @@ function ProfileUpdate () {
                                  </select>
                             </div>
                          </div>
-                    {/* <button type="submit" className = "btn btn-primary ml-auto" onClick={() => {setState({open: !state.open})}}><Link to ={{pathname: '/profileupdate',user }}>Edit Profile</Link></button> */}
+                    {/* <button type="submit" className = "btn btn-primary ml-auto" onClick={() => {setState({open: !state.open})}}><Link to ={{pathname: '/',user }}>Update Profile</Link></button> */}
                     <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link></button>
+                    <button className = "btn btn-light ml-auto" type="submit" 
+                    // onClick={updateUser}
+                    // onClick={setState}
+                    // onClick={() => {setState({open: !state.open})}}
+                    >Update</button>
          </form>
     )
 }
