@@ -116,8 +116,10 @@ export const UPDATE_USER = gql`
 
 
 export const ADD_OFFERING = gql`
-mutation addOffering($quantity: Int,$price: Float,$userid: String, $subjectid: String) {
-  addOffering(quantity: $quantity,price: $price,userid: $userid, subjectid: $subjectid) {
+mutation addOffering($name: String!, $decription: String, $quantity: Int,$price: Float,$userid: String, $subjectid: String) {
+  addOffering(name: $name, decription: $description, quantity: $quantity,price: $price,userid: $userid, subjectid: $subjectid) {
+    name
+    decription
      _id
     quantity
     price
