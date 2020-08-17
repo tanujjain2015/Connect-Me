@@ -84,7 +84,6 @@ const resolvers = {
           path: 'orders.offerings',
           populate: 'subject'
         });
-
         return user.orders.id(_id);
       }
 
@@ -92,30 +91,41 @@ const resolvers = {
     },
 
     checkout: async (parent, args, context) => {
+      console.log("Inside : " + args.offerings );
       const order = new Order ({offerings: args.offerings});
-      const { offerings } = await order.populate('offerings').execPopulate();
+     //console.log(order);
+      const { offerings } = await order.populate('offerings').execPopulate(); 
+      console.log(offerings);
+      const products = offerings;
       const url = new URL(context.headers.referer).origin;
-
+     // console.log("Inside checkout" + offerings );
       const line_items = [];
+      console.log(products.length);
 
-      for (let i = 0; i < offerings.length; i++) {
+      for (let i = 0; i < products.length; i++) {
+        //console.log(offerings.id);
+         console.log(products[i]._id);
+        // console.log(offerings[i].price);`
+        // console.log(offerings[i].quantity);
         // generate offering id
-        const offering = await stripe.offerings.create({
-          id: offerings[i].id,
-          _id: offerings[i]._id,
-          price: offerings[i].price,
-          quantity: offerings[i].quantity,
+        const product = await stripe.products.create({
+          //id: offerings.id, (No ID Value hence commented out) q
+          //user: context.user.email,
+          name: products[i]._id,
+          description: "Offerings"
+          //price: products[i].price,
+          //quantity: products[i].quantity,
           // subject: offerings[i].subject,
           // user: offerings[i].user,
           // name: offerings[i].name,
           // description: offerings[i].description,
           // images: [`${url}/images/${offerings[i].image}`]
         });
-
+        //console.log("offering value is: " + product);
         // generate price id using the offering id
         const price = await stripe.prices.create({
-          offering: offering.id,
-          unit_amount: offerings[i].price * 100,
+          product: product.id,
+          unit_amount: products[i].price * 100,
           currency: 'usd',
         });
 
@@ -233,7 +243,7 @@ const resolvers = {
     },
     
     addOrder: async (parent, { offerings }, context) => {
-      console.log(context);
+      console.log("Inside add order" + offerings);
       if (context.user) {
         const order = new Order({ offerings });
 
