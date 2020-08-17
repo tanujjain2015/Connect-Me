@@ -208,6 +208,10 @@ function Profile(props) {
     //         email: user.email
     //     })
     //   },[state]);
+
+    
+
+
     //redirect to personal profile page if email is the loggedin user's
     if(Auth.loggedIn() && Auth.getProfile().data.email.toLowerCase() === `${userParam ? userParam.toLowerCase() : ''}`) {
         return <Redirect to="/profile" />
