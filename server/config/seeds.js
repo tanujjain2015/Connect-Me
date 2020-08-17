@@ -79,24 +79,27 @@ db.once('open', async () => {
   await Offering.deleteMany();
 
   const offerings = await Offering.insertMany([
-    {
+    { 
+     
       price: 90.00,
       quantity: 1,
-      userid: users[0]._id,
+      user: users[0]._id,
       subject: subjects[0]._id
     },
-    {
+    { 
+      
       price: 110.00,
       quantity: 1,
-      userid: users[0]._id,
+      user: users[0]._id,
       subject: subjects[1]._id
+    },
+    {
+      
+      price: 90.00,
+      quantity: 1,
+      user:users[0]._id,
+      subject: subjects[2]._id
     }
-    // {
-    //   name: '',
-    //   price: 90.00,
-    //   quantity: 1,
-    //   subject: subjects[2]._id
-    // },
     // {
     //   name: '',
     //   price: 90.00,
