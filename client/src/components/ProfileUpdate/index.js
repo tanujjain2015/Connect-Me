@@ -19,13 +19,13 @@ import { QUERY_PROFILE, QUERY_ME } from '../../utils/queries';
 
 function ProfileUpdate () {
     //changes
-    // const { email: userParam } = useParams();
-    // const { loading, data } = useQuery(userParam ? QUERY_PROFILE : QUERY_ME, {
-    //     variables: { email : userParam }
-    // });
-    // const user = data?.me || data?.user || {};
-    // console.log(user);
-    // const [state, setState] = useState({open: false});
+    const { email: userParam } = useParams();
+    const { loading, data } = useQuery(userParam ? QUERY_PROFILE : QUERY_ME, {
+        variables: { email : userParam }
+    });
+    const user = data?.me || data?.user || {};
+    console.log(user);
+    const [state, setState] = useState({open: false});
 
 
     // const [updateUser, { newData }] = useMutation(UPDATE_USER)
@@ -69,7 +69,7 @@ function ProfileUpdate () {
 
     return(
         <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark" 
-            // onSubmit={async event => {event.preventDefault()}}
+            onSubmit={async event => {event.preventDefault()}}
             onSubmit={handleFormSubmit}
             >
                          <div className = "form-row">
@@ -179,10 +179,12 @@ function ProfileUpdate () {
                                  </select>
                             </div>
                          </div>
-                    {/* <button type="submit" className = "btn btn-primary ml-auto" onClick={() => {setState({open: !state.open})}}><Link to ={{pathname: '/profileupdate',user }}>Update Profile</Link></button> */}
+                    <button type="submit" className = "btn btn-primary ml-auto" onClick={() => {setState({open: !state.open})}}><Link to ={{pathname: '/',user }}>Update Profile</Link></button>
                     <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link></button>
                     <button className = "btn btn-light ml-auto" type="submit" 
                     // onClick={handleFormSubmit}
+                    // onClick={setState}
+                    // onClick={() => {setState({open: !state.open})}}
                     >Update</button>
          </form>
     )
