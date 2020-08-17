@@ -40,7 +40,7 @@ db.once('open', async () => {
     tutor: true,
     bio: "filling it up for time being",
     image: "TBD",
-    location: "USA",
+    location: "AMER",
     // timezone: "UTC",
     // orders: [ //need to change the name in the schema
     //   {
@@ -63,7 +63,7 @@ db.once('open', async () => {
     tutor: false,
     bio: "filling it up for time being",
     image: "TBD",
-    location: "Brazil",
+    location: "APAC",
     // timezone: "UTC + 3",
     // orders: [
     //   {

@@ -44,21 +44,21 @@ const resolvers = {
     offerings: async () => {
       return await Offering.find();
     },
-    /*offerings: async (parent, { subject }) => {
-      const params = {};
+    // offerings: async (parent,{subject} ) => {
+    //   const params = {};
 
     //   if (subject) {
     //     params.subject = subject;
     //   }
 
-    //   // if (name) {
-    //   //   params.name = {
-    //   //     $regex: name
-    //   //   };
-    //   // }
+    //   if (name) {
+    //     params.name = {
+    //     $regex: name
+    //    };
+    //   }
 
-      return await Subject.find(params).populate('subject');
-    }*/
+    //   return await Subject.find(params).populate('subject');
+    // },
     
     offeringBySubject: async (parent, { subject }) => {
       console.log(subject)
@@ -130,10 +130,15 @@ const resolvers = {
       for (let i = 0; i < offerings.length; i++) {
         // generate product id
         const offering = await stripe.offerings.create({
-          name: offerings[i].name,
-          // description: products[i].description,
-          // images: [`${url}/images/${products[i].image}`]
-         
+          id: offerings[i].id,
+          _id: offerings[i]._id,
+          price: offerings[i].price,
+          quantity: offerings[i].quantity,
+          // subject: offerings[i].subject,
+          // user: offerings[i].user,
+          // name: offerings[i].name,
+          // description: offerings[i].description,
+          // images: [`${url}/images/${offerings[i].image}`]
         });
 
         // generate price id using the product id
