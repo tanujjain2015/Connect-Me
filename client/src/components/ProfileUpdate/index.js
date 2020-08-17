@@ -69,7 +69,7 @@ function ProfileUpdate () {
 
     return(
         <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark" 
-            onSubmit={async event => {event.preventDefault()}}
+            // onSubmit={async event => {event.preventDefault()}}
             onSubmit={handleFormSubmit}
             >
                          <div className = "form-row">
@@ -182,7 +182,7 @@ function ProfileUpdate () {
                     <button type="submit" className = "btn btn-primary ml-auto" onClick={() => {setState({open: !state.open})}}><Link to ={{pathname: '/',user }}>Update Profile</Link></button>
                     <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link></button>
                     <button className = "btn btn-light ml-auto" type="submit" 
-                    // onClick={handleFormSubmit}
+                    onClick={updateUser}
                     // onClick={setState}
                     // onClick={() => {setState({open: !state.open})}}
                     >Update</button>
