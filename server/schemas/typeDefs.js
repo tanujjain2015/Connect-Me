@@ -16,7 +16,7 @@ type File {
     quantity: Int
     price: Float
     subject: Subject
-    user: String
+    user: User
   }
   type Order {
     _id: ID
