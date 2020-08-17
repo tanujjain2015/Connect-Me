@@ -18,6 +18,7 @@ import { QUERY_PROFILE, QUERY_ME } from '../../utils/queries';
 
 
 function ProfileUpdate () {
+    let history = useHistory();
     //changes
     const { email: userParam } = useParams();
     const { loading, userData } = useQuery(userParam ? QUERY_PROFILE : QUERY_ME, {
@@ -57,46 +58,42 @@ function ProfileUpdate () {
         event.preventDefault();
         const mutationResponse =  await updateUser({
           variables: {
-            firstName: formState.firstName, 
-            lastName: formState.lastName,
-            email: formState.email, 
-            password: formState.password,
-            location: formState.location,
-            tutor: formState.tutor,
-            bio: formState.bio,
-            subject: formState.subject
+            input: {...formState}
           }
         });
-        const token = mutationResponse.data.updateUser.token;
-        Auth.login(token);
-        useHistory.push('/Profile')
+
+        // console.log(mutationResponse)
+        // const token = mutationResponse.data.updateUser.token;
+        // Auth.login(token);
+
+        history.push('/')
       };
 
 
 
-      useEffect(() => {
+    //   useEffect(() => {
         //if categoryData exists or has changed from the response of useQuery, then run dispatch()
     
-        if(userData) {
-          //execute our dispatch function with our action object indicating the type of action and the data to set our state for categories to
-          dispatch({
-            type: UPDATE_USER,
-            users: userData.users
-          });
+    //     if(userData) {
+    //       //execute our dispatch function with our action object indicating the type of action and the data to set our state for categories to
+    //       dispatch({
+    //         type: UPDATE_USER,
+    //         users: userData.users
+    //       });
     
-        //   userData.users.forEach(user => {
-        //     idbPromise('users', 'put', user)
-        //   }) 
-        // } 
-        // else if (!loading) {
-        //   idbPromise('users', 'get').then(users => {
-        //     dispatch({
-        //       type: UPDATE_USER,
-        //       users: users
-        //     })
-        //   })
-        }
-      }, [userData, loading, dispatch]);
+    //     //   userData.users.forEach(user => {
+    //     //     idbPromise('users', 'put', user)
+    //     //   }) 
+    //     // } 
+    //     // else if (!loading) {
+    //     //   idbPromise('users', 'get').then(users => {
+    //     //     dispatch({
+    //     //       type: UPDATE_USER,
+    //     //       users: users
+    //     //     })
+    //     //   })
+    //     }
+    //   }, [userData, loading, dispatch]);
 
     return(
         <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark" 
@@ -210,10 +207,10 @@ function ProfileUpdate () {
                                  </select>
                             </div>
                          </div>
-                    <button type="submit" className = "btn btn-primary ml-auto" onClick={() => {setState({open: !state.open})}}><Link to ={{pathname: '/',user }}>Update Profile</Link></button>
+                    {/* <button type="submit" className = "btn btn-primary ml-auto" onClick={() => {setState({open: !state.open})}}><Link to ={{pathname: '/',user }}>Update Profile</Link></button> */}
                     <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link></button>
                     <button className = "btn btn-light ml-auto" type="submit" 
-                    onClick={updateUser}
+                    // onClick={updateUser}
                     // onClick={setState}
                     // onClick={() => {setState({open: !state.open})}}
                     >Update</button>
