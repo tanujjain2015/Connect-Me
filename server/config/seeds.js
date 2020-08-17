@@ -80,21 +80,24 @@ db.once('open', async () => {
 
   const offerings = await Offering.insertMany([
     { 
-     
+      name: "React beginners",
+      description: "This class will help you have an idea of how React.js works",
       price: 90.00,
       quantity: 1,
       user: users[0]._id,
       subject: subjects[0]._id
     },
     { 
-      
+      name: "Javascript Basics",
+      description: "Covers the basics of Javascript. Needs prior knowledge of HTML and CSS",
       price: 110.00,
       quantity: 1,
       user: users[0]._id,
       subject: subjects[1]._id
     },
     {
-      
+      name: "Javascript Advanced",
+      description: "Covers the advance levels of Javascript. Needs prior knowledge of HTML and CSS",
       price: 90.00,
       quantity: 1,
       user:users[0]._id,

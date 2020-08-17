@@ -10,6 +10,8 @@ type File {
     subject: String
   }
   type Offering {
+    name: String
+    description: String
     _id: ID
     quantity: Int
     price: Float

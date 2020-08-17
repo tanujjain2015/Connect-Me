@@ -2,6 +2,8 @@ import gql from 'graphql-tag';
 export const QUERY_OFFERINGS = gql`
   query offeringBySubject($subject: ID) {
     offerings(subject: $subject) {
+      name
+      description
       _id
       price
       quantity
@@ -20,6 +22,8 @@ export const QUERY_OFFERINGS = gql`
 export const QUERY_ALL_OFFERINGS = gql`
   {
     offerings {
+      name
+      description
       _id
       price
       quantity
