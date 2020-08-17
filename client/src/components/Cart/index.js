@@ -57,7 +57,9 @@ const Cart = () => {
 
         state.cart.forEach((item) => {
             for (let i=0; i<item.purchaseQuantity; i++) {
+              console.log(item);
               offeringIds.push(item._id);
+              console.log(offeringIds);
             }
         })
 
@@ -68,6 +70,7 @@ const Cart = () => {
 
 
     useEffect(() => {
+      console.log(data);
         if(data) {
             stripePromise.then((res) => {
                 res.redirectToCheckout({ sessionId: data.checkout.session})
