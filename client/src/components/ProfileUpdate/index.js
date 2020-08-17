@@ -20,16 +20,21 @@ import { QUERY_PROFILE, QUERY_ME } from '../../utils/queries';
 function ProfileUpdate () {
     //changes
     const { email: userParam } = useParams();
-    const { loading, data } = useQuery(userParam ? QUERY_PROFILE : QUERY_ME, {
+    const { loading, userData } = useQuery(userParam ? QUERY_PROFILE : QUERY_ME, {
         variables: { email : userParam }
     });
-    const user = data?.me || data?.user || {};
+    const user = userData?.me || userData?.user || {};
     console.log(user);
     const [state, setState] = useState({open: false});
 
 
-    // const [updateUser, { newData }] = useMutation(UPDATE_USER)
-    // console.log(newData )
+    // const state = useSelector((state) => {
+    //     return state
+    //   });
+      const dispatch = useDispatch();
+    
+    //   const { users } = state;
+    //   const { loading, data: userData } = useQuery(QUERY_USER);
 
     //changes
     let location = useLocation();
@@ -66,6 +71,32 @@ function ProfileUpdate () {
         Auth.login(token);
         useHistory.push('/Profile')
       };
+
+
+
+      useEffect(() => {
+        //if categoryData exists or has changed from the response of useQuery, then run dispatch()
+    
+        if(userData) {
+          //execute our dispatch function with our action object indicating the type of action and the data to set our state for categories to
+          dispatch({
+            type: UPDATE_USER,
+            users: userData.users
+          });
+    
+        //   userData.users.forEach(user => {
+        //     idbPromise('users', 'put', user)
+        //   }) 
+        // } 
+        // else if (!loading) {
+        //   idbPromise('users', 'get').then(users => {
+        //     dispatch({
+        //       type: UPDATE_USER,
+        //       users: users
+        //     })
+        //   })
+        }
+      }, [userData, loading, dispatch]);
 
     return(
         <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark" 
