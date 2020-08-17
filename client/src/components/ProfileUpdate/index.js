@@ -19,7 +19,16 @@ function ProfileUpdate () {
     let location = useLocation();
     console.log(location);
 
-    const [formState, setFormState] = useState({ firstName: location.user.firstName, lastName: location.user.lastName, email: location.user.email});
+    const [formState, setFormState] = useState({ 
+        firstName: location.user.firstName, 
+        lastName: location.user.lastName, 
+        email: location.user.email, 
+        password: location.user.password,
+        location: location.user.location,
+        tutor: location.user.tutor,
+        bio: location.user.bio,
+        subject: location.user.subject
+    });
     // const [state, formState] = useState({ email: props.user.email , firstName: props.user.firstName});
     const [updateUser] = useMutation(UPDATE_USER);
 
@@ -33,7 +42,8 @@ function ProfileUpdate () {
             password: formState.password,
             location: formState.location,
             tutor: formState.tutor,
-            bio: formState.bio
+            bio: formState.bio,
+            subject: formState.subject
           }
         });
         const token = mutationResponse.data.updateUser.token;
@@ -108,7 +118,7 @@ function ProfileUpdate () {
                          <div className = "form-row">
                              <div className="form-group col-md-4">
                                  <label htmlFor="location">Location</label>
-                                 <select id = "location" name='location' className = "form-control border border-info" value = {formState.location || ''} 
+                                 <select id = "location" name="location" className = "form-control border border-info" value = {formState.location || ''} 
                                     onChange={event => {
                                         const { name, value } = event.target;
                                             console.log(event);
