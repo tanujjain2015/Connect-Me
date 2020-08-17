@@ -4,6 +4,8 @@ import { QUERY_SUBJECTS, QUERY_OFFERINGS } from "../../utils/queries";
 import {UPDATE_SUBJECTS, UPDATE_CURRENT_SUBJECT} from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
+
+
 function CategoryMenu() {
   const state = useSelector((state) => {
     return state

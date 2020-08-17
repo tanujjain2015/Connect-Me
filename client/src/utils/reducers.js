@@ -95,11 +95,11 @@ const reducer = (state=defaultState, action) => {
                 cartOpen: !state.cartOpen
             };
 
-        case UPDATE_USER:
-            return {
-                ...state,
-                users: [...action.users]
-            };
+        // case UPDATE_USER:
+        //     return {
+        //         ...state,
+        //         users: [...action.users]
+        //     };
 
         
 

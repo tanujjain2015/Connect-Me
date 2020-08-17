@@ -39,22 +39,33 @@ function Nav() {
     if (Auth.loggedIn()) {
       return (
         <ul className="flex-row">
+
+
           <li className="mx-1">
             <Link to="/orderHistory">
               Booked Lessons
             </Link>
           </li>
+
+          <li className="mx-1">
+            <Link to="/manageofferings">
+              Manage Offerings
+            </Link>
+          </li>
+
           <li className="mx-1">
             <Link to="/profile">
               My Profile
             </Link>
           </li>
+
           <li className="mx-1">
             {/* this is not using the Link component to logout or user and then refresh the application to the start */}
             <a href="/" onClick={() => Auth.logout()}>
               Logout
             </a>
           </li>
+
         </ul>
       );
     } else {

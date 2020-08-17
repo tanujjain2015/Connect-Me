@@ -3,14 +3,16 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const offeringSchema = new Schema({
-  // name: {
-  //   type: String,
-  //   required: true,
-  //   trim: true
-  // },
-  // description: {
-  //   type: String
-  // },
+  name: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  description: {
+    type: String,
+    required: true,
+    trim: true
+  },
   // image: {
   //   type: String
   // },
@@ -27,12 +29,12 @@ const offeringSchema = new Schema({
   subject: {
     type: Schema.Types.ObjectId,
     ref: 'Subject',
-    required: true
+    // required: true
   },
   user: {
-    type: String,
-    // ref: 'User',
-    required: false
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    // required: true
   }
 });
 
