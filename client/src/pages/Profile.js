@@ -251,6 +251,7 @@ function Profile(props) {
                             <p>{user.lastName}</p>
                         </div>
                     </div>
+
                     <div className = "form-group">
                         <label htmlFor="email">Email</label>
                         <p>{user.email}</p>
@@ -337,5 +338,6 @@ function Profile(props) {
 
     
   )
+  
 }
 export default Profile;

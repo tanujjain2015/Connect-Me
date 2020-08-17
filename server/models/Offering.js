@@ -30,9 +30,9 @@ const offeringSchema = new Schema({
     required: true
   },
   user: {
-    type: String,
-    // ref: 'User',
-    required: false
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
 });
 
