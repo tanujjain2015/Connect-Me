@@ -34,24 +34,11 @@ function Nav() {
       );
     } else {
       return (
-        // <ul className="flex-row">
-        //   <li className="mx-1">
-        //     {/* <Link to="/tutorsignup">
-        //       Tutor on Connnect Me
-        //     </Link> */}
-        //   </li>
-        //   <li className="mx-1">
-        //     <Link to="/signup">
-        //       Signup
-        //     </Link>
-        //   </li>
-        //   <li className="mx-1">
-        //     <Link to="/login">
-        //       Login
-        //     </Link>
-        //   </li>
-        // </ul>
-        <div class="my-2 justify-content-end">
+          <div className="my-2 text-center">
+
+<button class="btn text-light my-2 my-sm-0" type="submit">Find A Tutor</button>
+<button class="btn text-light my-2 my-sm-0" type="submit">About Us</button>
+        
           <Link to="/login">
           <button class="btn text-light my-2 my-sm-0" type="submit">Login</button>
           </Link>
@@ -71,12 +58,7 @@ function Nav() {
           Connect Me
         </Link>
       </h1>
-
-      <form class="form-inline my-2 my-lg-0 justify-content-center">
-      <input class="form-control mr-sm-2" type="search" placeholder="Enter A Subject" aria-label="Search" />
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-       </form>
-      <nav>
+      <nav class="w-75">
         {showNavigation()}
         <Cart />
       </nav>
