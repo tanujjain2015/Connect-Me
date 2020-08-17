@@ -101,13 +101,17 @@ export const UPDATE_USER = gql`
             purchaseDate
             offerings {
               _id
+              name
+              description
               quantity
               price
               subject {
                 _id
                 subject
               }
-              user
+              user {
+                _id
+              }
             }
           }
         }
