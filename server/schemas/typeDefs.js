@@ -59,7 +59,7 @@ type File {
     offering(_id: ID!): Offering
     # offeringbyUserID(userid: String!): Offering 
     feedback: Feedback
-    order(_id: ID!): Order
+    order(_id: ID!): Order  
     checkout(offerings: [ID]!): Checkout
   }
   type Mutation {
