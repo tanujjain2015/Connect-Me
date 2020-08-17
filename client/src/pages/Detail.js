@@ -96,50 +96,52 @@ function Detail() {
     idbPromise('cart', 'delete', { ...currentOffering });
   };
 
-
-
-  return (
+  return(
     <>
-      {currentOffering ? (
-        <div className="container my-1">
-          <Link to="/">
-            ← Back to Home
-          </Link>
+     {currentOffering ? (
+      <div className="card mx-auto my-5 bg-light border-info" style={{width: 18+ "em"}}>
+            <img src="..." className="card-img-top" alt={currentOffering.image}/>
+            <hr />
+              <div className="card-body">
+                  <h5 className="card-title">{currentOffering.name}</h5><hr/>
+                   <p className="card-text">{currentOffering.description}</p>
+              </div>
 
-          <h2>{currentOffering.name}</h2>
+        <ul className="list-group list-group-flush bg-light">
+          <li className="list-group-item bg-light"><strong>Price:${currentOffering.price}</strong></li>
+          <li className="list-group-item bg-light"><strong>Quantity: {currentOffering.quantity}</strong></li>
+        </ul>
 
-          <p>
-            {currentOffering.description}
-          </p>
+        <div className="card-body">
+        <p>
+             <strong>Price:</strong>
+             ${currentOffering.price}
+             {" "}<br/>
+             <button onClick={addToCart} className="btn-primary">
+               Add to cart
+             </button>
 
-          <p>
-            <strong>Price:</strong>
-            ${currentOffering.price}
-            {" "}
-            <button onClick={addToCart}>
-              Add to cart
-            </button>
-
-            <button 
+             <button  className="btn-primary"
             disabled={!cart.find(p => p._id === currentOffering._id)} 
             onClick={removeFromCart}
-          >
+             >
             Remove from Cart
           </button>
-          </p>
+           </p>
+      </div>
 
-          <img
-            src={`/images/${currentOffering.image}`}
-            alt={currentOffering.name}
-          />
-        </div>
-      ) : null}
-      {
-        loading ? <img src={spinner} alt="loading" /> : null
-      }
-      <Cart />
+       <div className="card-body">
+         <Link to = "/">Home</Link>
+       </div>
+
+     </div>
+     ) : null }
+     {
+       loading ? <img src={spinner} alt="loading" /> : null
+     }
+     <Cart />
     </>
-  );
+  )
 };
 
 export default Detail;

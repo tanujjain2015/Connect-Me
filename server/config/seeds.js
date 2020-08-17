@@ -81,7 +81,7 @@ db.once('open', async () => {
   const offerings = await Offering.insertMany([
     { 
       name: "React beginners",
-      decription: "This class will help you have an idea of how React.js works",
+      description: "This class will help you have an idea of how React.js works",
       price: 90.00,
       quantity: 1,
       user: users[0]._id,
@@ -89,7 +89,7 @@ db.once('open', async () => {
     },
     { 
       name: "Javascript Basics",
-      decription: "Covers the basics of Javascript. Needs prior knowledge of HTML and CSS",
+      description: "Covers the basics of Javascript. Needs prior knowledge of HTML and CSS",
       price: 110.00,
       quantity: 1,
       user: users[0]._id,
@@ -97,7 +97,7 @@ db.once('open', async () => {
     },
     {
       name: "Javascript Advanced",
-      decription: "Covers the advance levels of Javascript. Needs prior knowledge of HTML and CSS",
+      description: "Covers the advance levels of Javascript. Needs prior knowledge of HTML and CSS",
       price: 90.00,
       quantity: 1,
       user:users[0]._id,

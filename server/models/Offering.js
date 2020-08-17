@@ -9,7 +9,8 @@ const offeringSchema = new Schema({
     trim: true
   },
   description: {
-    type: String
+    type: String,
+    required: true
   },
   // image: {
   //   type: String
