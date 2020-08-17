@@ -168,8 +168,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Comprehend } from "aws-sdk";
 
 
-function Profile(props) 
-{
+function Profile(props) {
     const { email: userParam } = useParams();
     const { loading, data } = useQuery(userParam ? QUERY_PROFILE : QUERY_ME, {
         variables: { email : userParam }

@@ -7,15 +7,31 @@ import { UPDATE_OFFERINGS } from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 // import { off } from '../../../../server/models/User';
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation, useParams } from "react-router-dom";
 import Auth from "../../utils/auth";
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_USER, UPDATE_USER } from "../../utils/mutations";
 
+//changes
+import { QUERY_PROFILE, QUERY_ME } from '../../utils/queries';
+
 
 
 function ProfileUpdate () {
+    //changes
+    // const { email: userParam } = useParams();
+    // const { loading, data } = useQuery(userParam ? QUERY_PROFILE : QUERY_ME, {
+    //     variables: { email : userParam }
+    // });
+    // const user = data?.me || data?.user || {};
+    // console.log(user);
+    // const [state, setState] = useState({open: false});
 
+
+    // const [updateUser, { newData }] = useMutation(UPDATE_USER)
+    // console.log(newData )
+
+    //changes
     let location = useLocation();
     console.log(location);
 
@@ -139,7 +155,7 @@ function ProfileUpdate () {
 
                              <div className="form-group col-md-4">
                                  <label htmlFor="subject">Your Subjects</label>
-                                <select id = "subject" name="subject" className = "form-control border border-info" multiple value = {formState.subject || ''}
+                                <select id = "subject" name="subject" className = "form-control border border-info" multiple value = {[formState.subject] || ''} 
 
                                         onChange={event => {
                                             const { name, value } = event.target;
@@ -160,8 +176,9 @@ function ProfileUpdate () {
                                  </select>
                             </div>
                          </div>
-                    {/* <button type="submit" className = "btn btn-primary ml-auto" onClick={() => {setState({open: !state.open})}}><Link to ={{pathname: '/profileupdate',user }}>Edit Profile</Link></button> */}
+                    {/* <button type="submit" className = "btn btn-primary ml-auto" onClick={() => {setState({open: !state.open})}}><Link to ={{pathname: '/profileupdate',user }}>Update Profile</Link></button> */}
                     <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link></button>
+                    <button className = "btn btn-light ml-auto" type="submit" onClick={handleFormSubmit}>Update</button>
          </form>
     )
 }
