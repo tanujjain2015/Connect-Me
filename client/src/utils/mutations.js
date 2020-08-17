@@ -32,32 +32,32 @@ export const ADD_ORDER = gql`
 
 
 export const ADD_USER = gql`
-  # mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-  #   addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
-  #     token
-  #     user {
-  #       _id
-  #     }
-  #   }
-  # }
-
-  mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!, $tutor: String, $location: String, $bio: String) {
-    addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, tutor: $tutor, location: $location, bio:$bio) {
+  mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
+    addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
       token
       user {
         _id
-        firstName
-        lastName
-        email
-        password
-        role
-        tutor
-        bio
-        image
-        location
       }
     }
   }
+
+  # mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!, $tutor:String,  $location: String, $bio: String) {
+  #   addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, tutor:$tutor, location: $location, bio:$bio) {
+  #     token
+  #     user {
+  #       _id
+  #       # firstName
+  #       # lastName
+  #       # email
+  #       # password
+  #       # role
+  #       # # tutor
+  #       # bio
+  #       # image
+  #       # location
+  #     }
+  #   }
+  # }
 `;
 
 

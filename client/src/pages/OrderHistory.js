@@ -2,15 +2,22 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_USER } from "../utils/queries";
+import { QUERY_USER, QUERY_ME, QUERY_PROFILE } from "../utils/queries";
+import { Redirect, useParams } from 'react-router-dom';
 
 function OrderHistory() {
-  const { data } = useQuery(QUERY_USER);
-  let user;
+  // const { data } = useQuery(QUERY_USER);
+  // let user;
 
-  if (data) {
-    user = data.user;
-  }
+  // if (data) {
+  //   user = data.user;
+  // }
+
+  const { email: userParam } = useParams();
+    const { loading, data } = useQuery(userParam ? QUERY_PROFILE : QUERY_ME, {
+        variables: { email : userParam }
+    });
+    const user = data?.me || data?.user || {};
 
   return (
     <>
@@ -19,10 +26,10 @@ function OrderHistory() {
           ← Back to Home
           </Link>
 
-        {user ? (
+        {/* {user ? ( */}
           <>
             <h2>Schedule for {user.firstName} {user.lastName}</h2>
-            {user.orders.map((order) => (
+            {/* {user.orders.map((order) => (
               <div key={order._id} className="my-2">
                 <h3>{new Date(parseInt(order.purchaseDate)).toLocaleDateString()}</h3>
                 <div className="flex-row">
@@ -43,9 +50,9 @@ function OrderHistory() {
                 </div>
               </div>
             ))}
+          </> */}
+         {/* : null} */}
           </>
-        ) : null}
-
       </div>
 
     </>)

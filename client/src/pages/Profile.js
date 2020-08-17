@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Component, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/react-hooks';
 import Auth from "../utils/auth";
@@ -13,38 +13,33 @@ import { FaEdit, FaHome } from "react-icons/fa";
 //Bootstarp imports
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-function Profile(props) {
-    const [formState, setFormState] = useState({ email: '', password: ''});
-  const [updateUser] = useMutation(UPDATE_USER);
-  //console.log(addUser);
-  const handleFormSubmit = async event => {
-    event.preventDefault();
-    const mutationResponse = await updateUser({
-      variables: {
-        firstName: formState.firstName, 
-        lastName: formState.lastName,
-        email: formState.email, 
-        password: formState.password,
-        location: formState.location,
-        tutor: formState.tutor,
-        bio: formState.bio
-      }
-    });
-    const token = mutationResponse.data.updateUser.token;
-    Auth.login(token);
-  };
-  const handleChange = event => {
-    const { name, value } = event.target;
-    setFormState({
-      ...formState,
-      [name]: value
-    });
-  };
+import { Comprehend } from "aws-sdk";
+
+function Profile(props) 
+{
     const { email: userParam } = useParams();
     const { loading, data } = useQuery(userParam ? QUERY_PROFILE : QUERY_ME, {
         variables: { email : userParam }
     });
     const user = data?.me || data?.user || {};
+    console.log(user);
+    const [state, setState] = useState({ email: user.email , firstName: user.firstName});
+
+    const [updateUser, { newData }] = useMutation(UPDATE_USER)
+
+    console.log(newData )
+    console.log(state)
+
+    useEffect(() => {
+        // Update the document title using the browser API
+        //document.title = `You clicked ${count} times`;
+        setState({
+            firstName: user.firstName
+
+        })
+      },[state]);
+
+ 
     //redirect to personal profile page if email is the loggedin user's
     if(Auth.loggedIn() && Auth.getProfile().data.email.toLowerCase() === `${userParam ? userParam.toLowerCase() : ''}`) {
         return <Redirect to="/profile" />
@@ -60,31 +55,45 @@ function Profile(props) {
             </h4>
         )
     }
+    
+    //============
+    
+
   //Image upload ===============================================================
   return(
-    <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark" onSubmit = {handleFormSubmit}>
+    <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark" onSubmit={async event => {event.preventDefault()}}>
                      <div className = "form-row">
                          <div className = "form-group col-md-6">
                             <label htmlFor = "firstName">First Name</label>
-                         <input name={user.firstName} type = "text" className="form-control border border-info" id = "firstName" value = {user.firstName} onChange={handleChange}/>
-                         </div>
+                         <input name="firstName" type = "text" className="form-control border border-info" id = "firstName" value = {user.firstName} onChange={event => {
+                        setState(event.target.value)
+                        }} />
+                        </div>
+
                        <div className = "form-group col-md-6">
                             <label htmlFor = "lastName">Last Name</label>
-                            <input name={user.lastName} type = "text" className="form-control border border-info" id = "lastName" value = {user.lastName} onChange={handleChange} />
+                            <input name="lastname" type = "lastname" className="form-control border border-info" id = "lastName" value = {user.lastName} onChange={event => {
+                            setState(event.target.value)
+                            }}  />
                         </div>
                     </div>
+
                     <div className = "form-group">
                         <label htmlFor="email">Email</label>
-                        <input type = "text" name={user.email} className = "form-control border border-info" id = "email" value = {user.email} onChange={handleChange}/>
+                        <input type = "text" name="email" className = "form-control border border-info" id = "email" value = {user.email} onChange={event => {
+                        setState(event.target.value)
+                        }}/>
                     </div>
+
                     <div className = "form-group">
                         <label htmlFor="bio">About Me</label>
-                        <textarea type = "text" name = {user.bio} className = "form-control border border-info" id = "bio" value = {user.bio} rows = "4"  onChange={handleChange}/>
+                        <textarea type = "bio" name = {user.bio} className = "form-control border border-info" id = "bio" value = {user.bio} rows = "4"  />
                      </div>
+
                      <div className = "form-row">
                          <div className="form-group col-md-4">
                              <label htmlFor="country">Country</label>
-                             <select id = "country" name={user.location} className = "form-control border border-info" onChange={handleChange}>
+                             <select id = "country" name={user.location} className = "form-control border border-info" >
                                  <option value="USA">USA</option>
                                  <option value="India">India</option>
                                  <option value="Brazil">Brazil</option>
@@ -95,7 +104,7 @@ function Profile(props) {
                         </div>
                          <div className="form-group col-md-4">
                              <label htmlFor="zone">Timezone</label>
-                             <select id = "zone" name={user.timezone} className = "form-control border border-info" onChange={handleChange}>
+                             <select id = "zone" name={user.timezone} className = "form-control border border-info" >
                                  <option value="UTC+8:00">UTC+8:00</option>
                                  <option value="UTC+5:30">UTC+5:30</option>
                                  <option value="UTC+8:45">UTC+8:45</option>
@@ -106,7 +115,7 @@ function Profile(props) {
                          </div>
                          <div className="form-group col-md-4">
                              <label htmlFor="subject">Pick Subjects</label>
-                            <select id = "subject" name={user.subject} className = "form-control border border-info" multiple onChange={handleChange}>
+                            <select id = "subject" name={user.subject} className = "form-control border border-info" multiple >
                                  <option value="Computer Science">Computer Science</option>
                                  <option value="Science">Science</option>
                                  <option value="Maths">Maths</option>
@@ -115,18 +124,31 @@ function Profile(props) {
                              </select>
                         </div>
                      </div>
-                     <div className = "form-group">
+
+                     {/* <div className = "form-group">
                          <div className = "form-check">
                              <input className = "form-check-input" type="checkbox" id="tutor"/>
                              <label className = "form-check-label" htmlFor = "tutor">
                                  I am a tutor
                              </label>
                          </div>
-                     </div> 
-                    <button type="submit" className = "btn btn-primary ml-auto">Save</button>
+                     </div>  */}
+                    {/* <button type="submit" className = "btn btn-primary ml-auto">Save</button> */}
+                    <button onClick={async () => {
+                        await updateUser({
+                            variables: { 
+                                input: {
+                                newData: setState
+                                }
+                            }
+                        })
+                    } 
+                    } type="submit">Update</button>
+
                     <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link></button>
-                </form>
+     </form>
     //     
   )
+  
 }
 export default Profile;

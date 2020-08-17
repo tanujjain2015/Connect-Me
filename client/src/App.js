@@ -15,6 +15,7 @@ import Success from './pages/Success'
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
+
 //Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 

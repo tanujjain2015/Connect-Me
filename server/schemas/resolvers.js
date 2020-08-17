@@ -91,6 +91,35 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
 
+    // checkout: async (parent, args, context) => {
+    //   const order = new Order ({offerings: args.offerings});
+    //   const { offerings } = await order.populate('offerings').execPopulate();
+    //   const url = new URL(context.headers.referer).origin;
+
+    //   const line_items = [];
+
+    //   for (let i = 0; i < offerings.length; i++) {
+    //     // generate offering id
+    //     const offering = await stripe.offerings.create({
+    //       order : order.id,
+    //       // description: offerings[i].description,
+    //       // images: [`${url}/images/${offerings[i].image}`]
+    //     });
+
+    //     // generate price id using the offering id
+    //     const price = await stripe.prices.create({
+    //       price: order.price,
+    //       unit_amount: offerings[i].price * 100,
+    //       currency: 'usd',
+    //     });
+
+    //     // add price id to the line items array
+    //     line_items.push({
+    //       price: price.id,
+    //       quantity: 1
+    //     });
+    //   }
+
     checkout: async (parent, args, context) => {
       const order = new Order ({offerings: args.offerings});
       const { offerings } = await order.populate('offerings').execPopulate();
@@ -99,14 +128,15 @@ const resolvers = {
       const line_items = [];
 
       for (let i = 0; i < offerings.length; i++) {
-        // generate offering id
+        // generate product id
         const offering = await stripe.offerings.create({
-          name: offering[i].name,
-          // description: offerings[i].description,
-          // images: [`${url}/images/${offerings[i].image}`]
+          name: offerings[i].name,
+          // description: products[i].description,
+          // images: [`${url}/images/${products[i].image}`]
+         
         });
 
-        // generate price id using the offering id
+        // generate price id using the product id
         const price = await stripe.prices.create({
           offering: offering.id,
           unit_amount: offerings[i].price * 100,
