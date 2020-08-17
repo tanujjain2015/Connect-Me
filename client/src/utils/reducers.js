@@ -7,7 +7,8 @@ import {
     REMOVE_FROM_CART,
     UPDATE_CART_QUANTITY,
     CLEAR_CART,
-    TOGGLE_CART
+    TOGGLE_CART,
+    UPDATE_USER
   } from './actions';
 
 
@@ -92,7 +93,13 @@ const reducer = (state=defaultState, action) => {
             return {
                 ...state,
                 cartOpen: !state.cartOpen
-            }
+            };
+
+        case UPDATE_USER:
+            return {
+                ...state,
+                users: [...action.users]
+            };
 
         
 

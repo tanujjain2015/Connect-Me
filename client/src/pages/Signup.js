@@ -42,7 +42,7 @@ function Signup(props) {
         <div className="flex-row space-between my-2">
           <label htmlFor="firstName">First Name:</label>
           <input
-            placeholder="First"
+            placeholder="First Name"
             name="firstName"
             type="firstName"
             id="firstName"
@@ -52,7 +52,7 @@ function Signup(props) {
         <div className="flex-row space-between my-2">
           <label htmlFor="lastName">Last Name:</label>
           <input
-            placeholder="Last"
+            placeholder="Last Name"
             name="lastName"
             type="lastName"
             id="lastName"
@@ -81,21 +81,27 @@ function Signup(props) {
         </div>
         <div className="flex-row space-between my-2">
           <label htmlFor="tutor">Signing up as?</label>
-          <select id="tutor" name ="tutor" onChange={handleChange}>
+          <select 
+            id="tutor" 
+            name ="tutor" 
+            onChange={handleChange}>
             <option value="Student">Student</option>
             <option value="Tutor">Tutor</option>
           </select>
         </div>
         <div className="flex-row space-between my-2">
           <label htmlFor="location">Choose a location</label>
-          <select id="location" name ="location" onChange={handleChange}>
+          <select 
+            id="location" 
+            name ="location" 
+            onChange={handleChange}>
             <option value="AMER">AMER</option>
             <option value="EMEA">EMEA</option>
             <option value="APAC">APAC</option>
           </select>
         </div>
         <div className="flex-row space-between my-2">
-          <label htmlFor="pwd">Bio:</label>
+          <label htmlFor="bio">Bio:</label>
           <textarea
             placeholder="Provide some description about you and your skill set and what are you looking for..."
             name="bio"
@@ -116,7 +122,7 @@ function Signup(props) {
           </select> */}
           {/* <input
             placeholder="choose your country"
-            type="locations"
+            type="location"
             onChange={handleChange}
           />  */}
         {/* </div> */}
