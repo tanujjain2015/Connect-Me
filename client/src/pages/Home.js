@@ -8,7 +8,6 @@ import HPImage from '../assets/HPimage.jpg';
 import { QUERY_ALL_OFFERINGS } from "../utils/queries";
 import spinner from '../assets/spinner.gif'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Nav from '../components/Nav';
 import ManageOfferings from '../components/ManageOfferings';
 
 
