@@ -119,7 +119,7 @@ function ManageOfferings () {
 
                     <div className = "form-group col-md-6">
                         <label htmlFor = "price">Fee</label>
-                     <input name="price" type = "text" className="form-control border border-info" id = "price" 
+                     <input name="price" type = "text"  className="form-control border border-info" id = "price" 
                     //  value = {formState.price || ''}  
                         onChange={event => {
                             const { name, value } = event.target;

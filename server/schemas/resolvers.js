@@ -142,12 +142,12 @@ const resolvers = {
           //user: context.user.email,
           name: "maths",
           description: "Offerings"
-          //price: products[i].price,
+          // price: products[i].price,
           //quantity: products[i].quantity,
           // subject: offerings[i].subject,
           // user: offerings[i].user,
-          // name: offerings[i].name,
-          // description: offerings[i].description,
+          // name: products[i].name,
+          // description: products[i].description,
           // images: [`${url}/images/${offerings[i].image}`]
         });
         //console.log("offering value is: " + product);
