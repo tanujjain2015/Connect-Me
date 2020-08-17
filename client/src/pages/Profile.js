@@ -245,43 +245,65 @@ function Profile(props)
                        <div className = "form-group col-md-6">
                             <label htmlFor = "lastName">Last Name</label>
                             <p>{user.lastName}</p>
-
-
-                            {/* <p name="lastname" type = "lastname" className="form-control border border-info" id = "lastName" value = {user.lastName} 
-                             /> */}
                         </div>
                     </div>
                     <div className = "form-group">
                         <label htmlFor="email">Email</label>
                         <p>{user.email}</p>
-
-                        {/* <p type = "text" name="email" className = "form-control border border-info" id = "email" value = {user.email}
-                        /> */}
                     </div>
-                    <div className = "form-group">
+
+                    {/* <div className = "form-group">
+                        <label htmlFor="tutor">Tutor?</label>
+                        <p>{user.tutor}</p>
+                    </div> */}
+
+                    <div className="flex-row space-between my-2">
+                    <label htmlFor="tutor">Signing up as?</label>
+                    {/* <p id="tutor" name ="tutor">{user.tutor}</p> */}
+                    
+                    <select id="tutor" name ="tutor" >
+                        <option >{user.tutor}</option>
+                        {/* <option value="Tutor">Tutor</option> */}
+                    </select>
+                    </div>
+
+                    <textarea 
+                        htmlFor="bio" 
+                        type="text" 
+                        name="bio" 
+                        className = "form-control border border-info" 
+                        id="bio"
+                        >
+                        {user.bio}
+                        </textarea>
+        
+                    {/* <div className = "form-group">
                         <label htmlFor="bio">Bio</label>
-                        <p type = "text" name = {user.bio} className = "form-control border border-info" id = "bio" value = {user.bio} rows = "4"  ></p>
-                     </div>
+                        
+                        <textarea type = "text" name = {user.bio} className = "form-control border border-info" id = "bio" value = {user.bio} rows = "4"  />
+                     </div> */}
+
+
                      <div className = "form-row">
                          <div className="form-group col-md-4">
                              <label htmlFor="location">Location</label>
-                             <select id = "location" name={user.location} className = "form-control border border-info" >
-                                <option value="AMER">AMER</option>
-                                <option value="EMEA">EMEA</option>
-                                <option value="APAC">APAC</option>
+                             <select id = "location" name="location" className = "form-control border border-info" >
+                                <option>{user.location}</option>
+                                {/* <option value="EMEA">EMEA</option>
+                                <option value="APAC">APAC</option> */}
                              </select>
                              {/* <p htmlFor="location" id = "location" name={user.location} className = "form-control border border-info">Location</p> */}
                         </div>
 
 
                          <div className="form-group col-md-4">
-                             <label htmlFor="subject">Pick Subjects</label>
-                            <select id = "subject" name={user.subject} className = "form-control border border-info" multiple >
-                                 <option value="Computer Science">Computer Science</option>
-                                 <option value="Science">Science</option>
+                             <label htmlFor="subject">Your Subjects</label>
+                            <select id = "subject" name="subject" className = "form-control border border-info" multiple >
+                                 <option>{[user.subject]}</option>
+                                 {/* <option value="Science">Science</option>
                                  <option value="Maths">Maths</option>
                                  <option value="Biology">Biology</option>
-                                 <option value="Geography">Geography</option>
+                                 <option value="Geography">Geography</option> */}
                              </select>
                         </div>
                      </div>

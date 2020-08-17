@@ -128,8 +128,8 @@ function ProfileUpdate () {
                             </div>
 
                              <div className="form-group col-md-4">
-                                 <label htmlFor="subject">Pick Subjects</label>
-                                <select id = "subject" name={formState.subject || ''} className = "form-control border border-info" multiple
+                                 <label htmlFor="subject">Your Subjects</label>
+                                <select id = "subject" name="subject" className = "form-control border border-info" multiple value = {formState.subject || ''}
 
                                         onChange={event => {
                                             const { name, value } = event.target;
