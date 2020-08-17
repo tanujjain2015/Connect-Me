@@ -116,18 +116,35 @@ export const UPDATE_USER = gql`
 
 
 export const ADD_OFFERING = gql`
-mutation addOffering($name: String!, $description: String!, $quantity: Int,$price: Float,$userid: String, $subjectid: String) {
-  addOffering(name: $name, description: $description, quantity: $quantity,price: $price,userid: $userid, subjectid: $subjectid) {
+# mutation addOffering($name: String!, $description: String!, $quantity: Int,$price: Float,$userid: String, $subjectid: String) {
+#   addOffering(name: $name, description: $description, quantity: $quantity,price: $price,userid: $userid, subjectid: $subjectid) {
+#     name
+#     description
+#      _id
+#     quantity
+#     price
+#     subject {
+#       _id
+#       subject
+#     }
+#    user 
+# 	}
+# }
+
+mutation addOffering($name: String, $description: String, $quantity: Int,$price: Float,$userid: String, $subjectid: String) {
+  addOffering(name: $name, description: $description, quantity: $quantity,price: $price, userid: $userid, subjectid: $subjectid) {
+     _id
     name
     description
-     _id
     quantity
     price
     subject {
       _id
       subject
     }
-   user 
+    user {
+      _id
+    }
 	}
 }
 `;

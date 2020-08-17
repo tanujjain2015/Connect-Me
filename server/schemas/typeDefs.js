@@ -29,7 +29,7 @@ type File {
     lastName: String
     email: String
     password: String
-    role: String
+    # role: String
     tutor: String
     bio: String
     image: String
@@ -70,7 +70,7 @@ type File {
     removeSubject(subjectid: String!): Subject 
     addOrder(offerings: [ID]!): Order
     updateUser(input: userDetails): User
-    addOffering(quantity: Int,price: Float, userid: String, subjectid: String): Offering
+    addOffering(name: String, description: String, quantity: Int,price: Float, userid: String, subjectid: String): Offering
     updateOffering(_id: ID!, input: updateOffering!): Offering
     login(email: String!, password: String!): Auth
   }

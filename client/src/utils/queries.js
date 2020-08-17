@@ -78,7 +78,7 @@ export const QUERY_ME = gql`
       tutor
       bio
       # image
-      role
+      # role
       tutor
       bio
       location
