@@ -3,24 +3,32 @@ import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Calender from "../Calender";
+import SearchedOfferings from "../../pages/SearchedOfferings"
 import Cart from '../Cart';
 
 
 
 function Nav() {
 
+  const AppContext = React.createContext({});
+
   const [searchedSubjects, setSearchedSubjects] = useState({
     visible: false
   });
 
+  const [searchInput, setSearchInput] = useState('');
+
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    if(searchedSubjects.visible == false) {
-      setSearchedSubjects({
-        visible: true
-      })
-    }
+  
+
+    // if(searchedSubjects.visible == false) {
+    //   setSearchedSubjects({
+    //     visible: true
+    //   })
+    // }
       
     // try {
     //   // await allOfferings({
@@ -100,7 +108,8 @@ function Nav() {
           Connect Me
         </Link>
       </h1>
-        <form className="form-inline ml-3" onSubmit={handleFormSubmit}>
+        {/* <form className="form-inline ml-3" onSubmit={handleFormSubmit}> */}
+        <form className="form-inline ml-3">
       {/* <form className="form-inline my-lg-0 position-absolute fixed-top mt-10 pl-5" onSubmit={async (event) => {
         event.preventDefault();
         await allOfferings;
@@ -108,8 +117,18 @@ function Nav() {
         setSearchedSubjects(searchedSubjects == 1);
         console.log(setSearchedSubjects)
       }}> */}
-      <input className="form-control mr-sm-2 w-75" type="search" placeholder="Search For An Offering" aria-label="Search" />
+
+{/* onChange={(e) => setSearchInput(e.target.value)} */}
+      <input className="form-control mr-sm-2 w-75" type="search" placeholder="Search For An Offering" aria-label="Search" onChange={(e) => setSearchInput(e.target.value)} />
+      <Link to={{
+        pathname: '/SearchedOfferings',
+        userInput:{
+          input: searchInput
+        }
+      }}>
+
       <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </Link>
        </form>
       <nav className="">
         {showNavigation()}

@@ -23,8 +23,6 @@ import ManageOfferings from './components/ManageOfferings';
 // import "./assets/scss/material-kit-react.scss?v=1.9.0";
 
 
-
-
 //Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -59,10 +57,11 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
+            <Route exact path="/searchedofferings" component={Offerings} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/profileupdate" component={ProfileUpdate} />
             <Route exact path="/orderHistory" component={OrderHistory} />
-            <Route exact path="/offerings/:id" component={Detail} />
+            <Route exact path="/offerings/" component={Detail} />
             <Route exact path="/manageofferings" component={ManageOfferings} />
             <Route exact path="/success" component={Success} />
             <Route exact path="/myschedule" component={Calender} />
