@@ -143,7 +143,7 @@
 
 
 
-import React from 'react';
+import React, { useState } from "react";
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -233,6 +233,7 @@ export default function Nav(){
   const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const [searchInput, setSearchInput] = useState('');
   
     const handleDrawerOpen = () => {
       setOpen(true);
@@ -333,6 +334,16 @@ export default function Nav(){
               <Link to="/">Connect Me</Link>
             </Typography>
           </Toolbar>
+          <input className="form-control mr-sm-2 w-25" type="search" placeholder="Search For An Offering" aria-label="Search" onChange={(e) => setSearchInput(e.target.value)} />
+       <Link to={{
+        pathname: '/SearchedOfferings',
+        userInput:{
+          input: searchInput
+        }
+      }}>
+
+      <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </Link>
         </AppBar>
 
         <Drawer

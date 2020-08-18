@@ -69,6 +69,8 @@ function OfferingList() {
                 <OfferingItem
                   key= {offering._id}
                   _id={offering._id}
+                  // image={offering.image}
+                  // name={offering.name}
                   image={offering.image}
                   name={offering.name}
                   description={offering.description}
