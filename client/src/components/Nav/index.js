@@ -250,6 +250,13 @@ export default function Nav(){
       return(
     
         <List>
+          <ListItem button key="Home">
+            <ListItemIcon><MailIcon/></ListItemIcon>
+            <ListItemText>
+                  <Link to ="/">Home</Link>
+                </ListItemText>
+          </ListItem>
+
           <ListItem button key="Manage Offerings">
             <ListItemIcon><MailIcon/></ListItemIcon>
             <ListItemText>
