@@ -8,6 +8,7 @@ import { idbPromise } from '../../utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 // import { off } from '../../../../server/models/User';
 import Typography  from "@material-ui/core/Typography";
+import Danger from '../Typography/Danger';
 
 
 function OfferingList() {
