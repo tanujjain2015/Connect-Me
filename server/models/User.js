@@ -51,6 +51,7 @@ const userSchema = new Schema({
   // },
   orders: [Order.schema],
   feedback: [Feedback.schema],
+  subject: [Subject.schema]
 });
 
 // set up pre-save middleware to create password

@@ -238,22 +238,22 @@ function Profile(props) {
   //Image upload ===============================================================
   return(
     <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark" onSubmit={async event => {event.preventDefault()}}>
-                     <div className = "form-row">
+                     {/* <div className = "form-row"> */}
                          <div className = "form-group col-md-6">
-                            <label htmlFor = "firstName">First Name</label>
+                            <label htmlFor = "firstName">First Name:</label>
                             <p>{user.firstName}</p>
 
 
                          {/* <p name="firstName" type = "text" className="form-control border border-info" id = "firstName" value = {user.firstName} /> */}
                         </div>
                        <div className = "form-group col-md-6">
-                            <label htmlFor = "lastName">Last Name</label>
+                            <label htmlFor = "lastName">Last Name:</label>
                             <p>{user.lastName}</p>
                         </div>
-                    </div>
+                    {/* </div> */}
 
-                    <div className = "form-group">
-                        <label htmlFor="email">Email</label>
+                    <div className = "form-group col-md-6">
+                        <label htmlFor="email">Email:</label>
                         <p>{user.email}</p>
                     </div>
 
@@ -262,26 +262,31 @@ function Profile(props) {
                         <p>{user.tutor}</p>
                     </div> */}
 
-                    <div className="flex-row space-between my-2">
-                    <label htmlFor="tutor">Signing up as?</label>
+                    <div className="form-group col-md-6">
+                    <label htmlFor="tutor">Signed up as:</label>
                     {/* <p id="tutor" name ="tutor">{user.tutor}</p> */}
+                    <p>{user.tutor}</p>
+                    {/* <span>{user.tutor}</span> */}
                     
-                    <select id="tutor" name ="tutor" >
-                        <option >{user.tutor}</option>
-                        {/* <option value="Tutor">Tutor</option> */}
-                    </select>
+                    {/* <select id="tutor" name ="tutor" >
+                        <option value="tutor" >{user.tutor}</option>
+                        <option value="student">Student</option>
+                        <option value="tutor">Tutor</option>
+                    </select> */}
                     </div>
 
-                    <textarea 
-                        htmlFor="bio" 
-                        type="text" 
-                        name="bio" 
-                        className = "form-control border border-info" 
+                    <div className="form-group col-md-6">
+                    <label htmlFor="bio">Bio:</label>
+                    <p 
+                        // type="text" 
+                        // name="bio" 
+                        // className = "form-control border border-info" 
                         id="bio"
                         >
                         {user.bio}
-                        </textarea>
-        
+                        </p>
+                    </div>
+
                     {/* <div className = "form-group">
                         <label htmlFor="bio">Bio</label>
                         
@@ -289,29 +294,30 @@ function Profile(props) {
                      </div> */}
 
 
-                     <div className = "form-row">
+                     {/* <div className = "form-row"> */}
                          <div className="form-group col-md-4">
-                             <label htmlFor="location">Location</label>
-                             <select id = "location" name="location" className = "form-control border border-info" >
-                                <option>{user.location}</option>
+                             <label htmlFor="location">Location:</label>
+                             {/* <select id = "location" name="location" className = "form-control border border-info" >
+                                <option>{user.location}</option> */}
                                 {/* <option value="EMEA">EMEA</option>
                                 <option value="APAC">APAC</option> */}
-                             </select>
-                             {/* <p htmlFor="location" id = "location" name={user.location} className = "form-control border border-info">Location</p> */}
+                             {/* </select> */}
+                             <p>{user.location}</p>
                         </div>
 
 
                          <div className="form-group col-md-4">
-                             <label htmlFor="subject">Your Subjects</label>
-                            <select id = "subject" name="subject" className = "form-control border border-info" multiple >
-                                 <option>{[user.subject]}</option>
+                             <label htmlFor="subject">Your Subjects:</label>
+                            {/* <select id = "subject" name="subject" className = "form-control border border-info" multiple >
+                                 <option>{[user.subject]}</option> */}
                                  {/* <option value="Science">Science</option>
                                  <option value="Maths">Maths</option>
                                  <option value="Biology">Biology</option>
                                  <option value="Geography">Geography</option> */}
-                             </select>
+                             {/* </select> */}
+                             <p>{user.subject}</p>
                         </div>
-                     </div>
+                     {/* </div> */}
 
              
                     {/* <button type="submit" className = "btn btn-primary ml-auto">Save</button> */}
@@ -326,7 +332,7 @@ function Profile(props) {
                     } 
                     } type="submit">Update</button> */}
                     <button type="submit" className = "btn btn-light ml-auto" onClick={() => {setState({open: !state.open})}}><Link to ={{pathname: '/profileupdate',user }}>Edit Profile</Link></button>
-                    <button type="submit" className = "btn btn-light ml-auto"><Link to="/manageofferings">Manage Offerings</Link></button>
+                    {/* <button type="submit" className = "btn btn-light ml-auto"><Link to="/manageofferings">Manage Offerings</Link></button> */}
                     <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link></button>
                     {/* <Button color="primary">Hello World</Button>
                     <Box component="div" display="inline">This is a sample box</Box> */}

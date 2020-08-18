@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { QUERY_SUBJECTS, QUERY_OFFERINGS } from "../../utils/queries";
+import { QUERY_SUBJECTS, QUERY_OFFERINGS, QUERY_PROFILE, QUERY_ME } from "../../utils/queries";
 import {UPDATE_SUBJECTS, UPDATE_CURRENT_SUBJECT} from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { ADD_OFFERING  } from '../../utils/mutations';
 import { Link, useHistory, useLocation, useParams, Redirect } from "react-router-dom";
-import { QUERY_PROFILE, QUERY_ME } from '../../utils/queries';
-import Auth  from '../../utils/auth.js';
+import {  } from '../../utils/queries';
+import Auth  from '../../utils/auth';
 
 
 
 function ManageOfferings () {
 
-    // let history = useHistory();
+    let history = useHistory();
     const { email: userParam } = useParams();
     const { loading, userData } = useQuery(userParam ? QUERY_PROFILE : QUERY_ME, {
         variables: { email : userParam }
@@ -21,37 +21,22 @@ function ManageOfferings () {
     const user = userData?.me || userData?.user || {};
     console.log(user);
     const [state, setState] = useState({open: false});
+    
 
+    // const state = useSelector((state) => {
+    //     return state
+    //   });
+    //   const dispatch = useDispatch();
+    const { subjects } = state;
+    const { data: categoryData } = useQuery(QUERY_SUBJECTS);
 
     // let location = useLocation();
     // console.log(location);
 
-    // const [formState, setFormState] = useState({ 
-    //     name: location.user.name, 
-    //     description: location.user.description, 
-    //     price: location.user.price, 
-    //     quantity: location.user.quantity,
-    //     subject: location.user.subject
-    // });
 
-    // const handleFormSubmit = async (event) => {
-    //     event.preventDefault();
-    //     const mutationResponse =  await addOffering({
-    //       variables: {
-    //         input: {...formState}
-    //       }
-    //     });
-
-        // console.log(mutationResponse)
-        // const token = mutationResponse.data.updateUser.token;
-        // Auth.login(token);
-
-        // history.push('/')
-    //   };
-
-    const [formState, setFormState] = useState({ name: '', description: '', price: ''});
+    const [formState, setFormState] = useState({ name: '', description: '', price: '', subject: ''});
     const [addOffering] = useMutation(ADD_OFFERING);
-    //console.log(addOffering);
+    console.log(addOffering);
 
 
     // redirect to personal profile page if email is the loggedin user's
@@ -78,22 +63,26 @@ function ManageOfferings () {
           name: formState.name, 
           description: formState.description,
           price: Number(formState.price), 
-          subject: formState.subjectid,
-        //   userid: Auth.getProfile().formState.userid,
+          quantity: Number(formState.quantity),
+          subject: formState.subject.id,
+        //   user: formState.user.id
+        //   user: Auth.getProfile().formState.userData,
         }
       });
     //   const token = mutationResponse.data.addOffering.token;
     //   Auth.login(token);
+        history.push('/')
     };
-    // console.log(userid)
 
-    // const handleChange = event => {
-    //   const { name, value } = event.target;
-    //   setFormState({
-    //     ...formState,
-    //     [name]: value
-    //   });
-    // };
+
+
+    const handleChange = event => {
+      const { name, value } = event.target;
+      setFormState({
+        ...formState,
+        [name]: value
+      });
+    };
 
       return(
 
@@ -105,7 +94,8 @@ function ManageOfferings () {
                         <label htmlFor = "name">Offering Name</label>
                      <input name="name" type = "text" className="form-control border border-info" id = "name" 
                     //  value = {formState.name || ''}  
-                        onChange={event => {
+                        onChange=
+                        {event => {
                             const { name, value } = event.target;
                              console.log(event);
                              console.log(event.target.name);
@@ -115,6 +105,7 @@ function ManageOfferings () {
                              [name]: value
                              });
                          }}  
+                        // onChange={handleChange}
         
                          />
                     </div>
@@ -134,6 +125,7 @@ function ManageOfferings () {
                              [name]: value
                              });
                          }}  
+                        // onChange={handleChange}
 
                          />
                     </div>
@@ -152,9 +144,31 @@ function ManageOfferings () {
                              [name]: value
                              });
                          }}  
+                        // onChange={handleChange}
     
                          />
                     </div>
+
+
+                    <div className = "form-group col-md-6">
+                        <label htmlFor = "quantity">Quantity</label>
+                     <input name="quantity" type="number" className="form-control border border-info" id = "quantity" 
+                    //  value = {formState.quantity || ''}  
+                        onChange={event => {
+                            const { name, value } = event.target;
+                             console.log(event);
+                             console.log(event.target.name);
+                             console.log(event.target.value);
+                             setFormState({
+                             ...formState,
+                             [name]: value
+                             });
+                         }}  
+                        // onChange={handleChange}
+    
+                         />
+                    </div>
+
 
 
 
@@ -168,12 +182,19 @@ function ManageOfferings () {
                                     const { name, value } = event.target;
                                         console.log(event);
                                         console.log(event.target.name);
-                                        console.log(event.target.value);
+                                        console.log(event.target.value.id);
                                         setFormState({
                                         ...formState,
                                         [name]: value
                                         });
                                     }}  
+                                // onChange={handleChange}
+
+                                // onChange={handleChange}
+                                // ref={ref => {
+                                //   this._select = ref
+                                // }}
+                                // defaultValue={state.value}
                                 >
                              <option value="Computer Science">Computer Science</option>
                              <option value="Science">Science</option>
@@ -184,8 +205,9 @@ function ManageOfferings () {
                     </div>
                  </div>
 
+            <button className = "btn btn-primary ml-auto" type="submit" >Add Offering</button>
             <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link></button>
-            <button className = "btn btn-light ml-auto" type="submit" >Add Offering</button>
+
  </form>
 
 )

@@ -138,26 +138,11 @@ const resolvers = {
       console.log(products.length);
 
       for (let i = 0; i < products.length; i++) {
-        //console.log(offerings.id);
-         console.log(products[i]._id);
-        // console.log(offerings[i].price);`
-        // console.log(offerings[i].quantity);
-        // generate offering id
         const product = await stripe.products.create({
-          //id: offerings.id, (No ID Value hence commented out) q
-          //user: context.user.email,
-          name: "maths",
-          description: "Offerings"
-          // price: products[i].price,
-          //quantity: products[i].quantity,
-          // subject: offerings[i].subject,
-          // user: offerings[i].user,
-          // name: products[i].name,
-          // description: products[i].description,
-          // images: [`${url}/images/${offerings[i].image}`]
+          name: products[i].name,
+          description: products[i].description
         });
-        //console.log("offering value is: " + product);
-        // generate price id using the offering id
+  
         const price = await stripe.prices.create({
           product: product.id,
           unit_amount: products[i].price * 100,
@@ -244,10 +229,10 @@ const resolvers = {
     
       throw new AuthenticationError('You need to be logged in!');
     },
-    removeSubject: async (parent, {subjectid}, context) => {
+    removeSubject: async (parent, {subject}, context) => {
       if (context.user) {
         const updatedSubject = await Subject.findByIdAndDelete(
-          { _id: subjectid }
+          { _id: subject }
         );
         return updatedSubject;
       }
@@ -257,11 +242,11 @@ const resolvers = {
     addOffering: async (parent, args, context) => {
       console.log(args)
       if (context.user ) {
-        const subjectDetails = await Subject.findById(args.subjectid);
+        const subjectDetails = await Subject.findById(args.subject);
         args.subject = subjectDetails;
-        // const userDetails = await User.findById(args.userid);
-        // console.log(userDetails);
-        // args.user = userDetails;
+        const userDetails = await User.findById(args.user);
+        console.log(userDetails);
+        args.user = userDetails;
 
         const offering =  await Offering.create(args);
         return offering;
