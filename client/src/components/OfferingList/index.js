@@ -70,8 +70,7 @@ function OfferingList() {
                   key= {offering._id}
                   _id={offering._id}
                   // image={offering.image}
-                  name={offering.name}
-                  description={offering.description}
+                  // name={offering.name}
                   price={offering.price}
                   quantity={offering.quantity}
                   subject={offering.subject}
