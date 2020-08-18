@@ -164,13 +164,16 @@ import CarouselNav from '../components/Carousel'
 import Nav from '../components/Nav';
 import ManageOfferings from '../components/ManageOfferings';
 import Footer from '../components/Footer/Footer';
+import Parallax from '../components/Parallax/Parallax';
+import SectionCarousel from '../views/Components/Sections/SectionCarousel.js'
 
 const Home = () => {
   return (
     <div className="container">
       {/* <Nav /> */}
       {/* <ManageOfferings /> */}
-      <CarouselNav />
+      {/* <CarouselNav /> */}
+      <SectionCarousel/>
       <CategoryMenu />
       <OfferingList />
       <Cart />
