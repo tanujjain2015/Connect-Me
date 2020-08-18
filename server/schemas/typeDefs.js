@@ -70,7 +70,7 @@ type File {
     removeSubject(subjectid: String!): Subject 
     addOrder(offerings: [ID]!): Order
     updateUser(input: userDetails): User
-    addOffering(name: String, description: String, quantity: Int,price: Float, userid: String, subjectid: String): Offering
+    addOffering(name: String, description: String, quantity: Int,price: Float, user: String, subject: String): Offering
     updateOffering(_id: ID!, input: updateOffering!): Offering
     login(email: String!, password: String!): Auth
   }

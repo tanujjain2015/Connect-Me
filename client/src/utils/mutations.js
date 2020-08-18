@@ -135,19 +135,40 @@ export const ADD_OFFERING = gql`
 # 	}
 # }
 
-mutation addOffering($name: String, $description: String, $quantity: Int,$price: Float,$userid: String, $subjectid: String) {
-  addOffering(name: $name, description: $description, quantity: $quantity,price: $price, userid: $userid, subjectid: $subjectid) {
+# mutation addOffering($name: String, $description: String, $quantity: Int,$price: Float,$userid: String, $subjectid: String) {
+#   addOffering(name: $name, description: $description, quantity: $quantity,price: $price, userid: $userid, subjectid: $subjectid) {
+#      _id
+#     name
+#     description
+#     quantity
+#     price
+#     subject {
+#       _id
+#       subject
+#     }
+#     user {
+#       _id
+#     }
+# 	}
+# }
+
+mutation addOffering($name: String!, $description: String!, $quantity: Int,$price: Float,$user: String, $subject: String) {
+  addOffering(name: $name, description: $description, quantity: $quantity,price: $price,user: $user, subject: $subject) {
      _id
     name
     description
     quantity
     price
+
     subject {
       _id
       subject
     }
     user {
       _id
+      firstName
+      lastName
+      email
     }
 	}
 }

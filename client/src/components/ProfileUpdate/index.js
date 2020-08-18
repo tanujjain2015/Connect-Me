@@ -208,12 +208,13 @@ function ProfileUpdate () {
                             </div>
                          </div>
                     {/* <button type="submit" className = "btn btn-primary ml-auto" onClick={() => {setState({open: !state.open})}}><Link to ={{pathname: '/',user }}>Update Profile</Link></button> */}
-                    <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link></button>
-                    <button className = "btn btn-light ml-auto" type="submit" 
+                    <button className = "btn btn-primary ml-auto" type="submit" 
                     // onClick={updateUser}
                     // onClick={setState}
                     // onClick={() => {setState({open: !state.open})}}
                     >Update</button>
+                    <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link></button>
+
          </form>
     )
 }
