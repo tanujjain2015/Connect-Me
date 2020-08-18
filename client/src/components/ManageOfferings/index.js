@@ -13,7 +13,7 @@ import Auth  from '../../utils/auth';
 
 function ManageOfferings () {
 
-    // let history = useHistory();
+    let history = useHistory();
     const { email: userParam } = useParams();
     const { loading, userData } = useQuery(userParam ? QUERY_PROFILE : QUERY_ME, {
         variables: { email : userParam }
@@ -70,23 +70,8 @@ function ManageOfferings () {
       });
     //   const token = mutationResponse.data.addOffering.token;
     //   Auth.login(token);
+        history.push('/')
     };
-
-    // const handleFormSubmit = async (event) => {
-    //     event.preventDefault();
-    //     const mutationResponse =  await addOffering({
-    //       variables: {
-    //         input: {...formState}
-    //       }
-    //     });
-
-    //     // console.log(mutationResponse)
-    //     // const token = mutationResponse.data.updateUser.token;
-    //     // Auth.login(token);
-
-    //     history.push('/')
-    //   };
-
 
 
 
@@ -203,6 +188,12 @@ function ManageOfferings () {
                                         });
                                     }}  
                                 // onChange={handleChange}
+
+                                // onChange={handleChange}
+                                // ref={ref => {
+                                //   this._select = ref
+                                // }}
+                                // defaultValue={state.value}
                                 >
                              <option value="Computer Science">Computer Science</option>
                              <option value="Science">Science</option>

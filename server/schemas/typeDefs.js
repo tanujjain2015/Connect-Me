@@ -42,7 +42,7 @@ type File {
     _id: ID
     feedback: String,
     createdAt: String,
-    userId: String
+    user: String
   }
   type Auth {
     token: ID
@@ -67,7 +67,7 @@ type File {
     singleUploadStream(file: Upload!): File!
     addUser(firstName: String!, lastName: String!, email: String!, password: String!, location: String, tutor: String, bio: String): Auth
     addSubject(subject: String!): Subject
-    removeSubject(subjectid: String!): Subject 
+    removeSubject(subject: String!): Subject 
     addOrder(offerings: [ID]!): Order
     updateUser(input: userDetails): User
     addOffering(name: String, description: String, quantity: Int,price: Float, user: String, subject: String): Offering
@@ -77,7 +77,7 @@ type File {
   input updateOffering {
     quantity: Int
     price: Float
-    #userid: String
+    #user: String
     #subject: subjectDetails
   }
   input orderDetails {
@@ -87,7 +87,7 @@ type File {
   input feedbackDetails {
     feedback: String,
     createdAt: String,
-    userId: String
+    user: String
   }
   input userDetails {
     firstName: String
@@ -110,8 +110,8 @@ type File {
   # input OfferingDetails {
   #   quantity: Int
   #   price: Float
-  #   userid: String
-  #   subjectid: subjectid
+  #   user: String
+  #   subject: subject
   # }
   type Checkout {
     session: ID
