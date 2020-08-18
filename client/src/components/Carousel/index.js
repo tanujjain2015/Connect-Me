@@ -67,13 +67,14 @@ import React from 'react';
 import Carousel from 'react-material-ui-carousel'
 import { Paper, Button }  from '@material-ui/core'
 import { Link } from "react-router-dom";
+import Header from "../Header/Header";
 
 
 function Item(props)
 {
     return (
         <Paper style={{textAlign: 'center' , width:'74rem'}} className="my-5">
-            <h2><strong>{props.item.name}</strong></h2>
+            <Header><strong>{props.item.name}</strong></Header>
             <hr/>
             <p>{props.item.description}</p>
             <img style = {{width: '74rem', height: '600px'}}src ={props.item.image} />

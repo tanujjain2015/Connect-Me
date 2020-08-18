@@ -7,6 +7,7 @@ import { UPDATE_OFFERINGS } from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 // import { off } from '../../../../server/models/User';
+import Typography  from "@material-ui/core/Typography";
 
 
 function OfferingList() {
@@ -62,7 +63,9 @@ function OfferingList() {
 
   return (
     <div className="my-2">
-      <h2>Our Offerings:</h2>
+     <Typography variant="h4" gutterBottom>
+       Our Offerings
+      </Typography> 
       {offerings.length ? (
         <div className="flex-row">
             {filterOfferings().map(offering => (
