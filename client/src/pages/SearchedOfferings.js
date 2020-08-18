@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_USER_BY_SUBJECT } from "../utils/queries";
+import { QUERY_USEROFFERINGS } from "../utils/queries";
 // import spinner from "../../assets/spinner.gif"
 import spinner from "../assets/spinner.gif" 
 import { UPDATE_OFFERINGS } from '../utils/actions';
