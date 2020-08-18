@@ -34,6 +34,8 @@ export const QUERY_ALL_OFFERINGS = gql`
     }
   }
 `;
+
+
 export const QUERY_SUBJECTS = gql`
 {
   subjects {
