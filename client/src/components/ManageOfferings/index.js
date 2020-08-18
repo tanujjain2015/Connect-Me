@@ -64,7 +64,8 @@ function ManageOfferings () {
           description: formState.description,
           price: Number(formState.price), 
           quantity: Number(formState.quantity),
-          subject: formState.subject,
+          subject: formState.subject.id,
+        //   user: formState.user.id
         //   user: Auth.getProfile().formState.userData,
         }
       });
@@ -181,7 +182,7 @@ function ManageOfferings () {
                                     const { name, value } = event.target;
                                         console.log(event);
                                         console.log(event.target.name);
-                                        console.log(event.target.value);
+                                        console.log(event.target.value.id);
                                         setFormState({
                                         ...formState,
                                         [name]: value

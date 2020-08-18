@@ -253,9 +253,9 @@ const resolvers = {
       if (context.user ) {
         const subjectDetails = await Subject.findById(args.subject);
         args.subject = subjectDetails;
-        // const userDetails = await User.findById(args.user);
-        // console.log(userDetails);
-        // args.user = userDetails;
+        const userDetails = await User.findById(args.user);
+        console.log(userDetails);
+        args.user = userDetails;
 
         const offering =  await Offering.create(args);
         return offering;
