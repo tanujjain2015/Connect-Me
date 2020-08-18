@@ -22,9 +22,9 @@ export const QUERY_OFFERINGS = gql`
 export const QUERY_ALL_OFFERINGS = gql`
   {
     offerings {
+      _id
       name
       description
-      _id
       price
       quantity
       subject {
@@ -48,11 +48,18 @@ export const QUERY_USER = gql`
     firstName
     lastName
     email
+    password
+    tutor
+    bio
+    image
+    location
     orders {
       _id
       purchaseDate
       offerings {
         _id
+        name
+        description
         price
         quantity
       }
@@ -67,6 +74,8 @@ export const QUERY_CHECKOUT = gql`
     }
   }
 `;
+
+
 //QUERY_ME
 export const QUERY_ME = gql`
   {
@@ -77,15 +86,13 @@ export const QUERY_ME = gql`
       email
       tutor
       bio
-      # image
-      # role
       tutor
-      bio
       location
-      # timezone
   	}
   }
 `;
+
+
 export const QUERY_USER_BY_SUBJECT= gql`
 {
   user(email: String) {
@@ -116,11 +123,27 @@ query user($email: String!) {
     email
     tutor
     bio
-    # image
-    # orders {
-    #   _id
-    #   purchaseDate
-    # }
+    image
+    location
+    orders {
+      _id
+      purchaseDate
+      offerings {
+        _id
+        name
+        description
+        quantity
+        price
+        subject {
+          _id
+          subject
+        }
+        user {
+          _id
+        }
+      }
+    }
+    
   }
 }
 `;
