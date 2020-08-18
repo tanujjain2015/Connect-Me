@@ -5,6 +5,14 @@ import {UPDATE_SUBJECTS, UPDATE_CURRENT_SUBJECT} from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import Badge from '../Badge/Badge';
+import '../../assets/jss/material-kit-react/components/typographyStyle.js'
+import Muted from "../Typography/Muted.js";
+import Primary from "../Typography/Primary.js";
+import Info from "../Typography/Info.js";
+import Success from "../Typography/Success.js";
+import Warning from "../Typography/Warning.js";
+import Danger from "../Typography/Danger.js";
+
 
 
 function CategoryMenu() {
@@ -43,7 +51,9 @@ function CategoryMenu() {
   };
   return (
     <div>
+      <Muted>
       <h2>Choose a Subject:</h2>
+      </Muted>
       <Badge color="primary">
           {subjects.map(item => (
               <button

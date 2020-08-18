@@ -32,6 +32,9 @@ import work5 from "../assets/img/examples/clem-onojegaw.jpg";
 
 import styles from "../assets/jss/material-kit-react/views/profilePage.js";
 
+// import Card from "../components/Card/Card.js";
+import CardBody from "../components/Card/CardBody.js";
+
 
 import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/react-hooks';
