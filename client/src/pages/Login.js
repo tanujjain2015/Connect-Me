@@ -6,6 +6,7 @@ import Auth from "../utils/auth";
 import Footer from '../components/Footer/Footer';
 import GridContainer from "../components/Grid/GridContainer";
 import GridItem from "../components/Grid/GridItem";
+import Button from "../components/CustomButtons/Button";
 
 function Login(props) {
   const [formState, setFormState] = useState({ email: '', password: '' })
@@ -66,11 +67,14 @@ function Login(props) {
             <p className="error-text" >The provided credentials are incorrect</p>
           </div> : null
         }
-        <div className="flex-row flex-end">
+        {/* <div className="flex-row flex-end">
           <button type="submit">
             Submit
-          </button>
-        </div>
+          </button> */}
+          <Button type="submit" color="primary" round >
+                  Login
+          </Button>
+        {/* </div> */}
       </form>
 
 

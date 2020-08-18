@@ -5,6 +5,7 @@ import Auth from "../utils/auth";
 import { ADD_USER } from "../utils/mutations";
 import ImageUpload from "../components/ImageUpload";
 import Footer from '../components/Footer/Footer';
+import Button from '../components/CustomButtons/Button';
 
 
 function Signup(props) {
@@ -135,11 +136,14 @@ function Signup(props) {
           </ImageUpload>
         </div>
 
-        <div className="flex-row flex-end">
-          <button type="submit">
+        <Button type="submit" color="primary" round>
+        {/* <div className="flex-row flex-end"> */}
+          {/* <button type="submit"> */}
             Signup
-          </button>
-        </div>
+          {/* </button> */}
+        {/* </div> */}
+        </Button>
+
       </form>
       <Footer />
     </div>

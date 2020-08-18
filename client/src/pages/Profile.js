@@ -168,6 +168,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Comprehend } from "aws-sdk";
 // import { Button, Box } from '@material-ui/core';
 import Footer from '../components/Footer/Footer';
+import Button from '../components/CustomButtons/Button';
 
 
 function Profile(props) {
@@ -333,11 +334,13 @@ function Profile(props) {
                         })
                     } 
                     } type="submit">Update</button> */}
-                    <button type="submit" className = "btn btn-light ml-auto" onClick={() => {setState({open: !state.open})}}><Link to ={{pathname: '/profileupdate',user }}>Edit Profile</Link></button>
-                    {/* <button type="submit" className = "btn btn-light ml-auto"><Link to="/manageofferings">Manage Offerings</Link></button> */}
-                    <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link></button>
-                    {/* <Button color="primary">Hello World</Button>
-                    <Box component="div" display="inline">This is a sample box</Box> */}
+                    <Button type="submit" color="primary" round onClick={() => {setState({open: !state.open})}}>
+                            <Link style={{color: "#FFFFFF"}} to ={{pathname: '/profileupdate',user }}>Edit Profile</Link>
+                    </Button>
+
+                    <Button type="submit" color="default" round simple>
+                            <Link to="/">Home</Link>
+                    </Button>
 
      </form>
     //     

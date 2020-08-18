@@ -169,6 +169,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Calender from "../Calender";
 import SearchedOfferings from "../../pages/SearchedOfferings"
 import Cart from '../Cart';
+import Button from '../CustomButtons/Button';
 
 const drawerWidth = 240;
 
@@ -342,7 +343,10 @@ export default function Nav(){
         }
       }}>
 
-      <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      <Button type="submit" color="primary" round>
+        Search
+      </Button>
+      {/* <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button> */}
       </Link>
         </AppBar>
 

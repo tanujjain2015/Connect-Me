@@ -85,7 +85,7 @@ function Item(props)
     )
 }
  
-function Example(props)
+function CarouselNav(props)
 {
     var items = [
         {
@@ -109,7 +109,7 @@ function Example(props)
     )
 }
 
-export default Example
+export default CarouselNav;
  
 // function Item(props)
 // {

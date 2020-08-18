@@ -9,6 +9,7 @@ import { Link, useHistory, useLocation, useParams, Redirect } from "react-router
 import {  } from '../../utils/queries';
 import Auth  from '../../utils/auth';
 import Footer from '../Footer/Footer';
+import Button from '../CustomButtons/Button';
 
 
 function ManageOfferings () {
@@ -206,8 +207,16 @@ function ManageOfferings () {
                     </div>
                  </div>
 
-            <button className = "btn btn-primary ml-auto" type="submit" >Add Offering</button>
-            <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link></button>
+            {/* <button className = "btn btn-primary ml-auto" type="submit" >Add Offering</button> */}
+            {/* <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link></button> */}
+
+            <Button type="submit" color="primary" round style={{color: "#FFFFFF"}}>
+                        Add Offering
+            </Button>
+
+            <Button type="submit" color="default" round simple>
+                    <Link to="/">Home</Link>
+            </Button>
 
  </form>
 
