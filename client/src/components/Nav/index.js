@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Calender from "../Calender";
 import SearchedOfferings from "../../pages/SearchedOfferings"
 import Cart from '../Cart';
 
@@ -63,6 +64,12 @@ function Nav() {
           <li className="mx-1">
             <Link to="/profile">
               My Profile
+            </Link>
+          </li>
+
+          <li className="mx-1">
+            <Link to="/myschedule">
+              My Schedule
             </Link>
           </li>
 
