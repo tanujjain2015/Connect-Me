@@ -5,6 +5,7 @@ import ApolloClient from 'apollo-boost';
 
 
 import Home from "./pages/Home";
+import Offerings from "./pages/SearchedOfferings"
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
