@@ -31,25 +31,25 @@ export default function Footer(props) {
       <div className={classes.container}>
         <div className={classes.left}>
           <List className={classes.list}>
-            <ListItem className={classes.inlineBlock}>
-              <a
-                href="https://www.creative-tim.com/?ref=mkr-footer"
+            {/* <ListItem className={classes.inlineBlock}> */}
+              {/* <a
+                href="https://github.com/izabelacloud/Connect-Me"
                 className={classes.block}
                 target="_blank"
               >
-                Creative Tim
+                Connect-Me
               </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
+            </ListItem> */}
+            {/* <ListItem className={classes.inlineBlock}>
               <a
                 href="https://www.creative-tim.com/presentation?ref=mkr-footer"
                 className={classes.block}
                 target="_blank"
               >
                 About us
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
+              </a> */}
+            {/* </ListItem> */}
+            {/* <ListItem className={classes.inlineBlock}>
               <a
                 href="http://blog.creative-tim.com/?ref=mkr-footer"
                 className={classes.block}
@@ -57,8 +57,8 @@ export default function Footer(props) {
               >
                 Blog
               </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
+            </ListItem> */}
+            {/* <ListItem className={classes.inlineBlock}>
               <a
                 href="https://www.creative-tim.com/license?ref=mkr-footer"
                 className={classes.block}
@@ -66,20 +66,20 @@ export default function Footer(props) {
               >
                 Licenses
               </a>
-            </ListItem>
+            </ListItem> */}
           </List>
         </div>
         <div className={classes.right}>
           &copy; {1900 + new Date().getYear()} , made with{" "}
           <Favorite className={classes.icon} /> by{" "}
           <a
-            href="https://www.creative-tim.com?ref=mkr-footer"
+            href="https://github.com/izabelacloud/Connect-Me"
             className={aClasses}
             target="_blank"
           >
-            Creative Tim
+            Connect-Me
           </a>{" "}
-          for a better web.
+          where learning is fun!
         </div>
       </div>
     </footer>

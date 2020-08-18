@@ -163,6 +163,8 @@ import Cart from '../components/Cart';
 import Example from '../components/Carousel'
 import Nav from '../components/Nav';
 import ManageOfferings from '../components/ManageOfferings';
+import Footer from '../components/Footer/Footer';
+
 const Home = () => {
   return (
     <div className="container">
@@ -172,6 +174,7 @@ const Home = () => {
       <CategoryMenu />
       <OfferingList />
       <Cart />
+      <Footer />
     </div>
   );
 };

@@ -14,6 +14,7 @@ import { ADD_USER, UPDATE_USER } from "../../utils/mutations";
 
 //changes
 import { QUERY_PROFILE, QUERY_ME } from '../../utils/queries';
+import Footer from '../Footer/Footer';
 
 
 
@@ -96,6 +97,7 @@ function ProfileUpdate () {
     //   }, [userData, loading, dispatch]);
 
     return(
+        <div>
         <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark" 
             // onSubmit={async event => {event.preventDefault()}}
             onSubmit={handleFormSubmit}
@@ -238,6 +240,9 @@ function ProfileUpdate () {
                     <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link></button>
 
          </form>
+
+         <Footer />
+         </div>
     )
 }
 
