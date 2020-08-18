@@ -82,6 +82,7 @@ db.once('open', async () => {
     { 
       name: "React beginners",
       description: "This class will help you have an idea of how React.js works",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
       price: 90.00,
       quantity: 1,
       user: users[0]._id,
@@ -90,6 +91,7 @@ db.once('open', async () => {
     { 
       name: "Javascript Basics",
       description: "Covers the basics of Javascript. Needs prior knowledge of HTML and CSS",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
       price: 110.00,
       quantity: 1,
       user: users[0]._id,
@@ -98,6 +100,7 @@ db.once('open', async () => {
     {
       name: "Javascript Advanced",
       description: "Covers the advance levels of Javascript. Needs prior knowledge of HTML and CSS",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
       price: 90.00,
       quantity: 1,
       user:users[0]._id,

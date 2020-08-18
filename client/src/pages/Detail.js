@@ -99,8 +99,8 @@ function Detail() {
   return(
     <>
      {currentOffering ? (
-      <div className="card mx-auto my-5 bg-light border-info rounded" style={{width: 18+ "em"}}>
-            <img src="..." className="card-img-top" alt={currentOffering.image}/>
+      <div className="card mx-auto my-5 bg-light border-info rounded" style={{width: 25+ "em"}}>
+            <img src={currentOffering.image} className="card-img-top" alt={currentOffering.image}/>
             <hr />
               <div className="card-body">
                   <h5 className="card-title">{currentOffering.name}</h5><hr/>
