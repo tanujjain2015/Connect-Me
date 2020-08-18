@@ -238,10 +238,10 @@ const resolvers = {
     
       throw new AuthenticationError('You need to be logged in!');
     },
-    removeSubject: async (parent, {subjectid}, context) => {
+    removeSubject: async (parent, {subject}, context) => {
       if (context.user) {
         const updatedSubject = await Subject.findByIdAndDelete(
-          { _id: subjectid }
+          { _id: subject }
         );
         return updatedSubject;
       }
@@ -251,11 +251,11 @@ const resolvers = {
     addOffering: async (parent, args, context) => {
       console.log(args)
       if (context.user ) {
-        const subjectDetails = await Subject.findById(args.subjectid);
+        const subjectDetails = await Subject.findById(args.subject);
         args.subject = subjectDetails;
-        // const userDetails = await User.findById(args.userid);
-        // console.log(userDetails);
-        // args.user = userDetails;
+        const userDetails = await User.findById(args.user);
+        console.log(userDetails);
+        args.user = userDetails;
 
         const offering =  await Offering.create(args);
         return offering;
