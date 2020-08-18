@@ -60,7 +60,7 @@ function App() {
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/profileupdate" component={ProfileUpdate} />
             <Route exact path="/orderHistory" component={OrderHistory} />
-            <Route exact path="/offerings/" component={Detail} />
+            <Route exact path="/offerings/:id" component={Detail} />
             <Route exact path="/manageofferings" component={ManageOfferings} />
             <Route exact path="/success" component={Success} />
             <Route component={NoMatch} />

@@ -22,13 +22,11 @@ export const QUERY_OFFERINGS = gql`
 export const QUERY_USEROFFERINGS = gql`
 query searchOffering($name: String) {
   searchOffering(name: $name) {
+    _id
     name
     price
     quantity
-    subject {
-      _id
-      subject
-    }
+    description
   }
 }
 `;

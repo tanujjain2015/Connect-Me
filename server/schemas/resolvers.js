@@ -74,6 +74,7 @@ const resolvers = {
     searchOffering: async (parent, { name }) => {
       const params = {};
       params.name = name;
+      console.log(name)
       return await Offering.find({name});
     },
 
