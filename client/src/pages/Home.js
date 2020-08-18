@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import OfferingList from "../components/OfferingList";
 import CategoryMenu from "../components/CategoryMenu";
 import Cart from '../components/Cart';
+import Schedule from '../components/Calender';
 import { useQuery } from '@apollo/react-hooks';
 import Nav from '../components/Nav'
 import HPImage from '../assets/HPimage.jpg';

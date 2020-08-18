@@ -11,6 +11,7 @@ import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Profile from './pages/Profile';
+import Calender from './components/Calender';
 import Nav from "./components/Nav";
 import OrderHistory from "./pages/OrderHistory";
 import Success from './pages/Success'
@@ -64,6 +65,7 @@ function App() {
             <Route exact path="/offerings/:id" component={Detail} />
             <Route exact path="/manageofferings" component={ManageOfferings} />
             <Route exact path="/success" component={Success} />
+            <Route exact path="/myschedule" component={Calender} />
             <Route component={NoMatch} />
             {/* <Route path="/login-page" component={LoginPage} /> */}
           </Switch>
