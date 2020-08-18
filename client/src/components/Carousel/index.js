@@ -72,9 +72,9 @@ function Item(props)
 {
     return (
         <Paper>
-            <h2>{props.item.name}</h2>
-            <p>{props.item.description}</p>
-            <img src ={props.item.image} />
+            <h2 style = {{textAlign: 'center'}}>{props.item.name}</h2>
+            <p style = {{textAlign: 'center'}}>{props.item.description}</p>
+            <img style = {{width: '10000px'}}src ={props.item.image} />
  
             <Button className="CheckButton">
                 Check it out!
@@ -87,13 +87,13 @@ function Example(props)
 {
     var items = [
         {
-            name: "Random Name #1",
-            description: "Probably the most random thing you have ever seen!",
-            image: profile 
+            name: "Explore Our Offerings",
+            description: "Where learning is fun!",
+            image: "https://3playmedia-wpengine.netdna-ssl.com/wp-content/uploads/elearning-hero-1400x600-1-1400x600.jpg" 
         },
         {
-            name: "Random Name #2",
-            description: "Hello World!",
+            name: "Explore Our Offerings",
+            description: "",
             image: "https://i.ytimg.com/vi/RK8ugshKJBI/maxresdefault.jpg"
         }
     ]
