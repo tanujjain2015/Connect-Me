@@ -7,14 +7,8 @@ import { UPDATE_OFFERINGS } from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 // import { off } from '../../../../server/models/User';
-import Header from "../Header/Header";
-import '../../assets/jss/material-kit-react/components/typographyStyle.js'
-import Muted from "../Typography/Muted.js";
-import Primary from "../Typography/Primary.js";
-import Info from "../Typography/Info.js";
-import Success from "../Typography/Success.js";
-import Warning from "../Typography/Warning.js";
-import Danger from "../Typography/Danger.js";
+import Typography  from "@material-ui/core/Typography";
+import Danger from '../Typography/Danger';
 
 
 function OfferingList() {
@@ -70,9 +64,9 @@ function OfferingList() {
 
   return (
     <div className="my-2">
-      <Muted>
-      <h2>Our Offerings:</h2>
-      </Muted>
+     <Typography variant="h4" gutterBottom>
+       Our Offerings
+      </Typography> 
       {offerings.length ? (
         <div className="flex-row">
             {filterOfferings().map(offering => (
