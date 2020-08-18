@@ -100,7 +100,7 @@ export const QUERY_USER_BY_SUBJECT= gql`
         description
         price
         quantity
-        image
+        # image
       }
     }
   }

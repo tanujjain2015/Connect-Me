@@ -166,7 +166,7 @@ import { FaEdit, FaHome } from "react-icons/fa";
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Comprehend } from "aws-sdk";
-import { Button, Box } from '@material-ui/core';
+// import { Button, Box } from '@material-ui/core';
 
 
 function Profile(props) {
@@ -326,7 +326,7 @@ function Profile(props) {
                     } 
                     } type="submit">Update</button> */}
                     <button type="submit" className = "btn btn-light ml-auto" onClick={() => {setState({open: !state.open})}}><Link to ={{pathname: '/profileupdate',user }}>Edit Profile</Link></button>
-                    <button type="submit" className = "btn btn-light ml-auto"><Link to="/manageofferings">Manage Offerings</Link></button>
+                    {/* <button type="submit" className = "btn btn-light ml-auto"><Link to="/manageofferings">Manage Offerings</Link></button> */}
                     <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link></button>
                     {/* <Button color="primary">Hello World</Button>
                     <Box component="div" display="inline">This is a sample box</Box> */}

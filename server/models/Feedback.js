@@ -9,7 +9,7 @@ const feedbackSchema = new Schema({
     //required: true,
     trim: true
   },
-  userId: {
+  user: {
     type: String,
     required: true
   },
