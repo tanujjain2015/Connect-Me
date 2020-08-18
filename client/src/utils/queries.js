@@ -5,6 +5,7 @@ export const QUERY_OFFERINGS = gql`
     offerings(subject: $subject) {
       name
       description
+      # image
       _id
       price
       quantity
@@ -40,6 +41,7 @@ export const QUERY_ALL_OFFERINGS = gql`
       _id
       name
       description
+      # image
       price
       quantity
       user {
