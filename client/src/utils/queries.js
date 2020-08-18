@@ -27,6 +27,9 @@ export const QUERY_ALL_OFFERINGS = gql`
       description
       price
       quantity
+      user {
+        _id
+      }
       subject {
         _id
         subject

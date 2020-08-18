@@ -100,6 +100,7 @@ type File {
     image: String
     location: String
     # timezone: String
+    subject: String
     orders: [orderDetails]
     feedback: [feedbackDetails]
   }
