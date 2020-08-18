@@ -167,6 +167,7 @@ import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Comprehend } from "aws-sdk";
 // import { Button, Box } from '@material-ui/core';
+import Footer from '../components/Footer/Footer';
 
 
 function Profile(props) {
@@ -237,6 +238,7 @@ function Profile(props) {
     //============
   //Image upload ===============================================================
   return(
+      <div>
     <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark" onSubmit={async event => {event.preventDefault()}}>
                      {/* <div className = "form-row"> */}
                          <div className = "form-group col-md-6">
@@ -340,7 +342,8 @@ function Profile(props) {
      </form>
     //     
 
-
+    <Footer />
+    </div>
 
     
   )

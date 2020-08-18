@@ -251,6 +251,13 @@ export default function Nav(){
       return(
     
         <List>
+          <ListItem button key="Home">
+            <ListItemIcon><MailIcon/></ListItemIcon>
+            <ListItemText>
+                  <Link to ="/">Home</Link>
+                </ListItemText>
+          </ListItem>
+
           <ListItem button key="Manage Offerings">
             <ListItemIcon><MailIcon/></ListItemIcon>
             <ListItemText>
@@ -261,7 +268,7 @@ export default function Nav(){
           <ListItem button key="My Profile">
             <ListItemIcon><MailIcon/></ListItemIcon>
             <ListItemText>
-                  <Link to ="/profile">My profile</Link>
+                  <Link to ="/profile">My Profile</Link>
                 </ListItemText>
           </ListItem>
 
@@ -274,9 +281,10 @@ export default function Nav(){
 
           <ListItem >
             <ListItemIcon><MailIcon/></ListItemIcon>
-           
-                  <a href="/signup" onclick={() => Auth.logout()}>Logout</a>
-                
+            <ListItemText>
+            <Link to ="/signup"onclick={() => Auth.logout()}>Logout</Link>
+            {/* <a href="/signup" onclick={() => Auth.logout()}>Logout</a> */}
+            </ListItemText>
           </ListItem>
 
           <Divider/>

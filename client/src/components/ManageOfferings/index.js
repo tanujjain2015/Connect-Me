@@ -8,7 +8,7 @@ import { ADD_OFFERING  } from '../../utils/mutations';
 import { Link, useHistory, useLocation, useParams, Redirect } from "react-router-dom";
 import {  } from '../../utils/queries';
 import Auth  from '../../utils/auth';
-
+import Footer from '../Footer/Footer';
 
 
 function ManageOfferings () {
@@ -86,6 +86,7 @@ function ManageOfferings () {
 
       return(
 
+        <>
     <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark" 
     onSubmit={handleFormSubmit}
     >
@@ -210,6 +211,9 @@ function ManageOfferings () {
 
  </form>
 
+ <Footer />
+
+</>
 )
 
 }

@@ -4,6 +4,7 @@ import { useMutation } from '@apollo/react-hooks';
 import Auth from "../utils/auth";
 import { ADD_USER } from "../utils/mutations";
 import ImageUpload from "../components/ImageUpload";
+import Footer from '../components/Footer/Footer';
 
 
 function Signup(props) {
@@ -133,12 +134,14 @@ function Signup(props) {
           <ImageUpload>
           </ImageUpload>
         </div>
+
         <div className="flex-row flex-end">
           <button type="submit">
-            Submit
+            Signup
           </button>
         </div>
       </form>
+      <Footer />
     </div>
   );
 }
