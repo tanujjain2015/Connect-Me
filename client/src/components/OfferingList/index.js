@@ -84,7 +84,10 @@ function OfferingList() {
             ))}
         </div>
       ) : (
+        <Danger>
         <h3>You haven't added any offerings yet!</h3>
+        </Danger>
+
       )}
       { loading ? 
       <img src={spinner} alt="loading" />: null}

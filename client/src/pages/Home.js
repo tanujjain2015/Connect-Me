@@ -167,6 +167,7 @@ import Footer from '../components/Footer/Footer';
 import Parallax from '../components/Parallax/Parallax';
 import SectionCarousel from '../views/Components/Sections/SectionCarousel.js'
 
+
 const Home = () => {
   return (
     <div className="container">

@@ -16,6 +16,8 @@ import { ADD_USER, UPDATE_USER } from "../../utils/mutations";
 import { QUERY_PROFILE, QUERY_ME } from '../../utils/queries';
 import Footer from '../Footer/Footer';
 import Button from '../CustomButtons/Button';
+import '../../assets/jss/material-kit-react/components/customInputStyle.js';
+import CustomInput from '../CustomInput/CustomInput';
 
 
 
@@ -73,30 +75,6 @@ function ProfileUpdate () {
 
 
 
-    //   useEffect(() => {
-        //if categoryData exists or has changed from the response of useQuery, then run dispatch()
-    
-    //     if(userData) {
-    //       //execute our dispatch function with our action object indicating the type of action and the data to set our state for categories to
-    //       dispatch({
-    //         type: UPDATE_USER,
-    //         users: userData.users
-    //       });
-    
-    //     //   userData.users.forEach(user => {
-    //     //     idbPromise('users', 'put', user)
-    //     //   }) 
-    //     // } 
-    //     // else if (!loading) {
-    //     //   idbPromise('users', 'get').then(users => {
-    //     //     dispatch({
-    //     //       type: UPDATE_USER,
-    //     //       users: users
-    //     //     })
-    //     //   })
-    //     }
-    //   }, [userData, loading, dispatch]);
-
     return(
         <div>
         <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark" 
@@ -105,6 +83,19 @@ function ProfileUpdate () {
             >
                          <div className = "form-row">
                              <div className = "form-group col-md-6">
+                                 {/* <CustomInput name="firstName" type = "text" id = "firstName" value = {formState.firstName || ''}  
+                                onChange={event => {
+                                    const { name, value } = event.target;
+                                     console.log(event);
+                                     console.log(event.target.name);
+                                     console.log(event.target.value);
+                                     setFormState({
+                                     ...formState,
+                                     [name]: value
+                                     });
+                                 }}  >
+                                    First Name
+                                 </CustomInput> */}
                                 <label htmlFor = "firstName">First Name:</label>
                              <input name="firstName" type = "text" className="form-control border border-info" id = "firstName" value = {formState.firstName || ''}  
                                 onChange={event => {
