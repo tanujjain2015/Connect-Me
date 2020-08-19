@@ -25,6 +25,7 @@ import CustomInput from "../components/CustomInput/CustomInput.js";
 import styles from "../assets/jss/material-kit-react/views/loginPage.js";
 import image from "../assets/img/bg7.jpg";
 import { Link } from "react-router-dom";
+import CustomDropdown from '../components/CustomDropdown/CustomDropdown.js';
 
 const useStyles = makeStyles(styles);
 
@@ -123,17 +124,6 @@ export default function SignupNew(props) {
                   {/* <p className={classes.divider}>Or Be Classical</p> */}
                   <CardBody>
 
-                  {/* <div className="flex-row space-between my-2">
-          <label htmlFor="firstName">First Name:</label>
-          <input
-            placeholder="First Name"
-            name="firstName"
-            type="firstName"
-            id="firstName"
-            onChange={handleChange}
-          />
-        </div> */}
-                {/* <div className="flex-row space-between my-2"> */}
 
                     <CustomInput
                       labelText="First Name"
@@ -201,15 +191,9 @@ export default function SignupNew(props) {
                     <CustomInput
                       labelText="Password"
                       id="password"
-                    //   formControlProps={{
-                    //     fullWidth: true
-                    //   }}
                       htmlFor="pwd"
                       name ="password"
                       type="pwd"
-                    //   value={formState.password}
-                    //   onChange={handleChange}
-
                       inputProps={{
                         name:"password",
                         type: "password",
@@ -228,6 +212,72 @@ export default function SignupNew(props) {
 
 
 
+
+                <CustomDropdown
+                        id="tutor"
+                        htmlFor="tutor"
+                        name ="tutor"
+                        // type="text"
+                        buttonText="Signing up as?"
+                        dropdownList={[
+                        "Student",
+                        // {divider: true},
+                        "Tutor",
+                        // {divider: true},
+                        // "Separated link",
+                        // {divider: true},
+                        // "One more separated link",
+                        ]}
+                        buttonProps={{
+                            name:"tutor",
+                            type: "text",
+                            onChange: handleChange,
+                            value:formState.tutor,
+                          }}
+                    />
+
+                    <CustomDropdown
+                        id="location"
+                        htmlFor="location"
+                        name ="location"
+                        type="location"
+                        buttonText="Choose a location"
+                        dropdownList={[
+                        "AMER",
+                        "EMEA",
+                        "APAC",
+                        ]}
+                        buttonProps={{
+                            name:"location",
+                            type: "text",
+                            onChange: handleChange,
+                            value:formState.location,
+                          }}
+                    />
+
+
+
+                    <CustomInput
+                      labelText="Bio..."
+                    //   placeholder="Placeholder bio"
+                      id="bio"
+                      htmlFor="bio"
+                      name="bio"
+                      type="bio"
+                      rows = "6" 
+
+                      inputProps={{
+                        name: "bio",
+                        type: "bio",
+                        onChange: handleChange,
+                        value:formState.bio,
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            {/* <Email className={classes.inputIconsColor} /> */}
+                          </InputAdornment>
+                        )
+                      }}
+                    />
                   </CardBody>
 
                   <CardFooter className={classes.cardFooter}>
