@@ -111,6 +111,7 @@ export default function ProfileNew(props) {
         // }}
        
       /> */}
+      
       <Parallax small filter image={require("../assets/img/profile-bg.jpg")} />
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
@@ -124,15 +125,6 @@ export default function ProfileNew(props) {
                   <div className={classes.name}>
                     <h3 className={classes.title}>{user.firstName} {user.lastName}</h3>
                     <h6>{user.tutor}</h6>
-                    <Button justIcon link className={classes.margin5}>
-                      <i className={"fab fa-twitter"} />
-                    </Button>
-                    <Button justIcon link className={classes.margin5}>
-                      <i className={"fab fa-instagram"} />
-                    </Button>
-                    <Button justIcon link className={classes.margin5}>
-                      <i className={"fab fa-facebook"} />
-                    </Button>
                   </div>
                 </div>
               </GridItem>
@@ -144,81 +136,50 @@ export default function ProfileNew(props) {
               </p>
             </div>
             <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
+              <GridItem xs={12} sm={12} md={8} lg={6} className={classes.navWrapper}>
 
                 
-              </GridItem>
-
-            </GridContainer>
 
 
-            <div>
     <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark" onSubmit={async event => {event.preventDefault()}}>
                
-                         <div className = "form-group col-md-6">
-                            <label htmlFor = "firstName">First Name:</label>
-                            <p>{user.firstName}</p>
+            <div className = "form-group ">
 
+                <label htmlFor = "firstName">First Name:</label>
+                <p>{user.firstName}</p>
 
-                        </div>
-                       <div className = "form-group col-md-6">
-                            <label htmlFor = "lastName">Last Name:</label>
-                            <p>{user.lastName}</p>
-                        </div>
+                <label htmlFor = "lastName">Last Name:</label>
+                <p>{user.lastName}</p>
 
+                <label htmlFor="email">Email:</label>
+                <p>{user.email}</p>
 
-                    <div className = "form-group col-md-6">
-                        <label htmlFor="email">Email:</label>
-                        <p>{user.email}</p>
-                    </div>
+                <label htmlFor="tutor">Signed up as:</label>
+                <p>{user.tutor}</p>
 
+                <label htmlFor="bio">Bio:</label>
+                <p id="bio">{user.bio}</p>
 
+                <label htmlFor="location">Location:</label>
+                <p>{user.location}</p>
 
-                    <div className="form-group col-md-6">
-                    <label htmlFor="tutor">Signed up as:</label>
-                    <p>{user.tutor}</p>
+            </div>
 
-                    </div>
+            <Button type="submit" color="primary" round onClick={() => {setState({open: !state.open})}}>
+                <Link style={{color: "#FFFFFF"}} to ={{pathname: '/profileupdate',user }}>Edit Profile</Link>
+            </Button>
 
-                    <div className="form-group col-md-6">
-                    <label htmlFor="bio">Bio:</label>
-                    <p 
-                        id="bio"
-                        >
-                        {user.bio}
-                        </p>
-                    </div>
+            <Button type="submit" color="default" round simple>
+                    <Link to="/">Home</Link>
+            </Button>
 
-
-
-                         <div className="form-group col-md-4">
-                             <label htmlFor="location">Location:</label>
-                             <p>{user.location}</p>
-                        </div>
-
-
-                         <div className="form-group col-md-4">
-                             <label htmlFor="subject">Your Subjects:</label>
-                            {/* <select id = "subject" name="subject" className = "form-control border border-info" multiple >
-                                 <option>{[user.subject]}</option> */}
-                                 {/* <option value="Science">Science</option>
-                                 <option value="Maths">Maths</option>
-                                 <option value="Biology">Biology</option>
-                                 <option value="Geography">Geography</option> */}
-                             {/* </select> */}
-                             <p>{user.subject}</p>
-                        </div>
-             
-
-                <Button type="submit" color="primary" round onClick={() => {setState({open: !state.open})}}>
-                    <Link style={{color: "#FFFFFF"}} to ={{pathname: '/profileupdate',user }}>Edit Profile</Link>
-                </Button>
-
-                <Button type="submit" color="default" round simple>
-                        <Link to="/">Home</Link>
-                </Button>
 
      </form>
+
+            </GridItem>
+            </GridContainer>
+    <div>
+
     </div>
 
 
@@ -227,7 +188,7 @@ export default function ProfileNew(props) {
           </div>
         </div>
 
-      </div>
+    </div>
       <Footer />
     </div>
   );

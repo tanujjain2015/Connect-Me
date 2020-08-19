@@ -1,20 +1,5 @@
 :root {
-  /* --primary: white;
-  --secondary: #8cb369;
-  --tertiary: #f4e285;
-  --quaternary: #5b8e7d;
-  --quinary: #f4a259;
-  --senary: #bc4b51;
-  --septenary: #003049;
-  --octonary: #d62828;
-  --nonary: #f77f00;
-  --denary: #fcbf49;
-  --pink: #e39695;
-  --light: #fafafa;
-  --dark: #272f32;
-  --error: rgb(228, 46, 1);
-  --spacing-one: calc(1rem * 0.5);
-  --spacing-two: calc(1rem); */
+
   --primary: #232F3E;
   --secondary: #F3A847;
   --tertiary: #B12704;
@@ -103,6 +88,7 @@ header a {
   color: var(--light);
 }
 
+
 button {
   font-size: 1rem;
   text-decoration: none;
@@ -112,8 +98,8 @@ button {
   outline: none;
   cursor: pointer;
   margin: 0 1px;
-  /* background-color: var(--secondary); */
-  /* color: black; */
+  /* background-color: var(--secondary);
+  color: black; */
   background: none;
   color: black
 }
