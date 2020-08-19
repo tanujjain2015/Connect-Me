@@ -120,7 +120,7 @@ export default function SignupNew(props) {
 
         <div className={classes.container}>
           <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={4}>
+            <GridItem xs={12} sm={12} md={5} lg={6}>
               <Card 
               //className={classes[cardAnimaton]}
               >
@@ -130,10 +130,10 @@ export default function SignupNew(props) {
 
                   </CardHeader>
                   {/* <p className={classes.divider}>Or Be Classical</p> */}
-                  <CardBody>
+                  <CardBody >
 
-
-                    <CustomInput
+                    <div>
+                    <CustomInput 
                       labelText="First Name"
                       id="firstName"
                       htmlFor="firstName"
@@ -153,9 +153,7 @@ export default function SignupNew(props) {
                       }}
                     />
 
-                {/* </div> */}
-
-                <CustomInput
+                    <CustomInput
                       labelText="Last Name"
                       id="lastName"
                       htmlFor="lastName"
@@ -174,6 +172,11 @@ export default function SignupNew(props) {
                         )
                       }}
                     />
+
+                </div>
+
+                <div>
+
 
                     <CustomInput
                       labelText="Email"
@@ -217,6 +220,8 @@ export default function SignupNew(props) {
                         autoComplete: "off"
                       }}
                     />
+</div>
+
 
         <div className="flex-row space-between my-2">
                 <label htmlFor="tutor">Signing up as?</label>
@@ -229,7 +234,7 @@ export default function SignupNew(props) {
                 </select>
                 </div>
 
-                
+
                 <div className="flex-row space-between my-2">
                 <label htmlFor="location">Choose a location</label>
                 <select 
@@ -281,6 +286,8 @@ export default function SignupNew(props) {
                     /> */}
 
 
+<div >
+
 
                     <CustomInput
                       labelText="Bio..."
@@ -304,6 +311,8 @@ export default function SignupNew(props) {
                         // )
                       }}
                     />
+                    </div>
+
                   </CardBody>
 
                   <CardFooter className={classes.cardFooter}>

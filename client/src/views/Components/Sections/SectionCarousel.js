@@ -16,7 +16,7 @@ import Typography  from "@material-ui/core/Typography";
 // import image3 from "../../../assets/img/bg3.jpg";
 import image1 from "../../../assets/img/image4.jpg";
 import image2 from "../../../assets/img/image5.png";
-import image3 from "../../../assets/img/image4.jpg";
+import image3 from "../../../assets/img/hero.png";
 
 
 import styles from "../../../assets/jss/material-kit-react/views/componentsSections/carouselStyle.js";

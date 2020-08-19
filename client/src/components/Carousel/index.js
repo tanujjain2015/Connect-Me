@@ -33,6 +33,11 @@ function CarouselNav(props)
             name: "Explore Our Offerings Today!!!",
             description: "Take the world's best courses, online!",
             image: "https://belitsoft.com/uploads/images/blog/posts/previews/image_155436637661.png"
+        },
+        {
+            name: "Explore Our Offerings Today!!!",
+            description: "Where learning never ends!",
+            image: "https://elearningindustry.com/wp-content/uploads/2014/12/shutterstock_158869706.jpg"
         }
     ]
  
