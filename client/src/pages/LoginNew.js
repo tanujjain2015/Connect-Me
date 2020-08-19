@@ -18,11 +18,8 @@ import CardBody from "../components/Card/CardBody.js";
 import CardHeader from "../components/Card/CardHeader.js";
 import CardFooter from "../components/Card/CardFooter.js";
 import CustomInput from "../components/CustomInput/CustomInput.js";
-
 import styles from "../assets/jss/material-kit-react/views/loginPage.js";
-
-import image from "../assets/img/bg7.jpg";
-
+import image from "../assets/img/bg.jpg";
 import { useMutation } from '@apollo/react-hooks';
 import { Link } from "react-router-dom";
 import { LOGIN } from "../utils/mutations"
@@ -101,7 +98,7 @@ export default function LoginNew(props) {
               //className={classes[cardAnimaton]}
               >
                 <form className={classes.form} onSubmit={handleFormSubmit}>
-                  <CardHeader color="primary" className={classes.cardHeader}>
+                  <CardHeader color="primary" className={classes.cardHeader} justify="center">
                     <h4>Login</h4>
                     <div className={classes.socialLine}>
                       {/* <Button
@@ -137,14 +134,12 @@ export default function LoginNew(props) {
                   <CardBody>
 
 
-
-
                     <CustomInput
                       labelText="Email..."
                       id="email"
-                    //   formControlProps={{
-                    //     fullWidth: true
-                    //   }}
+                      // formControlProps={{
+                      //   fullWidth: true
+                      // }}
                       htmlFor="email"
                       name="email"
                       type="email"

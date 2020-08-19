@@ -180,12 +180,13 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    backgroundColor: "transparent"
+    position: 'relative'
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
+      
     }),
   },
   appBarShift: {
@@ -288,6 +289,13 @@ export default function Nav(){
                 </ListItemText>
           </ListItem>
 
+          <ListItem button key="Booked Classes">
+            <ListItemIcon><MailIcon/></ListItemIcon>
+            <ListItemText>
+                  <Link to ="/orderHistory">Booked Classes</Link>
+                </ListItemText>
+          </ListItem>
+
           <ListItem >
             <ListItemIcon><MailIcon/></ListItemIcon>
             <ListItemText>
@@ -342,8 +350,7 @@ export default function Nav(){
             <Typography variant="h6" noWrap>
               <Link to="/">Connect Me </Link>
             </Typography>
-          </Toolbar>
-          <input className="form-control mr-sm-2 w-25" type="search" placeholder="Search For An Offering" aria-label="Search" onChange={(e) => setSearchInput(e.target.value)} />
+            <input className="form-control mr-sm-2 w-15 ml-sm-5" style={{width: "45%"}} type="search" placeholder="Search For An Offering" aria-label="Search" onChange={(e) => setSearchInput(e.target.value)} />
        <Link to={{
         pathname: '/SearchedOfferings',
         userInput:{
@@ -356,6 +363,7 @@ export default function Nav(){
       </Button>
       {/* <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button> */}
       </Link>
+          </Toolbar>
         </AppBar>
 
         <Drawer

@@ -26,7 +26,7 @@ db.once('open', async () => {
       _id: '5f3ca2bc002bf133b95fb975' 
     },
     { 
-      subject: 'Maths',
+      subject: 'Math',
       _id: '5f3ca2bc002bf133b95fb976' 
     },
     { subject: 'Biology',
@@ -34,7 +34,11 @@ db.once('open', async () => {
     },
     { subject: 'Geography',
       _id: '5f3ca2bc002bf133b95fb978'
-    }
+    },
+    { subject: 'Foreign Languages',
+    _id: '5f3d3d583b77278add543cbc'
+  }
+
   ]);
 
   console.log('subjects seeded');
@@ -131,6 +135,160 @@ db.once('open', async () => {
       subject: {
         _id: subjects[2]._id,
         subject: subjects[2].subject
+      }
+    },
+    {
+      name: "Biology Basics",
+      description: "Covers the basic level of Biology concepts. No prior knowledge needed.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 100.00,
+      quantity: 10,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[3]._id,
+        subject: subjects[3].subject
+      }
+    },
+    {
+      name: "German - Level A1",
+      description: "Covers the basics of German Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
+      }
+    },
+    {
+      name: "Spanish - Level A1",
+      description: "Covers the basics of Spanish Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[1]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
+      }
+    },
+    {
+      name: "Portuguese - Level A1",
+      description: "Covers the basics of Portuguese Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[1]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
+      }
+    },
+    {
+      name: "English - Level A1",
+      description: "Covers the basics of English Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
+      }
+    },
+    {
+      name: "French - Level A1",
+      description: "Covers the basics of French Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
+      }
+    },
+    {
+      name: "Italian - Level A1",
+      description: "Covers the basics of Italian Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[1]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
+      }
+    },
+    {
+      name: "Slovakian - Level A1",
+      description: "Covers the basics of Slovakian Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
+      }
+    },
+    {
+      name: "Hungarian - Level A1",
+      description: "Covers the basics of Hungarian Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
+      }
+    },
+    {
+      name: "Hindi - Level A1",
+      description: "Covers the basics of Hindi Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
+      }
+    },
+    {
+      name: "Czech - Level A1",
+      description: "Covers the basics of Czech Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[1]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
       }
     }
     // {

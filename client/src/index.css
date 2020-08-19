@@ -1,20 +1,5 @@
 :root {
-  /* --primary: white;
-  --secondary: #8cb369;
-  --tertiary: #f4e285;
-  --quaternary: #5b8e7d;
-  --quinary: #f4a259;
-  --senary: #bc4b51;
-  --septenary: #003049;
-  --octonary: #d62828;
-  --nonary: #f77f00;
-  --denary: #fcbf49;
-  --pink: #e39695;
-  --light: #fafafa;
-  --dark: #272f32;
-  --error: rgb(228, 46, 1);
-  --spacing-one: calc(1rem * 0.5);
-  --spacing-two: calc(1rem); */
+
   --primary: #232F3E;
   --secondary: #F3A847;
   --tertiary: #B12704;
@@ -103,6 +88,7 @@ header a {
   color: var(--light);
 }
 
+
 button {
   font-size: 1rem;
   text-decoration: none;
@@ -112,53 +98,53 @@ button {
   outline: none;
   cursor: pointer;
   margin: 0 1px;
-  /* background-color: var(--secondary); */
-  /* color: black; */
+  /* background-color: var(--secondary);
+  color: black; */
   background: none;
   color: black
 }
 
-button:hover {
+/* button:hover {
   opacity: .8;
-}
+} */
 
-button[disabled] {
+/* button[disabled] {
   cursor: default;
   opacity: .8;
-}
-
+} */
+/* 
 img {
   max-width: 100%;
-}
+} */
 
-span[role="img"] {
+/* span[role="img"] {
   cursor: default;
-}
+} */
 
 form {
-  width: 40%;
+  width: 80%;
 }
 
 input {
   font-size: 1rem;
   padding: 0.25rem;
-  border: 1px solid var(--dark);
+  /* border: 1px solid var(--dark); */
   outline: none;
   border-radius: 3px;
   transition: box-shadow 0.2s;
 }
 
-input:focus {
+/* input:focus {
   border: 1px solid var(--secondary);
   box-shadow: 0 0 .25rem rgba(0, 0, 0, .5);
-}
+} */
 
-.container {
+/* .container {
   width: 85%;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-}
+} */
 
 .flex-row {
   display: flex;
@@ -212,11 +198,11 @@ input:focus {
   padding-top: var(--spacing-two);
   padding-bottom: var(--spacing-two);
 }
-
+/* 
 .card {
   width: 25%;
   text-align: center;
-}
+} */
 
 .error-text {
   color: var(--error);

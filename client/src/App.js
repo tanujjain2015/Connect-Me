@@ -31,6 +31,7 @@ import LoginPage from "./views/LoginPage/LoginPage.js";
 
 import ProfileNew from "./pages/ProfileNew";
 import LoginNew from "./pages/LoginNew";
+import SignupNew from './pages/SignupNew'
 
 
 // const client = new ApolloClient({
@@ -63,7 +64,8 @@ function App() {
             <Route exact path="/" component={Home} />
             {/* <Route exact path="/login" component={Login} /> */}
             <Route exact path="/login" component={LoginNew} />
-            <Route exact path="/signup" component={Signup} />
+            {/* <Route exact path="/signup" component={Signup} /> */}
+            <Route exact path="/signup" component={SignupNew} />
             <Route exact path="/searchedofferings" component={Offerings} />
             {/* <Route exact path="/profile" component={Profile} /> */}
             <Route exact path="/profile" component={ProfileNew} />       

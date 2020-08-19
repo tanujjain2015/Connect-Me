@@ -188,6 +188,7 @@ function ManageOfferings () {
                              <option value="5f3ca2bc002bf133b95fb976">Maths</option>
                              <option value="5f3ca2bc002bf133b95fb977">Biology</option>
                              <option value="5f3ca2bc002bf133b95fb978">Geography</option>
+                             <option value="5f3d3d583b77278add543cbc">Foreign Langauges</option>
                          </select>
                     </div>
                  </div>
