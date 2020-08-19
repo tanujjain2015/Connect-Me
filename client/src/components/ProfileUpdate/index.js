@@ -200,7 +200,7 @@ function ProfileUpdate () {
                                  </select>
                             </div>
 
-                             <div className="form-group col-md-4">
+                             {/* <div className="form-group col-md-4">
                                  <label htmlFor="subject">Your Subjects:</label>
                                 <select id = "subject" name="subject" className = "form-control border border-info" multiple value = {[formState.subject] || ''} 
 
@@ -221,7 +221,7 @@ function ProfileUpdate () {
                                      <option value="Biology">Biology</option>
                                      <option value="Geography">Geography</option>
                                  </select>
-                            </div>
+                            </div> */}
                          </div>
                     {/* <button type="submit" className = "btn btn-primary ml-auto" onClick={() => {setState({open: !state.open})}}><Link to ={{pathname: '/',user }}>Update Profile</Link></button> */}
                     {/* <button className = "btn btn-primary ml-auto" type="submit"  */}

@@ -28,33 +28,18 @@ function ManageOfferings () {
     //     return state
     //   });
     //   const dispatch = useDispatch();
-    const { subjects } = state;
-    const { data: categoryData } = useQuery(QUERY_SUBJECTS);
+    // const { subject } = state;
+    // const { data: categoryData } = useQuery(QUERY_SUBJECTS);
 
     // let location = useLocation();
     // console.log(location);
 
 
-    const [formState, setFormState] = useState({ name: '', description: '', price: '', subject: ''});
+    const [formState, setFormState] = useState({ name: '', description: '', price: '', quantity: '' , subject: ''});
     const [addOffering] = useMutation(ADD_OFFERING);
     console.log(addOffering);
 
 
-    // redirect to personal profile page if email is the loggedin user's
-    // if(Auth.loggedIn() && Auth.getProfile().data.email.toLowerCase() === `${userParam ? userParam.toLowerCase() : ''}`) {
-    //     return <Redirect to="/profile" />
-    // }
-    // if(loading) {
-    //     return <div>Loading...</div>;
-    // }
-    // //if not loggedin
-    // if(!user?.email) {
-    //     return(
-    //         <h4>
-    //             You need to be loggedIn to see this page. Use the navigation link to Signup or Login!
-    //         </h4>
-    //     )
-    // }
 
     const handleFormSubmit = async event => {
       event.preventDefault();
@@ -65,7 +50,7 @@ function ManageOfferings () {
           description: formState.description,
           price: Number(formState.price), 
           quantity: Number(formState.quantity),
-          subject: formState.subject.id,
+          subject: formState.subject,
         //   user: formState.user.id
         //   user: Auth.getProfile().formState.userData,
         }
@@ -176,15 +161,15 @@ function ManageOfferings () {
 
                      <div className="form-group col-md-4">
                          <label htmlFor="subject">Subject</label>
-                        <select id = "subject" name="subject" className = "form-control border border-info" multiple 
+                        <select id = "subject" name="subject" className = "form-control border border-info"  
                         
                         // value = {[formState.subject] || ''} 
 
                                 onChange={event => {
                                     const { name, value } = event.target;
                                         console.log(event);
-                                        console.log(event.target.name);
-                                        console.log(event.target.value.id);
+                                        console.log("Subject logs" , event.target.name);
+                                        console.log("Subject logs" , event.target.value);
                                         setFormState({
                                         ...formState,
                                         [name]: value
@@ -198,11 +183,11 @@ function ManageOfferings () {
                                 // }}
                                 // defaultValue={state.value}
                                 >
-                             <option value="Computer Science">Computer Science</option>
-                             <option value="Science">Science</option>
-                             <option value="Maths">Maths</option>
-                             <option value="Biology">Biology</option>
-                             <option value="Geography">Geography</option>
+                             <option value="5f3ca2bc002bf133b95fb974">Computer Science</option>
+                             <option value="5f3ca2bc002bf133b95fb975">Science</option>
+                             <option value="5f3ca2bc002bf133b95fb976">Maths</option>
+                             <option value="5f3ca2bc002bf133b95fb977">Biology</option>
+                             <option value="5f3ca2bc002bf133b95fb978">Geography</option>
                          </select>
                     </div>
                  </div>

@@ -66,6 +66,7 @@ const reducer = (state=defaultState, action) => {
             let newState = state.cart.filter(offering => {
                 return offering._id !== action._id;
             });
+            console.log("I am here" , newState);
             
             return {
                 ...state,

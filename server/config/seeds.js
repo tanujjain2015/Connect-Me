@@ -18,11 +18,23 @@ db.once('open', async () => {
   await Subject.deleteMany();
 
   const subjects = await Subject.insertMany([
-    { subject: 'Computer Science' },
-    { subject: 'Science' },
-    { subject: 'Maths' },
-    { subject: 'Biology' },
-    { subject: 'Geography' }
+    { 
+      subject: 'Computer Science',
+      _id: '5f3ca2bc002bf133b95fb974'
+    },
+    { subject: 'Science',
+      _id: '5f3ca2bc002bf133b95fb975' 
+    },
+    { 
+      subject: 'Maths',
+      _id: '5f3ca2bc002bf133b95fb976' 
+    },
+    { subject: 'Biology',
+      _id: '5f3ca2bc002bf133b95fb977' 
+    },
+    { subject: 'Geography',
+      _id: '5f3ca2bc002bf133b95fb978'
+    }
   ]);
 
   console.log('subjects seeded');
@@ -86,7 +98,12 @@ db.once('open', async () => {
       price: 90.00,
       quantity: 1,
       user: users[0]._id,
-      subject: subjects[0]._id
+      subject: {
+        _id: subjects[0]._id,
+        subject: subjects[0].subject
+      }
+      // ,subjects[0]._id,
+      // subject: subjects[0].subject
     },
     { 
       name: "Javascript Basics",
@@ -95,7 +112,12 @@ db.once('open', async () => {
       price: 110.00,
       quantity: 1,
       user: users[0]._id,
-      subject: subjects[1]._id
+      // subject: subjects[1]._id,
+      // subject: subjects[1].subject
+      subject: {
+        _id: subjects[1]._id,
+        subject: subjects[1].subject
+      }
     },
     {
       name: "Javascript Advanced",
@@ -104,7 +126,12 @@ db.once('open', async () => {
       price: 90.00,
       quantity: 1,
       user:users[0]._id,
-      subject: subjects[2]._id
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[2]._id,
+        subject: subjects[2].subject
+      }
     }
     // {
     //   name: '',

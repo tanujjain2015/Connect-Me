@@ -44,10 +44,16 @@ export default function LoginNew(props) {
   //existing code from Login
 
   const [formState, setFormState] = useState({ email: '', password: '' })
+  console.log(formState);
+
   const [login, { error }] = useMutation(LOGIN);
+  console.log(error);
 
   const handleFormSubmit = async event => {
     event.preventDefault();
+    console.log(event.target)
+    console.log(event.target.value)
+
     try {
       const mutationResponse = await login({ variables: { email: formState.email, password: formState.password } })
       const token = mutationResponse.data.login.token;
@@ -63,6 +69,7 @@ export default function LoginNew(props) {
       ...formState,
       [name]: value
     });
+    console.log(event.target)
   };
 
   return (
@@ -141,17 +148,21 @@ export default function LoginNew(props) {
                       htmlFor="email"
                       name="email"
                       type="email"
-                      onChange={handleChange}
+                    //   value={formState.email}
+                    //   onChange={handleChange}
+                      
 
-                    //   inputProps={{
-                    //     name: "email",
-                    //     type: "email",
-                    //     endAdornment: (
-                    //       <InputAdornment position="end">
-                    //         <Email className={classes.inputIconsColor} />
-                    //       </InputAdornment>
-                    //     )
-                    //   }}
+                      inputProps={{
+                        name: "email",
+                        type: "email",
+                        onChange: handleChange,
+                        value:formState.email,
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <Email className={classes.inputIconsColor} />
+                          </InputAdornment>
+                        )
+                      }}
                     />
 
 
@@ -164,20 +175,23 @@ export default function LoginNew(props) {
                       htmlFor="pwd"
                       name ="password"
                       type="pwd"
-                      onChange={handleChange}
+                    //   value={formState.password}
+                    //   onChange={handleChange}
 
-                    //   inputProps={{
-                    //     name:"password",
-                    //     type: "password",
-                    //     endAdornment: (
-                    //       <InputAdornment position="end">
-                    //         <Icon className={classes.inputIconsColor}>
-                    //           lock_outline
-                    //         </Icon>
-                    //       </InputAdornment>
-                    //     ),
-                    //     autoComplete: "off"
-                    //   }}
+                      inputProps={{
+                        name:"password",
+                        type: "password",
+                        onChange: handleChange,
+                        value:formState.password,
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <Icon className={classes.inputIconsColor}>
+                              lock_outline
+                            </Icon>
+                          </InputAdornment>
+                        ),
+                        autoComplete: "off"
+                      }}
                     />
 
 

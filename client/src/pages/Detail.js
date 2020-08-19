@@ -45,8 +45,8 @@ function Detail() {
         offerings: data.offerings
       });
   
-      data.offerings.forEach((product) => {
-        idbPromise('offerings', 'put', product);
+      data.offerings.forEach((offering) => {
+        idbPromise('offerings', 'put', offering);
       });
     }
     // get cache from idb
@@ -79,7 +79,7 @@ function Detail() {
     } else {
       dispatch({
         type: ADD_TO_CART,
-        product: { ...currentOffering, purchaseQuantity: 1 }
+        offering: { ...currentOffering, purchaseQuantity: 1 }
       });
       // if product isn't in the cart yet, add it to the current shopping cart in IndexedDB
       idbPromise('cart', 'put', { ...currentOffering, purchaseQuantity: 1 });

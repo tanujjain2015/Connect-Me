@@ -39,7 +39,6 @@ export const QUERY_ALL_OFFERINGS = gql`
       _id
       name
       description
-      # image
       price
       quantity
       user {
