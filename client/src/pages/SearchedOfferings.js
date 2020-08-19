@@ -53,7 +53,7 @@ function Offerings(props) {
     
     return(
         <>
-    <div className="my-2">
+    <div className="my-2 mx-2">
       <h2>Our Offerings:</h2>
       {userOffering.length ? (
           userOffering.map(thought => (
