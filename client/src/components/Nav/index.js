@@ -289,6 +289,13 @@ export default function Nav(){
                 </ListItemText>
           </ListItem>
 
+          <ListItem button key="Booked Classes">
+            <ListItemIcon><MailIcon/></ListItemIcon>
+            <ListItemText>
+                  <Link to ="/orderHistory">Booked Classes</Link>
+                </ListItemText>
+          </ListItem>
+
           <ListItem >
             <ListItemIcon><MailIcon/></ListItemIcon>
             <ListItemText>

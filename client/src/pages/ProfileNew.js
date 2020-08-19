@@ -29,12 +29,8 @@ import work2 from "../assets/img/examples/clem-onojeghuo.jpg";
 import work3 from "../assets/img/examples/cynthia-del-rio.jpg";
 import work4 from "../assets/img/examples/mariya-georgieva.jpg";
 import work5 from "../assets/img/examples/clem-onojegaw.jpg";
-
 import styles from "../assets/jss/material-kit-react/views/profilePage.js";
-
 import Nav from '../components/Nav/index'
-
-// import Card from "../components/Card/Card.js";
 import CardBody from "../components/Card/CardBody.js";
 
 
@@ -100,18 +96,8 @@ export default function ProfileNew(props) {
     <div>
       <Nav 
        {...rest}/>
-      {/* <Header
-        color="transparent"
-        brand="Material Kit React"
-        rightLinks={<HeaderLinks />}
-        // fixed
-        // changeColorOnScroll={{
-        //   height: 200,
-        //   color: "white"
-        // }}
-       
-      /> */}
-      
+
+
       <Parallax small filter image={require("../assets/img/profile-bg.jpg")} />
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
@@ -172,18 +158,11 @@ export default function ProfileNew(props) {
             <Button type="submit" color="default" round simple>
                     <Link to="/">Home</Link>
             </Button>
-
-
      </form>
-
             </GridItem>
             </GridContainer>
     <div>
-
-    </div>
-
-
-
+</div>
 
           </div>
         </div>
