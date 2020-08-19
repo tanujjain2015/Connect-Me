@@ -50,7 +50,7 @@ function OfferingItem(item) {
 
 
   return (
-    <div className="card px-1 py-1">
+    <div className="card px-1 py-1 mx-2">
       <Link to={`/offerings/${_id}`}>
         {/* <img
           alt={name}
