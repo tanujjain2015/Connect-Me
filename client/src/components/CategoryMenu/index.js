@@ -46,7 +46,7 @@ function CategoryMenu() {
   return (
     <div>
       {/* <Header>Choose a Subject</Header> */}
-      <Typography variant="h3" gutterBottom>
+      <Typography variant="h4" gutterBottom>
       Choose a Subject
       </Typography> 
       <Badge color="primary">
