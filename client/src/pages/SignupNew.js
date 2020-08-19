@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { useMutation } from '@apollo/react-hooks';
+import Auth from "../utils/auth";
+import { ADD_USER } from "../utils/mutations";
+import ImageUpload from "../components/ImageUpload";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -20,53 +24,67 @@ import CardFooter from "../components/Card/CardFooter.js";
 import CustomInput from "../components/CustomInput/CustomInput.js";
 import styles from "../assets/jss/material-kit-react/views/loginPage.js";
 import image from "../assets/img/bg7.jpg";
-import { useMutation } from '@apollo/react-hooks';
 import { Link } from "react-router-dom";
-import { LOGIN } from "../utils/mutations"
-import Auth from "../utils/auth";
 
 const useStyles = makeStyles(styles);
 
 
 
-export default function LoginNew(props) {
-//   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
-//   setTimeout(function() {
-//     setCardAnimation("");
-//   }, 700);
+export default function SignupNew(props) {
+
+
+//   const [formState, setFormState] = useState({ email: '', password: '' })
+//   console.log(formState);
+
+//   const [login, { error }] = useMutation(LOGIN);
+//   console.log(error);
+
+//   const handleFormSubmit = async event => {
+//     event.preventDefault();
+//     console.log(event.target)
+//     console.log(event.target.value)
+
+//     try {
+//       const mutationResponse = await login({ variables: { email: formState.email, password: formState.password } })
+//       const token = mutationResponse.data.login.token;
+//       Auth.login(token);
+//     } catch (e) {
+//       console.log(e);
+//     }
+//   };
+
+
+
+
+  //==================
+
   const classes = useStyles();
 
-//   const { ...rest } = props;
-
-  //existing code from Login
-
-  const [formState, setFormState] = useState({ email: '', password: '' })
-  console.log(formState);
-
-  const [login, { error }] = useMutation(LOGIN);
-  console.log(error);
-
+  const [formState, setFormState] = useState({ email: '', password: ''});
+  const [addUser, { error }] = useMutation(ADD_USER);
+  //console.log(addUser);
   const handleFormSubmit = async event => {
     event.preventDefault();
-    console.log(event.target)
-    console.log(event.target.value)
-
-    try {
-      const mutationResponse = await login({ variables: { email: formState.email, password: formState.password } })
-      const token = mutationResponse.data.login.token;
-      Auth.login(token);
-    } catch (e) {
-      console.log(e);
-    }
+    const mutationResponse = await addUser({
+      variables: {
+        firstName: formState.firstName, 
+        lastName: formState.lastName,
+        email: formState.email, 
+        password: formState.password,
+        location: formState.location,
+        tutor: formState.tutor,
+        bio: formState.bio
+      }
+    });
+    const token = mutationResponse.data.addUser.token;
+    Auth.login(token);
   };
-
   const handleChange = event => {
     const { name, value } = event.target;
     setFormState({
       ...formState,
       [name]: value
     });
-    console.log(event.target)
   };
 
   return (
@@ -99,55 +117,72 @@ export default function LoginNew(props) {
               >
                 <form className={classes.form} onSubmit={handleFormSubmit}>
                   <CardHeader color="primary" className={classes.cardHeader}>
-                    <h4>Login</h4>
-                    <div className={classes.socialLine}>
-                      {/* <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={e => e.preventDefault()}
-                      >
-                        <i className={"fab fa-twitter"} />
-                      </Button> */}
-                      {/* <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={e => e.preventDefault()}
-                      >
-                        <i className={"fab fa-facebook"} />
-                      </Button> */}
-                      {/* <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={e => e.preventDefault()}
-                      >
-                        <i className={"fab fa-google-plus-g"} />
-                      </Button> */}
-                    </div>
+                    <h4>Signup</h4>
+
                   </CardHeader>
                   {/* <p className={classes.divider}>Or Be Classical</p> */}
                   <CardBody>
 
+                  {/* <div className="flex-row space-between my-2">
+          <label htmlFor="firstName">First Name:</label>
+          <input
+            placeholder="First Name"
+            name="firstName"
+            type="firstName"
+            id="firstName"
+            onChange={handleChange}
+          />
+        </div> */}
+                {/* <div className="flex-row space-between my-2"> */}
 
+                    <CustomInput
+                      labelText="First Name"
+                      id="firstName"
+                      htmlFor="firstName"
+                      name="firstName"
+                      type="firstName"
 
+                      inputProps={{
+                        name: "firstName",
+                        type: "firstName",
+                        onChange: handleChange,
+                        value:formState.firstName,
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <Email className={classes.inputIconsColor} />
+                          </InputAdornment>
+                        )
+                      }}
+                    />
+
+                {/* </div> */}
+
+                <CustomInput
+                      labelText="Last Name"
+                      id="lastName"
+                      htmlFor="lastName"
+                      name="lastName"
+                      type="lastName"
+
+                      inputProps={{
+                        name: "lastName",
+                        type: "lastName",
+                        onChange: handleChange,
+                        value:formState.lastName,
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <Email className={classes.inputIconsColor} />
+                          </InputAdornment>
+                        )
+                      }}
+                    />
 
                     <CustomInput
                       labelText="Email..."
                       id="email"
-                    //   formControlProps={{
-                    //     fullWidth: true
-                    //   }}
                       htmlFor="email"
                       name="email"
                       type="email"
-                    //   value={formState.email}
-                    //   onChange={handleChange}
-                      
 
                       inputProps={{
                         name: "email",
@@ -195,27 +230,18 @@ export default function LoginNew(props) {
 
                   </CardBody>
 
-                  {
-                    error ? <div>
-                        <p className="error-text" >The provided credentials are incorrect</p>
-                    </div> : null
-                    }
-
                   <CardFooter className={classes.cardFooter}>
 
 
-                    {/* <Button type="submit" color="primary" size="lg" round >
-                            Login
-                    </Button> */}
-                    {/* </div> */}
+
                     <Button type="submit" simple color="primary" size="lg" round>
-                      Get started
+                      Signup
                     </Button>
 
                     <div>
                     {/* <Button color="default" round simple > */}
-                        <Link to="/signup" color="primary"  round>
-                            Go to Signup
+                        <Link to="/login" color="primary"  round>
+                            Go to Login
                         </Link>
                     {/* </Button> */}
 
