@@ -342,7 +342,7 @@ export default function Nav(){
             <Typography variant="h6" noWrap>
               <Link to="/">Connect Me </Link>
             </Typography>
-            <input className="form-control mr-sm-2 w-15 ml-sm-5" style={{width: 45%}} type="search" placeholder="Search For An Offering" aria-label="Search" onChange={(e) => setSearchInput(e.target.value)} />
+            <input className="form-control mr-sm-2 w-15 ml-sm-5" style={{width: "45%"}} type="search" placeholder="Search For An Offering" aria-label="Search" onChange={(e) => setSearchInput(e.target.value)} />
        <Link to={{
         pathname: '/SearchedOfferings',
         userInput:{
