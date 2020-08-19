@@ -151,7 +151,7 @@ export default function OfferingItem(item) {
         <span>${price}</span>
         <br/>
 
-        <Button color="primary" onClick={addToCart}>Add to cart</Button>
+        <Button color="primary" onClick={addToCart} round>Add to cart</Button>
       </CardBody>
     </Card>
   );
