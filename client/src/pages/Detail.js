@@ -104,16 +104,16 @@ function Detail() {
             <img src={currentOffering.image} className="card-img-top" alt={currentOffering.image}/>
             <hr />
               <div className="card-body">
-                  <h5 className="card-title">{currentOffering.name}</h5><hr/>
+                  <h5 className="card-title text-center"><strong>{currentOffering.name}</strong></h5><hr/>
                    <p className="card-text">{currentOffering.description}</p>
               </div>
 
         <ul className="list-group list-group-flush bg-light">
-          <li className="list-group-item bg-light"><strong>Price:${currentOffering.price}</strong></li>
-          <li className="list-group-item bg-light"><strong>Quantity: {currentOffering.quantity}</strong></li>
+          <li className="list-group-item bg-light text-center"><strong>Price:${currentOffering.price}</strong></li>
+          <li className="list-group-item bg-light text-center"><strong>Quantity: {currentOffering.quantity}</strong></li>
         </ul>
 
-        <div className="card-body">
+        <div className="card-body text-center">
         <p>
              <strong>Price:</strong>
              ${currentOffering.price}
@@ -139,7 +139,7 @@ function Detail() {
            </p>
       </div>
 
-       <div className="card-body">
+       <div className="card-body text-center">
           <Button type="submit" color="default" round simple>
                   <Link to="/">Home</Link>
           </Button>
