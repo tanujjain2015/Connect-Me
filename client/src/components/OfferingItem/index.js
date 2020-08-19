@@ -39,7 +39,7 @@ function OfferingItem(item) {
 
 
   const {
-    image,
+    // image,
     name,
     _id,
     price,
@@ -52,11 +52,11 @@ function OfferingItem(item) {
   return (
     <div className="card px-1 py-1">
       <Link to={`/offerings/${_id}`}>
-        <img
+        {/* <img
           alt={name}
-          src={`/images/${image}`}
-        />
-        <p>{name}</p>
+          src={image}
+        /> */}
+        <h4>{name}</h4>
       </Link>
       <div>
         <div>{quantity} {pluralize("item", quantity)} in stock</div>

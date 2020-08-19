@@ -12,6 +12,7 @@ import {
   UPDATE_OFFERINGS,
 } from '../utils/actions';
 import { idbPromise } from '../utils/helpers';
+import Button from '../components/CustomButtons/Button';
 
 
 function Detail() {
@@ -99,8 +100,8 @@ function Detail() {
   return(
     <>
      {currentOffering ? (
-      <div className="card mx-auto my-5 bg-light border-info rounded" style={{width: 18+ "em"}}>
-            <img src="..." className="card-img-top" alt={currentOffering.image}/>
+      <div className="card mx-auto my-5 bg-light border-info rounded" style={{width: 25+ "em"}}>
+            <img src={currentOffering.image} className="card-img-top" alt={currentOffering.image}/>
             <hr />
               <div className="card-body">
                   <h5 className="card-title">{currentOffering.name}</h5><hr/>
@@ -117,23 +118,36 @@ function Detail() {
              <strong>Price:</strong>
              ${currentOffering.price}
              {" "}<br/>
-             <button className="my-2 btn-primary"onClick={addToCart} >
+             {/* <button className="my-2 btn-primary"onClick={addToCart} >
                Add to cart
-             </button>
+             </button> */}
+             <Button type="submit" color="primary" round style={{color: "#FFFFFF"}} onClick={addToCart}>
+                        Add to Cart
+          </Button>
 
     
-             <button 
+             {/* <button 
             disabled={!cart.find(p => p._id === currentOffering._id)} 
             onClick={removeFromCart}
              >
             Remove from Cart
-          </button>
+          </button> */}
+          <Button type="submit" color="default" round  disabled={!cart.find(p => p._id === currentOffering._id)} 
+            onClick={removeFromCart}>
+                  Remove from Cart
+          </Button>
            </p>
       </div>
 
        <div className="card-body">
-         <Link to = "/">Home</Link>
+          <Button type="submit" color="default" round simple>
+                  <Link to="/">Home</Link>
+          </Button>
        </div>
+
+
+
+
 
      </div>
      ) : null }

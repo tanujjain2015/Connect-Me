@@ -155,6 +155,9 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import PageviewIcon from '@material-ui/icons/Pageview';
+import HomeIcon from '@material-ui/icons/Home'
+import AssignmentIcon from '@material-ui/icons/Assignment';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
@@ -162,6 +165,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import Avatar from '@material-ui/core/Avatar';
 
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
@@ -169,12 +173,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Calender from "../Calender";
 import SearchedOfferings from "../../pages/SearchedOfferings"
 import Cart from '../Cart';
+import Button from '../CustomButtons/Button';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    backgroundColor: "transparent"
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -249,19 +255,29 @@ export default function Nav(){
     if(Auth.loggedIn()){
 
       return(
+        
+        
     
         <List>
+          <Avatar className="mx-5" style={{align: "center"}} alt="Remy Sharp" src="http://www.abbieterpening.com/wp-content/uploads/2013/04/circle-profile-pic-175px.png" />
+          <ListItem button key="Home">
+            <ListItemIcon><HomeIcon/></ListItemIcon>
+            <ListItemText>
+                  <Link to ="/">Home</Link>
+                </ListItemText>
+          </ListItem>
+
           <ListItem button key="Manage Offerings">
-            <ListItemIcon><MailIcon/></ListItemIcon>
+            <ListItemIcon><AssignmentIcon /></ListItemIcon>
             <ListItemText>
                   <Link to ="/manageOfferings">Manage Offerings</Link>
                 </ListItemText>
           </ListItem>
 
           <ListItem button key="My Profile">
-            <ListItemIcon><MailIcon/></ListItemIcon>
+            <ListItemIcon><PageviewIcon /></ListItemIcon>
             <ListItemText>
-                  <Link to ="/profile">My profile</Link>
+                  <Link to ="/profile">My Profile</Link>
                 </ListItemText>
           </ListItem>
 
@@ -274,9 +290,10 @@ export default function Nav(){
 
           <ListItem >
             <ListItemIcon><MailIcon/></ListItemIcon>
-           
-                  <a href="/signup" onclick={() => Auth.logout()}>Logout</a>
-                
+            <ListItemText>
+            <Link to ="/signup"onclick={() => Auth.logout()}>Logout</Link>
+            {/* <a href="/signup" onclick={() => Auth.logout()}>Logout</a> */}
+            </ListItemText>
           </ListItem>
 
           <Divider/>
@@ -323,7 +340,7 @@ export default function Nav(){
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap>
-              <Link to="/">Connect Me</Link>
+              <Link to="/">Connect Me </Link>
             </Typography>
             <input className="form-control mr-sm-2 w-15 ml-sm-5" style={{width: 45%}} type="search" placeholder="Search For An Offering" aria-label="Search" onChange={(e) => setSearchInput(e.target.value)} />
        <Link to={{
@@ -333,7 +350,10 @@ export default function Nav(){
         }
       }}>
 
-      <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      <Button type="submit" color="primary" round>
+        Search
+      </Button>
+      {/* <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button> */}
       </Link>
           </Toolbar>
         </AppBar>

@@ -29,6 +29,9 @@ import LandingPage from "./views/LandingPage/LandingPage.js";
 import ProfilePage from "./views/ProfilePage/ProfilePage.js";
 import LoginPage from "./views/LoginPage/LoginPage.js";
 
+import ProfileNew from "./pages/ProfileNew";
+import LoginNew from "./pages/LoginNew";
+
 
 // const client = new ApolloClient({
 //   uri: 'http://localhost:3001/graphql'
@@ -58,10 +61,12 @@ function App() {
           <Nav />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/login" component={Login} />
+            {/* <Route exact path="/login" component={Login} /> */}
+            <Route exact path="/login" component={LoginNew} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/searchedofferings" component={Offerings} />
-            <Route exact path="/profile" component={Profile} />
+            {/* <Route exact path="/profile" component={Profile} /> */}
+            <Route exact path="/profile" component={ProfileNew} />       
             <Route exact path="/profileupdate" component={ProfileUpdate} />
             <Route exact path="/orderHistory" component={OrderHistory} />
             <Route exact path="/offerings/:id" component={Detail} />

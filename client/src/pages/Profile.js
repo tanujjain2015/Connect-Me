@@ -167,6 +167,8 @@ import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Comprehend } from "aws-sdk";
 // import { Button, Box } from '@material-ui/core';
+import Footer from '../components/Footer/Footer';
+import Button from '../components/CustomButtons/Button';
 
 
 function Profile(props) {
@@ -181,36 +183,6 @@ function Profile(props) {
 
     const [updateUser, { newData }] = useMutation(UPDATE_USER)
     console.log(newData )
-    // console.log(state)
-
-//     const handleFormSubmit = async (event) => {
-//     event.preventDefault();
-//     const mutationResponse =  await updateUser({
-//       variables: {
-//         firstName: formState.firstName, 
-//         lastName: formState.lastName,
-//         email: formState.email, 
-//         password: formState.password,
-//         location: formState.location,
-//         tutor: formState.tutor,
-//         bio: formState.bio
-//       }
-//     });
-//     const token = mutationResponse.data.updateUser.token;
-//     Auth.login(token);
-//   };
-
-
-    // useEffect(() => {
-    //     // Update the document title using the browser API
-    //     //document.title = `You clicked ${count} times`;
-    //     setState({
-    //         firstName: user.firstName,
-    //         email: user.email
-    //     })
-    //   },[state]);
-
-    
 
 
     //redirect to personal profile page if email is the loggedin user's
@@ -231,77 +203,48 @@ function Profile(props) {
 
 
 
-    // const linkRouting = React.forwardRef((props,ref) => (
-    //       <a ref={ref}>{props.children}</a>
-    // ))
-    //============
-  //Image upload ===============================================================
   return(
+      <div>
     <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark" onSubmit={async event => {event.preventDefault()}}>
-                     {/* <div className = "form-row"> */}
+               
                          <div className = "form-group col-md-6">
                             <label htmlFor = "firstName">First Name:</label>
                             <p>{user.firstName}</p>
 
 
-                         {/* <p name="firstName" type = "text" className="form-control border border-info" id = "firstName" value = {user.firstName} /> */}
                         </div>
                        <div className = "form-group col-md-6">
                             <label htmlFor = "lastName">Last Name:</label>
                             <p>{user.lastName}</p>
                         </div>
-                    {/* </div> */}
+
 
                     <div className = "form-group col-md-6">
                         <label htmlFor="email">Email:</label>
                         <p>{user.email}</p>
                     </div>
 
-                    {/* <div className = "form-group">
-                        <label htmlFor="tutor">Tutor?</label>
-                        <p>{user.tutor}</p>
-                    </div> */}
+
 
                     <div className="form-group col-md-6">
                     <label htmlFor="tutor">Signed up as:</label>
-                    {/* <p id="tutor" name ="tutor">{user.tutor}</p> */}
                     <p>{user.tutor}</p>
-                    {/* <span>{user.tutor}</span> */}
-                    
-                    {/* <select id="tutor" name ="tutor" >
-                        <option value="tutor" >{user.tutor}</option>
-                        <option value="student">Student</option>
-                        <option value="tutor">Tutor</option>
-                    </select> */}
+
                     </div>
 
                     <div className="form-group col-md-6">
                     <label htmlFor="bio">Bio:</label>
                     <p 
-                        // type="text" 
-                        // name="bio" 
-                        // className = "form-control border border-info" 
                         id="bio"
                         >
                         {user.bio}
                         </p>
                     </div>
 
-                    {/* <div className = "form-group">
-                        <label htmlFor="bio">Bio</label>
-                        
-                        <textarea type = "text" name = {user.bio} className = "form-control border border-info" id = "bio" value = {user.bio} rows = "4"  />
-                     </div> */}
 
 
-                     {/* <div className = "form-row"> */}
                          <div className="form-group col-md-4">
                              <label htmlFor="location">Location:</label>
-                             {/* <select id = "location" name="location" className = "form-control border border-info" >
-                                <option>{user.location}</option> */}
-                                {/* <option value="EMEA">EMEA</option>
-                                <option value="APAC">APAC</option> */}
-                             {/* </select> */}
                              <p>{user.location}</p>
                         </div>
 
@@ -317,30 +260,23 @@ function Profile(props) {
                              {/* </select> */}
                              <p>{user.subject}</p>
                         </div>
-                     {/* </div> */}
+
 
              
-                    {/* <button type="submit" className = "btn btn-primary ml-auto">Save</button> */}
-                    {/* <button onClick={async () => {
-                        await updateUser({
-                            variables: { 
-                                p: {
-                                newData: setState
-                                }
-                            }
-                        })
-                    } 
-                    } type="submit">Update</button> */}
-                    <button type="submit" className = "btn btn-light ml-auto" onClick={() => {setState({open: !state.open})}}><Link to ={{pathname: '/profileupdate',user }}>Edit Profile</Link></button>
-                    {/* <button type="submit" className = "btn btn-light ml-auto"><Link to="/manageofferings">Manage Offerings</Link></button> */}
-                    <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link></button>
-                    {/* <Button color="primary">Hello World</Button>
-                    <Box component="div" display="inline">This is a sample box</Box> */}
+
+                    <Button type="submit" color="primary" round onClick={() => {setState({open: !state.open})}}>
+                            <Link style={{color: "#FFFFFF"}} to ={{pathname: '/profileupdate',user }}>Edit Profile</Link>
+                    </Button>
+
+                    <Button type="submit" color="default" round simple>
+                            <Link to="/">Home</Link>
+                    </Button>
 
      </form>
     //     
 
-
+    <Footer />
+    </div>
 
     
   )
