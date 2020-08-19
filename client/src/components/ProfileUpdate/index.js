@@ -14,6 +14,10 @@ import { ADD_USER, UPDATE_USER } from "../../utils/mutations";
 
 //changes
 import { QUERY_PROFILE, QUERY_ME } from '../../utils/queries';
+import Footer from '../Footer/Footer';
+import Button from '../CustomButtons/Button';
+import '../../assets/jss/material-kit-react/components/customInputStyle.js';
+import CustomInput from '../CustomInput/CustomInput';
 
 
 
@@ -71,38 +75,28 @@ function ProfileUpdate () {
 
 
 
-    //   useEffect(() => {
-        //if categoryData exists or has changed from the response of useQuery, then run dispatch()
-    
-    //     if(userData) {
-    //       //execute our dispatch function with our action object indicating the type of action and the data to set our state for categories to
-    //       dispatch({
-    //         type: UPDATE_USER,
-    //         users: userData.users
-    //       });
-    
-    //     //   userData.users.forEach(user => {
-    //     //     idbPromise('users', 'put', user)
-    //     //   }) 
-    //     // } 
-    //     // else if (!loading) {
-    //     //   idbPromise('users', 'get').then(users => {
-    //     //     dispatch({
-    //     //       type: UPDATE_USER,
-    //     //       users: users
-    //     //     })
-    //     //   })
-    //     }
-    //   }, [userData, loading, dispatch]);
-
     return(
+        <div>
         <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark" 
             // onSubmit={async event => {event.preventDefault()}}
             onSubmit={handleFormSubmit}
             >
                          <div className = "form-row">
                              <div className = "form-group col-md-6">
-                                <label htmlFor = "firstName">First Name</label>
+                                 {/* <CustomInput name="firstName" type = "text" id = "firstName" value = {formState.firstName || ''}  
+                                onChange={event => {
+                                    const { name, value } = event.target;
+                                     console.log(event);
+                                     console.log(event.target.name);
+                                     console.log(event.target.value);
+                                     setFormState({
+                                     ...formState,
+                                     [name]: value
+                                     });
+                                 }}  >
+                                    First Name
+                                 </CustomInput> */}
+                                <label htmlFor = "firstName">First Name:</label>
                              <input name="firstName" type = "text" className="form-control border border-info" id = "firstName" value = {formState.firstName || ''}  
                                 onChange={event => {
                                     const { name, value } = event.target;
@@ -117,7 +111,7 @@ function ProfileUpdate () {
                                  />
                             </div>
                            <div className = "form-group col-md-6">
-                                <label htmlFor = "lastName">Last Name</label>
+                                <label htmlFor = "lastName">Last Name:</label>
                                 <input name="lastName" type = "lastname" className="form-control border border-info" id = "lastName" value = {formState.lastName || ''} 
                                 onChange={event => {
                                    const { name, value } = event.target;
@@ -133,7 +127,7 @@ function ProfileUpdate () {
                             </div>
                         </div>
                         <div className = "form-group">
-                            <label htmlFor="email">Email</label>
+                            <label htmlFor="email">Email:</label>
                             <input type = "text" name="email" className = "form-control border border-info" id = "email" value = {formState.email || ''} 
                                onChange={event => {
                                 const { name, value } = event.target;
@@ -147,8 +141,30 @@ function ProfileUpdate () {
                              }}  
                              />
                         </div>
+
+                             <div className="form-group col-md-4">
+                                 <label htmlFor="tutor">Signed up as:</label>
+                                 <select id = "tutor" name="tutor" className = "form-control border border-info" value = {formState.tutor || ''} 
+                                    onChange={event => {
+                                        const { name, value } = event.target;
+                                            console.log(event);
+                                            console.log(event.target.name);
+                                            console.log(event.target.value);
+                                            setFormState({
+                                            ...formState,
+                                            [name]: value
+                                            });
+                                        }}  
+                                        >
+
+                                    <option value="tutor">Tutor  </option>
+                                    <option value="student">Student</option>
+                                 </select>
+                            </div>
+
+
                         <div className = "form-group">
-                            <label htmlFor="bio">Bio</label>
+                            <label htmlFor="bio">Bio:</label>
                             <textarea type = "text" name ='bio' className = "form-control border border-info" id = "bio" value = {formState.bio || ''} rows = "4"  
                                onChange={event => {
                                    const { name, value } = event.target;
@@ -164,7 +180,7 @@ function ProfileUpdate () {
                          </div>
                          <div className = "form-row">
                              <div className="form-group col-md-4">
-                                 <label htmlFor="location">Location</label>
+                                 <label htmlFor="location">Location:</label>
                                  <select id = "location" name="location" className = "form-control border border-info" value = {formState.location || ''} 
                                     onChange={event => {
                                         const { name, value } = event.target;
@@ -185,7 +201,7 @@ function ProfileUpdate () {
                             </div>
 
                              <div className="form-group col-md-4">
-                                 <label htmlFor="subject">Your Subjects</label>
+                                 <label htmlFor="subject">Your Subjects:</label>
                                 <select id = "subject" name="subject" className = "form-control border border-info" multiple value = {[formState.subject] || ''} 
 
                                         onChange={event => {
@@ -208,14 +224,25 @@ function ProfileUpdate () {
                             </div>
                          </div>
                     {/* <button type="submit" className = "btn btn-primary ml-auto" onClick={() => {setState({open: !state.open})}}><Link to ={{pathname: '/',user }}>Update Profile</Link></button> */}
-                    <button className = "btn btn-primary ml-auto" type="submit" 
-                    // onClick={updateUser}
+                    {/* <button className = "btn btn-primary ml-auto" type="submit"  */}
+                    {/* // onClick={updateUser}
                     // onClick={setState}
                     // onClick={() => {setState({open: !state.open})}}
-                    >Update</button>
-                    <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link></button>
+                    // >Update</button> */}
+                    {/* <button type="submit" className = "btn btn-light ml-auto"><Link to="/">Home</Link></button> */}
+
+                    <Button type="submit" color="primary" round style={{color: "#FFFFFF"}}>
+                        Update
+                    </Button>
+
+                    <Button type="submit" color="default" round simple>
+                            <Link to="/">Home</Link>
+                    </Button>
 
          </form>
+
+         <Footer />
+         </div>
     )
 }
 

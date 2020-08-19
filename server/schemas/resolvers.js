@@ -71,6 +71,12 @@ const resolvers = {
     offering: async (parent, { _id }) => {
       return await Offering.findById(_id).populate('subject');
     },
+    searchOffering: async (parent, { name }) => {
+      const params = {};
+      params.name = name;
+      console.log(name)
+      return await Offering.find({name});
+    },
 
     //Retrieve offering by userID
     // offeringbyUserID: async (parent, { userid }, context) => {

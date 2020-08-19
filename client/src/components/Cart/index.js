@@ -8,6 +8,7 @@ import { QUERY_CHECKOUT } from '../../utils/queries';
 import { loadStripe } from '@stripe/stripe-js';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { useDispatch, useSelector } from 'react-redux';
+import Button from '../CustomButtons/Button';
 
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
@@ -114,7 +115,13 @@ const Cart = () => {
     //     </div>
     // </div>
     <div className="cart">
-  <div className="close" onClick={toggleCart}>[close]</div>
+  <div 
+  // className="close" onClick={toggleCart}>[close]
+  >
+  <Button color="default" round onClick={toggleCart}>
+      Close
+  </Button>
+  </div>
   <h2>Shopping Cart</h2>
   {state.cart.length ? (
     <div>
@@ -125,9 +132,12 @@ const Cart = () => {
         <strong>Total: ${calculateTotal()}</strong>
         {
           Auth.loggedIn() ?
-            <button onClick={submitCheckout}>
-              Checkout
-            </button>
+          <Button color="primary" round onClick={submitCheckout}>
+            Checkout
+          </Button>
+            // <button >
+            //   Checkout
+            // </button>
             :
             <span>(log in to check out)</span>
         }

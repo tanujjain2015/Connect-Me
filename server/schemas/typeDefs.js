@@ -56,6 +56,7 @@ type File {
     offeringBySubject(subject: ID): [Offering]
     #offerings(subject: ID, subject: String): [Offering]
     offerings: [Offering] 
+    searchOffering(name: String): [Offering]
     offering(_id: ID!): Offering
     # offeringbyUserID(userid: String!): Offering 
     feedback: Feedback
@@ -100,6 +101,7 @@ type File {
     image: String
     location: String
     # timezone: String
+    subject: String
     orders: [orderDetails]
     feedback: [feedbackDetails]
   }

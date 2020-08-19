@@ -7,7 +7,10 @@ const subjectSchema = new Schema({
     type: String,
     required: true
     //trim: true
-  }
+  },
+  // user: {
+  //   type: String
+  // }
 });
 
 const Subject = mongoose.model('Subject', subjectSchema);
