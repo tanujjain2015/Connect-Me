@@ -48,7 +48,31 @@ type File {
     token: ID
     user: User
   }
+
+ type Schedule {
+   _id: ID 
+   month: String
+   starttime: String
+   endtime: String
+   slot: String
+   event: [Event]
+ }
+ 
+ type Event {
+    _id: ID 
+    starttime: String
+    endtime: String
+    slot: String
+    schedule: [Schedule]
+    user: [User]
+    offering: [Offering]
+ }
+
   type Query {
+    event(useremail: String!): Event
+    events: Event
+    schedule(schedule: String!): Schedule
+    schedules: Schedule
     me: User
     users: [User]
     user(email: String!): User
@@ -62,9 +86,12 @@ type File {
     feedback: Feedback
     order(_id: ID!): Order  
     checkout(offerings: [ID]!): Checkout
+
   }
   type Mutation {
-    singleUpload(file: Upload!): File!,
+    addEvent(input: eventdetails) : Event
+    addSchedule(input: scheduledetails) : Schedule
+    singleUpload(file: Upload!): File!
     singleUploadStream(file: Upload!): File!
     addUser(firstName: String!, lastName: String!, email: String!, password: String!, location: String, tutor: String, bio: String): Auth
     addSubject(subject: String!): Subject
@@ -75,6 +102,22 @@ type File {
     updateOffering(_id: ID!, input: updateOffering!): Offering
     login(email: String!, password: String!): Auth
   }
+
+  input eventdetails {
+    starttime: String
+    endtime: String
+    slot: String
+    schedule: [Schedule]
+  }
+  
+  input scheduledetails {
+    month: String
+    starttime: String
+    endtime: String
+    slot: String
+    event: [eventdetails]
+  }
+ 
   input updateOffering {
     quantity: Int
     price: Float

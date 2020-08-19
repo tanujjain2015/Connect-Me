@@ -18,38 +18,38 @@ import timeGridPlugin from "@fullcalendar/timegrid";
     const events = [{ title: 'event 1', date: '2020-08-18' }];
         //}
 
-    const  formatEvents = () =>{
-        return props.appointments.map(appointment => {
-                const {title, end, start} = appointment
+    // const  formatEvents = () =>{
+    //     return props.appointments.map(appointment => {
+    //             const {title, end, start} = appointment
     
-                let startTime = new Date(start)
-                let endTime = new Date(end)
+    //             let startTime = new Date(start)
+    //             let endTime = new Date(end)
     
-                return {
-                    title, 
-                    start: startTime,
-                    end: endTime, 
-                    extendedProps: {...appointment}
-                }
-            });
-    };
+    //             return {
+    //                 title, 
+    //                 start: startTime,
+    //                 end: endTime, 
+    //                 extendedProps: {...appointment}
+    //             }
+    //         });
+    // };
 
-    const  handleEventClick = ({event}) => {
-     // openAppointment is a function I wrote to open a form to edit that appointment
-        this.props.openAppointment(event.extendedProps);
-    }
+    // const  handleEventClick = ({event}) => {
+    //  // openAppointment is a function I wrote to open a form to edit that appointment
+    //     this.props.openAppointment(event.extendedProps);
+    // }
 
-    const handleEventDrop = (info) => {
-            if(window.confirm("Are you sure you want to change the event date?")){
-                console.log('change confirmed')
+    // const handleEventDrop = (info) => {
+    //         if(window.confirm("Are you sure you want to change the event date?")){
+    //             console.log('change confirmed')
 
-                // updateAppointment is another custom method
-                this.props.updateAppointment({...info.event.extendedProps, start: info.event.start, end: info.event.end})
+    //             // updateAppointment is another custom method
+    //             this.props.updateAppointment({...info.event.extendedProps, start: info.event.start, end: info.event.end})
 
-            } else {
-                console.log('change aborted')
-            }
-    }
+    //         } else {
+    //             console.log('change aborted')
+    //         }
+    // }
 
         return (<FullCalendar
                     defaultView="dayGridMonth"
@@ -61,9 +61,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
                     plugins={[dayGridPlugin, timeGridPlugin]}
                     events={events}
                     locale="en"
-                    eventDrop={handleEventDrop}
-            eventClick={handleEventClick}
-            events={formatEvents()}
+                 
                 />
             )
 }

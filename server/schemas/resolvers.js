@@ -6,6 +6,14 @@ const fs = require('fs');
 
 const resolvers = {
   Query: {
+    events: async () => {
+      return await Event.find();
+    },
+    event: async (parent, args, context) => {
+      if (context.user) {
+        return await Event;
+      }
+    },
     me: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })

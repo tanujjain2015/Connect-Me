@@ -45,10 +45,15 @@ const userSchema = new Schema({
     type: String,
     required: false
   },
-  // timezone: {
-  //   type: String,
-  //   required: false
-  // },
+  timezone: {
+    type: String,
+    required: false
+  },
+  schedule: {
+    type: Schema.Types.ObjectId,
+    ref: 'Subject',
+    // required: true
+  },
   orders: [Order.schema],
   feedback: [Feedback.schema],
   subject: [Subject.schema]
