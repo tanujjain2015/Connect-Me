@@ -61,7 +61,15 @@ export default function SignupNew(props) {
 
   const classes = useStyles();
 
-  const [formState, setFormState] = useState({ email: '', password: ''});
+  const [formState, setFormState] = useState({ 
+    email: '', 
+    password: '', 
+    firstName: '', 
+    lastName: '', 
+    location: '', 
+    tutor: '', 
+    bio: ''
+  });
   const [addUser, { error }] = useMutation(ADD_USER);
   //console.log(addUser);
   const handleFormSubmit = async event => {
@@ -136,7 +144,7 @@ export default function SignupNew(props) {
                         name: "firstName",
                         type: "firstName",
                         onChange: handleChange,
-                        value:formState.firstName,
+                        // value:formState.firstName,
                         endAdornment: (
                           <InputAdornment position="end">
                             <Email className={classes.inputIconsColor} />
@@ -158,7 +166,7 @@ export default function SignupNew(props) {
                         name: "lastName",
                         type: "lastName",
                         onChange: handleChange,
-                        value:formState.lastName,
+                        // value:formState.lastName,
                         endAdornment: (
                           <InputAdornment position="end">
                             <Email className={classes.inputIconsColor} />
@@ -168,7 +176,7 @@ export default function SignupNew(props) {
                     />
 
                     <CustomInput
-                      labelText="Email..."
+                      labelText="Email"
                       id="email"
                       htmlFor="email"
                       name="email"
@@ -178,7 +186,7 @@ export default function SignupNew(props) {
                         name: "email",
                         type: "email",
                         onChange: handleChange,
-                        value:formState.email,
+                        // value:formState.email,
                         endAdornment: (
                           <InputAdornment position="end">
                             <Email className={classes.inputIconsColor} />
@@ -198,7 +206,7 @@ export default function SignupNew(props) {
                         name:"password",
                         type: "password",
                         onChange: handleChange,
-                        value:formState.password,
+                        // value:formState.password,
                         endAdornment: (
                           <InputAdornment position="end">
                             <Icon className={classes.inputIconsColor}>
@@ -210,33 +218,50 @@ export default function SignupNew(props) {
                       }}
                     />
 
+        <div className="flex-row space-between my-2">
+                <label htmlFor="tutor">Signing up as?</label>
+                <select 
+                    id="tutor" 
+                    name ="tutor" 
+                    onChange={handleChange}>
+                    <option value="Student">Student</option>
+                    <option value="Tutor">Tutor</option>
+                </select>
+                </div>
 
+                
+                <div className="flex-row space-between my-2">
+                <label htmlFor="location">Choose a location</label>
+                <select 
+                    id="location" 
+                    name ="location" 
+                    onChange={handleChange}>
+                    <option value="AMER">AMER</option>
+                    <option value="EMEA">EMEA</option>
+                    <option value="APAC">APAC</option>
+                </select>
+                </div>
 
-
+{/* 
                 <CustomDropdown
                         id="tutor"
                         htmlFor="tutor"
                         name ="tutor"
-                        // type="text"
+                        type="text"
                         buttonText="Signing up as?"
                         dropdownList={[
                         "Student",
-                        // {divider: true},
                         "Tutor",
-                        // {divider: true},
-                        // "Separated link",
-                        // {divider: true},
-                        // "One more separated link",
                         ]}
                         buttonProps={{
                             name:"tutor",
                             type: "text",
                             onChange: handleChange,
-                            value:formState.tutor,
+                            // value:formState.tutor,
                           }}
-                    />
+                    /> */}
 
-                    <CustomDropdown
+                    {/* <CustomDropdown
                         id="location"
                         htmlFor="location"
                         name ="location"
@@ -249,11 +274,11 @@ export default function SignupNew(props) {
                         ]}
                         buttonProps={{
                             name:"location",
-                            type: "text",
+                            type: "text",                           
                             onChange: handleChange,
-                            value:formState.location,
+                            // value:formState.location,
                           }}
-                    />
+                    /> */}
 
 
 
@@ -270,12 +295,13 @@ export default function SignupNew(props) {
                         name: "bio",
                         type: "bio",
                         onChange: handleChange,
-                        value:formState.bio,
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            {/* <Email className={classes.inputIconsColor} /> */}
-                          </InputAdornment>
-                        )
+            
+                        // value:formState.bio,
+                        // endAdornment: (
+                        //   <InputAdornment position="end">
+                        //     {/* <Email className={classes.inputIconsColor} /> */}
+                        //   </InputAdornment>
+                        // )
                       }}
                     />
                   </CardBody>

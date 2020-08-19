@@ -33,7 +33,15 @@ function Signup(props) {
 
   const classes = useStyles();
 
-  const [formState, setFormState] = useState({ email: '', password: ''});
+  const [formState, setFormState] = useState({ 
+    email: '', 
+    password: '', 
+    firstName: '', 
+    lastName: '', 
+    location: '', 
+    tutor: '', 
+    bio: ''
+  });
   const [addUser] = useMutation(ADD_USER);
   //console.log(addUser);
   const handleFormSubmit = async event => {
@@ -82,12 +90,13 @@ function Signup(props) {
           <input
             placeholder="First Name"
             name="firstName"
-            type="firstName"
+            type="text"
             id="firstName"
             onChange={handleChange}
+            // value={formState.firstName}
           />
         </div>
-        
+
         <div className="flex-row space-between my-2">
           <label htmlFor="lastName">Last Name:</label>
           <input
