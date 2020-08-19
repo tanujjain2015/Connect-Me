@@ -2,56 +2,77 @@ import React, { Component } from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
+import timeGridPlugin from "@fullcalendar/timegrid";
 
+//import events from "./events";
 
-export default class Schedule extends Component {
+//export default class Schedule extends Component {
 
-   //const events=[{title: 'Appointment', start: '08-17-2020'}, {title: "", start: "08-17-2020"}];
-   //const events={this.formatEvents()};
+ export default function Schedule() {
 
-//   formatEvents() {
-//     return this.props.appointments.map(appointment => {
-//               const {title, end, start} = appointment
-  
-//               let startTime = new Date(start)
-//               let endTime = new Date(end)
-  
-//               return {
-//                 title, 
-//                 start: startTime,
-//                 end: endTime, 
-//                 extendedProps: {...appointment}
-//               }
-//           })
-//   }
+//    const events=[{title: 'Appointment', start: '08-17-2020'}, {title: "", start: "08-17-2020"}];
+//    const events={this.formatEvents()};
 
-//   handleEventClick= ({event}) => {
-//     // openAppointment is a function I wrote to open a form to edit that appointment
-//     this.props.openAppointment(event.extendedProps)
-//     }
+        // 
+        //constructor () {
+    const events = [{ title: 'event 1', date: '2020-08-18' }];
+        //}
 
-//     handleEventDrop = (info) => {
-//             if(window.confirm("Are you sure you want to change the event date?")){
-//                 console.log('change confirmed')
+    const  formatEvents = () =>{
+        return props.appointments.map(appointment => {
+                const {title, end, start} = appointment
+    
+                let startTime = new Date(start)
+                let endTime = new Date(end)
+    
+                return {
+                    title, 
+                    start: startTime,
+                    end: endTime, 
+                    extendedProps: {...appointment}
+                }
+            });
+    };
 
-//                 // updateAppointment is another custom method
-//                 this.props.updateAppointment({...info.event.extendedProps, start: info.event.start, end: info.event.end})
+    const  handleEventClick = ({event}) => {
+     // openAppointment is a function I wrote to open a form to edit that appointment
+        this.props.openAppointment(event.extendedProps);
+    }
 
-//             } else {
-//                 console.log('change aborted')
-//             }
-//     }
+    const handleEventDrop = (info) => {
+            if(window.confirm("Are you sure you want to change the event date?")){
+                console.log('change confirmed')
 
-                    // eventDrop={this.handleEventDrop}
-                    // eventClick={this.handleEventClick}
-                    // events={this.formatEvents()}
+                // updateAppointment is another custom method
+                this.props.updateAppointment({...info.event.extendedProps, start: info.event.start, end: info.event.end})
 
-  render() {
-    return <FullCalendar 
-                    defaultView="dayGridMonth" 
-                    plugins={[dayGridPlugin, interactionPlugin]}
-                    editable={true}
-                    
+            } else {
+                console.log('change aborted')
+            }
+    }
+
+        return (<FullCalendar
+                    defaultView="dayGridMonth"
+                    header={{
+                    left: "prev,next",
+                    center: "title",
+                    right: "dayGridMonth,timeGridWeek,timeGridDay"
+                    }}
+                    plugins={[dayGridPlugin, timeGridPlugin]}
+                    events={events}
+                    locale="en"
+                    eventDrop={handleEventDrop}
+            eventClick={handleEventClick}
+            events={formatEvents()}
                 />
-  }
+            )
 }
+
+// events={[
+//     { title: 'event 1', date: '2020-08-18' },
+//     { title: 'event 2', date: '2020-08-18' }
+//     ]}
+
+// eventDrop={this.handleEventDrop}
+//             eventClick={this.handleEventClick}
+//             events={this.formatEvents()}

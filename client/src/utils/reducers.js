@@ -8,7 +8,10 @@ import {
     UPDATE_CART_QUANTITY,
     CLEAR_CART,
     TOGGLE_CART,
-    UPDATE_USER
+    UPDATE_USER,
+    ADD_TUTOR_TIMEWINDOW,
+    BOOK_TUTOR_TIMEWINDOW,
+    REMOVE_TUTOR_TIMEWINDOW
   } from './actions';
 
 
@@ -18,6 +21,8 @@ const defaultState = {
     cartOpen: false,
     subjects: [],
     currentSubject: '',
+    timewindow: [],
+    calenderupdate: false
 }
 
 
@@ -87,14 +92,17 @@ const reducer = (state=defaultState, action) => {
                 cartOpen: false,
                 cart: []
             };
-
-
         case TOGGLE_CART:
             return {
                 ...state,
                 cartOpen: !state.cartOpen
             };
-
+        case ADD_TUTOR_TIMEWINDOW:
+            return {
+                ...state,
+                timewindow: []
+            };
+        
         // case UPDATE_USER:
         //     return {
         //         ...state,
