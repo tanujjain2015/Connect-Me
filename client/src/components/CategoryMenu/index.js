@@ -4,6 +4,9 @@ import { QUERY_SUBJECTS, QUERY_OFFERINGS } from "../../utils/queries";
 import {UPDATE_SUBJECTS, UPDATE_CURRENT_SUBJECT} from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
+import Badge from '../Badge/Badge';
+//import Header from "../Header/Header";
+import Typography  from "@material-ui/core/Typography";
 
 
 function CategoryMenu() {
@@ -42,17 +45,23 @@ function CategoryMenu() {
   };
   return (
     <div>
-      <h2>Choose a Subject:</h2>
-      {subjects.map(item => (
-        <button
-          key={item._id}
-          onClick={() => {
-            handleClick(item._id);
-          }}
-        >
-          {item.subject}
-        </button>
-      ))}
+      {/* <Header>Choose a Subject</Header> */}
+      <Typography variant="h4" gutterBottom>
+      Choose a Subject
+      </Typography> 
+      <Badge color="primary">
+          {subjects.map(item => (
+              <button
+                key={item._id}
+                onClick={() => {
+                  handleClick(item._id);
+                }}
+              >
+                {item.subject}
+              </button>
+            ))}
+      </Badge>
+
     </div>
   );
 }

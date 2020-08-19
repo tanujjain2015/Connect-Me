@@ -12,6 +12,7 @@ import {
   UPDATE_OFFERINGS,
 } from '../utils/actions';
 import { idbPromise } from '../utils/helpers';
+import Button from '../components/CustomButtons/Button';
 
 
 function Detail() {
@@ -44,8 +45,8 @@ function Detail() {
         offerings: data.offerings
       });
   
-      data.offerings.forEach((product) => {
-        idbPromise('offerings', 'put', product);
+      data.offerings.forEach((offering) => {
+        idbPromise('offerings', 'put', offering);
       });
     }
     // get cache from idb
@@ -78,7 +79,7 @@ function Detail() {
     } else {
       dispatch({
         type: ADD_TO_CART,
-        product: { ...currentOffering, purchaseQuantity: 1 }
+        offering: { ...currentOffering, purchaseQuantity: 1 }
       });
       // if product isn't in the cart yet, add it to the current shopping cart in IndexedDB
       idbPromise('cart', 'put', { ...currentOffering, purchaseQuantity: 1 });
@@ -99,41 +100,54 @@ function Detail() {
   return(
     <>
      {currentOffering ? (
-      <div className="card mx-auto my-5 bg-light border-info rounded" style={{width: 18+ "em"}}>
-            <img src="..." className="card-img-top" alt={currentOffering.image}/>
+      <div className="card mx-auto my-5 bg-light border-info rounded" style={{width: 25+ "em"}}>
+            <img src={currentOffering.image} className="card-img-top" alt={currentOffering.image}/>
             <hr />
               <div className="card-body">
-                  <h5 className="card-title">{currentOffering.name}</h5><hr/>
+                  <h5 className="card-title text-center"><strong>{currentOffering.name}</strong></h5><hr/>
                    <p className="card-text">{currentOffering.description}</p>
               </div>
 
         <ul className="list-group list-group-flush bg-light">
-          <li className="list-group-item bg-light"><strong>Price:${currentOffering.price}</strong></li>
-          <li className="list-group-item bg-light"><strong>Quantity: {currentOffering.quantity}</strong></li>
+          <li className="list-group-item bg-light text-center"><strong>Price:${currentOffering.price}</strong></li>
+          <li className="list-group-item bg-light text-center"><strong>Quantity: {currentOffering.quantity}</strong></li>
         </ul>
 
-        <div className="card-body">
+        <div className="card-body text-center">
         <p>
              <strong>Price:</strong>
              ${currentOffering.price}
              {" "}<br/>
-             <button className="my-2 btn-primary"onClick={addToCart} >
+             {/* <button className="my-2 btn-primary"onClick={addToCart} >
                Add to cart
-             </button>
+             </button> */}
+             <Button type="submit" color="primary" round style={{color: "#FFFFFF"}} onClick={addToCart}>
+                        Add to Cart
+          </Button>
 
     
-             <button 
+             {/* <button 
             disabled={!cart.find(p => p._id === currentOffering._id)} 
             onClick={removeFromCart}
              >
             Remove from Cart
-          </button>
+          </button> */}
+          <Button type="submit" color="default" round  disabled={!cart.find(p => p._id === currentOffering._id)} 
+            onClick={removeFromCart}>
+                  Remove from Cart
+          </Button>
            </p>
       </div>
 
-       <div className="card-body">
-         <Link to = "/">Home</Link>
+       <div className="card-body text-center">
+          <Button type="submit" color="default" round simple>
+                  <Link to="/">Home</Link>
+          </Button>
        </div>
+
+
+
+
 
      </div>
      ) : null }

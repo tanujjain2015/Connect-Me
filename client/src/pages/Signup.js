@@ -1,13 +1,47 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/react-hooks';
 import Auth from "../utils/auth";
 import { ADD_USER } from "../utils/mutations";
 import ImageUpload from "../components/ImageUpload";
+// @material-ui/core components
+import { makeStyles } from "@material-ui/core/styles";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Icon from "@material-ui/core/Icon";
+// @material-ui/icons
+import Email from "@material-ui/icons/Email";
+import People from "@material-ui/icons/People";
+// core components
+import Header from "../components/Header/Header.js";
+import HeaderLinks from "../components/Header/HeaderLinks.js";
+import Footer from "../components/Footer/Footer.js";
+import GridContainer from "../components/Grid/GridContainer.js";
+import GridItem from "../components/Grid/GridItem.js";
+import Button from "../components/CustomButtons/Button.js";
+import Card from "../components/Card/Card.js";
+import CardBody from "../components/Card/CardBody.js";
+import CardHeader from "../components/Card/CardHeader.js";
+import CardFooter from "../components/Card/CardFooter.js";
+import CustomInput from "../components/CustomInput/CustomInput.js";
+import styles from "../assets/jss/material-kit-react/views/loginPage.js";
+import image from "../assets/img/bg7.jpg";
+import { Link } from "react-router-dom";
+
+const useStyles = makeStyles(styles);
 
 
 function Signup(props) {
-  const [formState, setFormState] = useState({ email: '', password: ''});
+
+  const classes = useStyles();
+
+  const [formState, setFormState] = useState({ 
+    email: '', 
+    password: '', 
+    firstName: '', 
+    lastName: '', 
+    location: '', 
+    tutor: '', 
+    bio: ''
+  });
   const [addUser] = useMutation(ADD_USER);
   //console.log(addUser);
   const handleFormSubmit = async event => {
@@ -33,9 +67,19 @@ function Signup(props) {
       [name]: value
     });
   };
-  //Image upload ===============================================================
+
   return (
     <div className="container my-1">
+
+    <Header
+        absolute
+        color="transparent"
+        // brand="Material Kit React"
+        // rightLinks={<HeaderLinks />}
+        // {...rest}
+      />
+
+      
       <Link to="/login">
         ← Go to Login
       </Link>
@@ -46,11 +90,13 @@ function Signup(props) {
           <input
             placeholder="First Name"
             name="firstName"
-            type="firstName"
+            type="text"
             id="firstName"
             onChange={handleChange}
+            // value={formState.firstName}
           />
         </div>
+
         <div className="flex-row space-between my-2">
           <label htmlFor="lastName">Last Name:</label>
           <input
@@ -113,33 +159,21 @@ function Signup(props) {
             onChange={handleChange}
           />
         </div>
-        {/* <div className="flex-row space-between my-2">
-          <label htmlFor="subjcets">Pick desired Subjects</label>
-          <select id="subjects" name ="subjects" multiple onChange={handleChange}>
-            <option value="Computer Science">Computer Science</option>
-            <option value="Science">Science</option>
-            <option value="Maths">Maths</option>
-            <option value="Biology">Biology</option>
-            <option value="Geography">Geography</option>
-          </select> */}
-          {/* <input
-            placeholder="choose your country"
-            type="location"
-            onChange={handleChange}
-          />  */}
-        {/* </div> */}
+
+
 
         <div className="">
           <ImageUpload>
           </ImageUpload>
         </div>
-        <div className="flex-row flex-end">
-          <button type="submit">
-            Submit
-          </button>
-        </div>
+
+        <Button type="submit" color="primary" round>
+            Signup
+        </Button>
+
       </form>
-    </div>
+      <Footer />
+      </div>
   );
 }
 export default Signup;

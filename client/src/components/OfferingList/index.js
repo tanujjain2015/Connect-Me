@@ -7,6 +7,8 @@ import { UPDATE_OFFERINGS } from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 // import { off } from '../../../../server/models/User';
+import Typography  from "@material-ui/core/Typography";
+import Danger from '../Typography/Danger';
 
 
 function OfferingList() {
@@ -62,13 +64,17 @@ function OfferingList() {
 
   return (
     <div className="my-2">
-      <h2>Our Offerings:</h2>
+     <Typography variant="h4" gutterBottom>
+       Our Offerings
+      </Typography> 
       {offerings.length ? (
         <div className="flex-row">
             {filterOfferings().map(offering => (
                 <OfferingItem
                   key= {offering._id}
                   _id={offering._id}
+                  // image={offering.image}
+                  // name={offering.name}
                   // image={offering.image}
                   name={offering.name}
                   description={offering.description}
@@ -79,7 +85,10 @@ function OfferingList() {
             ))}
         </div>
       ) : (
+        <Danger>
         <h3>You haven't added any offerings yet!</h3>
+        </Danger>
+
       )}
       { loading ? 
       <img src={spinner} alt="loading" />: null}
