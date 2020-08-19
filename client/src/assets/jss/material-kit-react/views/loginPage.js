@@ -45,16 +45,18 @@ const signupPageStyle = {
     }
   },
   form: {
-    margin: "0"
+    // margin: "0"
+    margin: "auto"
   },
   cardHeader: {
     width: "auto",
     textAlign: "center",
-    marginLeft: "20px",
-    marginRight: "20px",
-    marginTop: "-40px",
-    padding: "20px 0",
-    marginBottom: "15px"
+    // marginLeft: "20px",
+    // marginRight: "20px",
+    // marginTop: "-40px",
+    // padding: "20px 0",
+    // marginBottom: "15px"
+    padding: "auto"
   },
   socialIcons: {
     maxWidth: "24px",

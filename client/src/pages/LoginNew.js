@@ -101,7 +101,7 @@ export default function LoginNew(props) {
               //className={classes[cardAnimaton]}
               >
                 <form className={classes.form} onSubmit={handleFormSubmit}>
-                  <CardHeader color="primary" className={classes.cardHeader}>
+                  <CardHeader color="primary" className={classes.cardHeader} justify="center">
                     <h4>Login</h4>
                     <div className={classes.socialLine}>
                       {/* <Button
@@ -137,14 +137,12 @@ export default function LoginNew(props) {
                   <CardBody>
 
 
-
-
                     <CustomInput
                       labelText="Email..."
                       id="email"
-                    //   formControlProps={{
-                    //     fullWidth: true
-                    //   }}
+                      // formControlProps={{
+                      //   fullWidth: true
+                      // }}
                       htmlFor="email"
                       name="email"
                       type="email"
