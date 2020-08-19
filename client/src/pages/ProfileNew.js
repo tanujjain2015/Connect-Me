@@ -32,6 +32,8 @@ import work5 from "../assets/img/examples/clem-onojegaw.jpg";
 
 import styles from "../assets/jss/material-kit-react/views/profilePage.js";
 
+import Nav from '../components/Nav/index'
+
 // import Card from "../components/Card/Card.js";
 import CardBody from "../components/Card/CardBody.js";
 
@@ -96,17 +98,19 @@ export default function ProfileNew(props) {
 
   return (
     <div>
-      <Header
+      <Nav 
+       {...rest}/>
+      {/* <Header
         color="transparent"
-        // brand="Material Kit React"
-        // rightLinks={<HeaderLinks />}
-        fixed
-        changeColorOnScroll={{
-          height: 200,
-          color: "white"
-        }}
-        {...rest}
-      />
+        brand="Material Kit React"
+        rightLinks={<HeaderLinks />}
+        // fixed
+        // changeColorOnScroll={{
+        //   height: 200,
+        //   color: "white"
+        // }}
+       
+      /> */}
       <Parallax small filter image={require("../assets/img/profile-bg.jpg")} />
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
