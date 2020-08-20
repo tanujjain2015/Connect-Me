@@ -80,9 +80,9 @@ a:hover {
   text-decoration: underline;
 }
 
-header {
+/* header {
   background: var(--primary);
-}
+} */
 
 header a {
   color: var(--light);
