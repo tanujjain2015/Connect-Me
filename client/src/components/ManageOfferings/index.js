@@ -22,9 +22,6 @@ import Auth from "../../utils/auth";
 import Footer from "../Footer/Footer";
 import Button from "../CustomButtons/Button";
 
-
-
-
 // @material-ui/icons
 import Camera from "@material-ui/icons/Camera";
 import Palette from "@material-ui/icons/Palette";
@@ -52,6 +49,7 @@ import profile from "../../assets/img/faces/avatarimage.jpeg";
 import classNames from "classnames";
 import GridContainer from "../Grid/GridContainer.js";
 import GridItem from "../Grid/GridItem.js";
+import CustomInput from "../CustomInput/CustomInput";
 
 const useStyles = makeStyles(styles);
 
@@ -115,17 +113,12 @@ function ManageOfferings(props) {
     <div>
       <Nav {...rest} />
 
-      <Parallax
-        small
-        filter
-        image={require("../../assets/img/sign.jpg")}
-      />
+      <Parallax small filter image={require("../../assets/img/sign.jpg")} />
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
           <div className={classes.container}>
             <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={5} lg={6}>
-              </GridItem>
+              <GridItem xs={12} sm={12} md={5} lg={6}></GridItem>
             </GridContainer>
             <div className={classes.description}>
               <p>{user.bio} </p>
@@ -142,147 +135,103 @@ function ManageOfferings(props) {
                   className="mx-auto my-5 p-3 mb-2 bg-light text-dark"
                   onSubmit={handleFormSubmit}
                 >
-                  <div className="form-row">
-                    <div className="form-group col-md-6">
-                      <label htmlFor="name">Offering Name</label>
-                      <input
-                        name="name"
-                        type="text"
-                        className="form-control border border-info"
-                        id="name"
-                        //  value = {formState.name || ''}
-                        //   onChange={(event) => {
-                        //     const { name, value } = event.target;
-                        //     console.log(event);
-                        //     console.log(event.target.name);
-                        //     console.log(event.target.value);
-                        //     setFormState({
-                        //       ...formState,
-                        //       [name]: value,
-                        //     });
-                        //   }}
-                        onChange={handleChange}
-                      />
-                    </div>
-
-                    <div className="form-group col-md-6">
-                      <label htmlFor="description">Offering Description</label>
-                      <textarea
-                        name="description"
-                        type="text"
-                        className="form-control border border-info"
-                        id="description"
-                        //  value = {formState.description || ''}
-                        //   onChange={(event) => {
-                        //     const { name, value } = event.target;
-                        //     console.log(event);
-                        //     console.log(event.target.name);
-                        //     console.log(event.target.value);
-                        //     setFormState({
-                        //       ...formState,
-                        //       [name]: value,
-                        //     });
-                        //   }}
-                        onChange={handleChange}
-                      />
-                    </div>
-
-                    <div className="form-group col-md-6">
-                      <label htmlFor="price">Fee</label>
-                      <input
-                        name="price"
-                        type="number"
-                        className="form-control border border-info"
-                        id="price"
-                        //  value = {formState.price || ''}
-                        //   onChange={(event) => {
-                        //     const { name, value } = event.target;
-                        //     console.log(event);
-                        //     console.log(event.target.name);
-                        //     console.log(event.target.value);
-                        //     setFormState({
-                        //       ...formState,
-                        //       [name]: value,
-                        //     });
-                        //   }}
-                        onChange={handleChange}
-                      />
-                    </div>
-
-                    <div className="form-group col-md-6">
-                      <label htmlFor="quantity">Quantity</label>
-                      <input
-                        name="quantity"
-                        type="number"
-                        className="form-control border border-info"
-                        id="quantity"
-                        //  value = {formState.quantity || ''}
-                        //   onChange={(event) => {
-                        //     const { name, value } = event.target;
-                        //     console.log(event);
-                        //     console.log(event.target.name);
-                        //     console.log(event.target.value);
-                        //     setFormState({
-                        //       ...formState,
-                        //       [name]: value,
-                        //     });
-                        //   }}
-                        onChange={handleChange}
-                      />
-                    </div>
-
-                    <div className="form-group col-md-4">
-                      <label htmlFor="subject">Subject</label>
-                      <select
-                        id="subject"
-                        name="subject"
-                        className="form-control border border-info"
-                        // value = {[formState.subject] || ''}
-
-                        //   onChange={(event) => {
-                        //     const { name, value } = event.target;
-                        //     console.log(event);
-                        //     console.log("Subject logs", event.target.name);
-                        //     console.log("Subject logs", event.target.value);
-                        //     setFormState({
-                        //       ...formState,
-                        //       [name]: value,
-                        //     });
-                        //   }}
-                        onChange={handleChange}
-                      >
-                        <option value="5f3ca2bc002bf133b95fb974">
-                          Computer Science
-                        </option>
-                        <option value="5f3ca2bc002bf133b95fb975">
-                          Science
-                        </option>
-                        <option value="5f3ca2bc002bf133b95fb976">Maths</option>
-                        <option value="5f3ca2bc002bf133b95fb977">
-                          Biology
-                        </option>
-                        <option value="5f3ca2bc002bf133b95fb978">
-                          Geography
-                        </option>
-                        <option value="5f3d3d583b77278add543cbc">
-                          Foreign Languages
-                        </option>
-                      </select>
-                    </div>
+                  <div className="form-group ">
+                    <CustomInput
+                      labelText="Offering Name"
+                      id="name"
+                      htmlFor="name"
+                      name="name"
+                      type="name"
+                      inputProps={{
+                        name: "name",
+                        type: "name",
+                        onChange: handleChange,
+                      }}
+                    />
                   </div>
 
-                  <Button
-                    type="submit"
-                    color="primary"
-                    round
-                    style={{ color: "#FFFFFF" }}
-                  >
-                    Add Offering
-                  </Button>
+                  <div className="form-group ">
+                    <CustomInput
+                      labelText="Offering Description"
+                      id="description"
+                      htmlFor="description"
+                      name="description"
+                      type="description"
+                      inputProps={{
+                        name: "description",
+                        type: "description",
+                        onChange: handleChange,
+                      }}
+                    />
+                  </div>
 
-                  <Button type="submit" color="default" round simple>
-                    <Link to="/">Home</Link>
-                  </Button>
+                  <div className="form-group ">
+                    <CustomInput
+                      labelText="Fee"
+                      id="price"
+                      htmlFor="price"
+                      name="price"
+                      type="number"
+                      inputProps={{
+                        name: "price",
+                        type: "price",
+                        onChange: handleChange,
+                      }}
+                    />
+                  </div>
+
+                  <div className="form-group ">
+                    <CustomInput
+                      labelText="Quantity"
+                      id="quantity"
+                      htmlFor="quantity"
+                      name="quantity"
+                      type="number"
+                      inputProps={{
+                        name: "quantity",
+                        type: "quantity",
+                        onChange: handleChange,
+                      }}
+                    />
+                  </div>
+
+                  <div className="flex-row space-between my-2">
+                    <label htmlFor="subject">Subject</label>
+                    <select
+                      id="subject"
+                      name="subject"
+                      className="form-control border border-info"
+                      onChange={handleChange}
+                    >
+                      <option value="5f3ca2bc002bf133b95fb974">
+                        Computer Science
+                      </option>
+                      <option value="5f3ca2bc002bf133b95fb975">Science</option>
+                      <option value="5f3ca2bc002bf133b95fb976">Maths</option>
+                      <option value="5f3ca2bc002bf133b95fb977">Biology</option>
+                      <option value="5f3ca2bc002bf133b95fb978">
+                        Geography
+                      </option>
+                      <option value="5f3d3d583b77278add543cbc">
+                        Foreign Languages
+                      </option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <Button
+                      type="submit"
+                      color="primary"
+                      round
+                      style={{ color: "#FFFFFF" }}
+                    >
+                      Add Offering
+                    </Button>
+
+                    <Button type="submit" color="default" round simple>
+                      <Link to="/">Home</Link>
+                    </Button>
+                  </div>
                 </form>
               </GridItem>
             </GridContainer>
