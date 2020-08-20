@@ -18,12 +18,13 @@ export const ADD_ORDER = gql`
       purchaseDate
       offerings {
         _id
-      # name
-      # description
+      name
+      description
       price
       quantity
       subject {
-        name
+        _id
+        subject
       } 
       }
     }
