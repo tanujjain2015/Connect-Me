@@ -26,7 +26,7 @@ db.once('open', async () => {
       _id: '5f3ca2bc002bf133b95fb975' 
     },
     { 
-      subject: 'Maths',
+      subject: 'Math',
       _id: '5f3ca2bc002bf133b95fb976' 
     },
     { subject: 'Biology',
@@ -34,7 +34,11 @@ db.once('open', async () => {
     },
     { subject: 'Geography',
       _id: '5f3ca2bc002bf133b95fb978'
-    }
+    },
+    { subject: 'Foreign Languages',
+    _id: '5f3d3d583b77278add543cbc'
+  }
+
   ]);
 
   console.log('subjects seeded');
@@ -106,6 +110,20 @@ db.once('open', async () => {
       // subject: subjects[0].subject
     },
     { 
+      name: "Angular JS",
+      description: "This class will help you have an idea of how Angular.js works",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 210.00,
+      quantity: 1,
+      user: users[0]._id,
+      subject: {
+        _id: subjects[0]._id,
+        subject: subjects[0].subject
+      }
+      // ,subjects[0]._id,
+      // subject: subjects[0].subject
+    },
+    { 
       name: "Javascript Basics",
       description: "Covers the basics of Javascript. Needs prior knowledge of HTML and CSS",
       image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
@@ -119,11 +137,25 @@ db.once('open', async () => {
         subject: subjects[1].subject
       }
     },
-    {
-      name: "Javascript Advanced",
-      description: "Covers the advance levels of Javascript. Needs prior knowledge of HTML and CSS",
+    { 
+      name: "Introduction to physics",
+      description: "An introductory course which focuses on Physis theorems",
       image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
-      price: 90.00,
+      price: 110.00,
+      quantity: 1,
+      user: users[0]._id,
+      // subject: subjects[1]._id,
+      // subject: subjects[1].subject
+      subject: {
+        _id: subjects[1]._id,
+        subject: subjects[1].subject
+      }
+    },
+    {
+      name: "Algebra Advanced",
+      description: "Covers the advance levels of Algebra. Needs prior knowledge of theorems and formulae",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 190.00,
       quantity: 1,
       user:users[0]._id,
       // subject: subjects[2]._id, 
@@ -131,6 +163,216 @@ db.once('open', async () => {
       subject: {
         _id: subjects[2]._id,
         subject: subjects[2].subject
+      }
+    },
+    {
+      name: "Integration beginners",
+      description: "Intoductory course to Mathematics Integration.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 190.00,
+      quantity: 1,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[2]._id,
+        subject: subjects[2].subject
+      }
+    },
+    {
+      name: "Biology Basics",
+      description: "Covers the basic level of Biology concepts. No prior knowledge needed.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 100.00,
+      quantity: 10,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[3]._id,
+        subject: subjects[3].subject
+      }
+    },
+    {
+      name: "Life Science concentration",
+      description: "Interdisciplinary course for Careers in Medicine or Public health",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 210.00,
+      quantity: 10,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[3]._id,
+        subject: subjects[3].subject
+      }
+    },
+    {
+      name: "GIS, Mapping, and Spatial Analysis",
+      description: "Focuses on concepts, tools, and techniques to make great maps",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 200.00,
+      quantity: 10,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[4]._id,
+        subject: subjects[4].subject
+      }
+    },
+    {
+      name: "Geographical Information Systems - Part 1",
+      description: "Theoretical and practical foundations of geographic information systems(GIS)",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 200.00,
+      quantity: 10,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[4]._id,
+        subject: subjects[4].subject
+      }
+    },
+    {
+      name: "German - Level A1",
+      description: "Covers the basics of German Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
+      }
+    },
+    {
+      name: "Spanish - Level A1",
+      description: "Covers the basics of Spanish Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[1]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
+      }
+    },
+    {
+      name: "Portuguese - Level A1",
+      description: "Covers the basics of Portuguese Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[1]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
+      }
+    },
+    {
+      name: "English - Level A1",
+      description: "Covers the basics of English Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
+      }
+    },
+    {
+      name: "French - Level A1",
+      description: "Covers the basics of French Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
+      }
+    },
+    {
+      name: "Italian - Level A1",
+      description: "Covers the basics of Italian Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[1]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
+      }
+    },
+    {
+      name: "Slovakian - Level A1",
+      description: "Covers the basics of Slovakian Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
+      }
+    },
+    {
+      name: "Hungarian - Level A1",
+      description: "Covers the basics of Hungarian Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
+      }
+    },
+    {
+      name: "Hindi - Level A1",
+      description: "Covers the basics of Hindi Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
+      }
+    },
+    {
+      name: "Czech - Level A1",
+      description: "Covers the basics of Czech Language. Achieved level after the completion of this course will be A1.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 130.00,
+      quantity: 20,
+      user:users[1]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[5]._id,
+        subject: subjects[5].subject
       }
     }
     // {
