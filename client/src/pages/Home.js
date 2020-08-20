@@ -1,14 +1,13 @@
 import React from "react";
 import OfferingList from "../components/OfferingList";
 import CategoryMenu from "../components/CategoryMenu";
-import Cart from '../components/Cart';
-import CarouselNav from '../components/Carousel'
-import Nav from '../components/Nav';
-import ManageOfferings from '../components/ManageOfferings';
-import Footer from '../components/Footer/Footer';
-import Parallax from '../components/Parallax/Parallax';
-import SectionCarousel from '../views/Components/Sections/SectionCarousel.js'
-
+import Cart from "../components/Cart";
+import CarouselNav from "../components/Carousel";
+import Nav from "../components/Nav";
+import ManageOfferings from "../components/ManageOfferings";
+import Footer from "../components/Footer/Footer";
+import Parallax from "../components/Parallax/Parallax";
+import SectionCarousel from "../views/Components/Sections/SectionCarousel.js";
 
 const Home = () => {
   return (
@@ -16,7 +15,7 @@ const Home = () => {
       {/* <Nav /> */}
       {/* <ManageOfferings /> */}
       {/* <CarouselNav /> */}
-      <SectionCarousel/>
+      <SectionCarousel />
       <CategoryMenu />
       <OfferingList />
       <Cart />
