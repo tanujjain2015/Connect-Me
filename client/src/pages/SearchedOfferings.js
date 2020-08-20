@@ -14,6 +14,14 @@ import {
   ADD_TO_CART,
   UPDATE_OFFERINGS,
 } from "../utils/actions";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "../components/Card/Card.js";
+import CardBody from "../components/Card/CardBody.js";
+import CardHeader from "../components/Card/CardHeader.js";
+import CardFooter from "../components/Card/CardFooter.js";
+import Button from "../components/CustomButtons/Button.js";
+
+import { cardTitle } from "../assets/jss/material-kit-react.js";
 
 function Offerings(props) {
   // const state = useSelector((state) => {
@@ -46,20 +54,41 @@ function Offerings(props) {
 
   console.log(userOffering.length);
 
+  const styles = {
+    cardTitle,
+    textCenter: {
+      textAlign: "center",
+      margin: "auto",
+    },
+    textMuted: {
+      color: "#6c757d",
+    },
+  };
+  
+  const useStyles = makeStyles(styles);
+  const classes = useStyles();
+
   return (
     <>
       <div className="my-2 mx-2">
-        <h2>Our Offerings:</h2>
+        
         {userOffering.length ? (
           userOffering.map((thought) => (
-            <div key={thought._id} className="card mb-3">
-              <Link to={`/offerings/${thought._id}`}>
-                <p className="card-header">{thought.name}</p>
-              </Link>
-              <div className="card-body">
-                <p>{thought.description}</p>
-              </div>
-            </div>
+            <Card className={classes.textCenter} style={{ width: 35 + "em" }} key={thought._id}>
+            <CardHeader color="warning"> 
+              <Link to={`/offerings/${thought._id}`}><strong>{thought.name}</strong></Link>
+              <br />
+              <strong>{thought.quantity} item in stock</strong>
+            </CardHeader>
+            <CardBody>
+              <h4 className={classes.cardTitle}>
+                {thought.description}
+              </h4>
+              <Button color="primary" round simple>
+                <Link to="/">Home</Link>
+              </Button>
+            </CardBody>
+          </Card>
           ))
         ) : (
           <h3>No Results Returned! Enter A New Offering</h3>
@@ -68,6 +97,7 @@ function Offerings(props) {
       </div>
     </>
   );
+  
 }
 
 export default Offerings;
