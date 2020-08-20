@@ -26,6 +26,10 @@ import styles from "../assets/jss/material-kit-react/views/loginPage.js";
 import image from "../assets/img/bg7.jpg";
 import { Link } from "react-router-dom";
 import CustomDropdown from '../components/CustomDropdown/CustomDropdown.js';
+import FormControl from '@material-ui/core/FormControl';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles(styles);
 
@@ -220,7 +224,7 @@ export default function SignupNew(props) {
                         autoComplete: "off"
                       }}
                     />
-</div>
+        </div>
 
 
         <div className="flex-row space-between my-2">
@@ -235,8 +239,8 @@ export default function SignupNew(props) {
                 </div>
 
 
-                <div className="flex-row space-between my-2">
-                <label htmlFor="location">Choose a location</label>
+                <div className="flex-row space-between my-2"> 
+                 <label htmlFor="location">Choose a location</label>
                 <select 
                     id="location" 
                     name ="location" 
@@ -245,7 +249,30 @@ export default function SignupNew(props) {
                     <option value="EMEA">EMEA</option>
                     <option value="APAC">APAC</option>
                 </select>
+
+
+            {/* <FormControl variant="filled" className={classes.formControl}>
+                    <InputLabel id="demo-simple-select-label">Location</InputLabel>
+                    <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    //   value="AMER"
+                    onChange={handleChange}
+                    >
+                    <MenuItem value="">
+                        <em>None</em>
+                    </MenuItem>
+                    <MenuItem value="AMER">AMER</MenuItem>
+                    <MenuItem value="EMEA">EMEA</MenuItem>
+                    <MenuItem value="APAC">APAC</MenuItem>
+                    </Select>
+                </FormControl> */}
+
+
                 </div>
+
+
+
 
 {/* 
                 <CustomDropdown
