@@ -56,10 +56,17 @@
 
 //==================
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import {
+  Link,
+  useHistory,
+  useLocation,
+  useParams,
+  Redirect,
+} from "react-router-dom";
 
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_USER } from "../utils/queries";
+import { QUERY_USER, QUERY_PROFILE, QUERY_ME } from "../utils/queries";
 
 function OrderHistory() {
   const { data } = useQuery(QUERY_USER);
@@ -68,7 +75,7 @@ function OrderHistory() {
   if (data) {
     user = data.user;
   }
-
+  
   return (
     <>
       <div className="container my-1">
@@ -86,10 +93,10 @@ function OrderHistory() {
                   {order.offerings.map(({ _id, image, name, price }, index) => (
                     <div key={index} className="card px-1 py-1">
                       <Link to={`/offerings/${_id}`}>
-                        <img
+                        {/* <img
                           alt={name}
                           src={`/images/${image}`}
-                        />
+                        /> */}
                         <p>{name}</p>
                       </Link>
                       <div>
