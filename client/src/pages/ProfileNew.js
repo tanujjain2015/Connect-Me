@@ -146,8 +146,8 @@ export default function ProfileNew(props) {
                 <label htmlFor="location">Location:</label>
                 <p>{user.location}</p>
 
-                <label htmlFor="bio">Bio:</label>
-                <p id="bio">{user.bio}</p>
+                {/* <label htmlFor="bio">Bio:</label>
+                <p id="bio">{user.bio}</p> */}
 
 
             </div>

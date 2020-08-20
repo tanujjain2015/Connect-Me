@@ -8,6 +8,7 @@
   --error: rgb(228, 46, 1);
   --spacing-one: calc(1rem * 0.5);
   --spacing-two: calc(1rem);
+  --grey: #5c5353;
 }
 
 * {
@@ -128,10 +129,25 @@ form {
 input {
   font-size: 1rem;
   padding: 0.25rem;
-  /* border: 1px solid var(--dark); */
+  border: 1px solid var(--dark);
   outline: none;
   border-radius: 3px;
   transition: box-shadow 0.2s;
+}
+
+select {
+  border: 0.1px purple solid;
+  padding: 10px;
+  width: 95%;
+  /* height: 100%; */
+  border-radius: 3px;
+}
+
+.TextareaAutosize {
+  border: 0.1px purple solid;
+  padding: 10px;
+  width: 95%;
+  border-radius: 3px;
 }
 
 /* input:focus {

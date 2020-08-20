@@ -74,6 +74,7 @@ import styles from "../../assets/jss/material-kit-react/views/profilePage.js";
 import { FaEdit, FaHome } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Comprehend } from "aws-sdk";
+import TextareaAutosize from "@material-ui/core/TextareaAutosize/TextareaAutosize";
 
 const useStyles = makeStyles(styles);
 
@@ -162,16 +163,21 @@ function ProfileUpdate(props) {
         <div>
           <div className={classes.container}>
             <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={5} lg={6}>
+            <GridItem xs={12} sm={12} md={6}>
                 <div className={classes.profile}>
                   <div>
                     <img src={profile} alt="..." className={imageClasses} />
+                  </div>
+                  <div className={classes.name}>
+                    <h3 className={classes.title}>{formState.firstName} {formState.lastName}</h3>
+                    <h6>{formState.tutor}</h6>
+                    <h6>{formState.bio}</h6>
                   </div>
                 </div>
               </GridItem>
             </GridContainer>
             <div className={classes.description}>
-              <p>{user.bio} </p>
+              {/* <p>{user.bio} </p> */}
             </div>
             <GridContainer justify="center">
               <GridItem
@@ -241,7 +247,7 @@ function ProfileUpdate(props) {
                     <select
                       id="tutor"
                       name="tutor"
-                      className="form-control border border-info"
+                    //   className="form-control"
                       value={formState.tutor || ""}
                       onChange={handleChange}
                     >
@@ -255,7 +261,7 @@ function ProfileUpdate(props) {
                     <select
                       id="location"
                       name="location"
-                      className="form-control border border-info"
+                    //   className="form-control"
                       value={formState.location || ""}
                       onChange={handleChange}
                     >
@@ -265,7 +271,7 @@ function ProfileUpdate(props) {
                     </select>
                   </div>
 
-                  <div>
+                  {/* <div>
                     <CustomInput
                       labelText="Bio"
                       id="bio"
@@ -279,7 +285,25 @@ function ProfileUpdate(props) {
                         value: formState.bio,
                       }}
                     />
-                  </div>
+                  </div> */}
+
+                      <div className="flex-row space-between my-2">
+                        <label htmlFor="bio">Bio</label>
+                        <TextareaAutosize
+                          className="TextareaAutosize"
+                          rowsMin={3}
+                          rowsMax={8}
+                          aria-label="maximum height"
+                          placeholder="Maximum 4 rows"
+                          defaultValue="Your awesome bio here..."
+                          id="bio"
+                          htmlFor="bio"
+                          name="bio"
+                          type="text"
+                          onChange={handleChange}
+                          value={formState.bio}
+                        />
+                      </div>
 
                   <Button
                     type="submit"

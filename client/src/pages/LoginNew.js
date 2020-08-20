@@ -149,8 +149,8 @@ export default function LoginNew(props) {
                     </Button>
 
                     <div>
-                      <Link to="/signup" color="primary" round>
-                        Go to Signup
+                      <Link to="/signup" color="primary" round style={{ color: "#5c5353" }}>
+                            ← Go to Signup
                       </Link>
                     </div>
                   </CardFooter>

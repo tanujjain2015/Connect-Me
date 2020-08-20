@@ -200,7 +200,7 @@ function ManageOfferings(props) {
                     <select
                       id="subject"
                       name="subject"
-                      className="form-control border border-info"
+                      className=""
                       onChange={handleChange}
                     >
                       <option value="5f3ca2bc002bf133b95fb974">
