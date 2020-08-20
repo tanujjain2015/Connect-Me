@@ -118,8 +118,8 @@ const Cart = () => {
   <div 
   // className="close" onClick={toggleCart}>[close]
   >
-  <Button color="default" round onClick={toggleCart}>
-      Close
+  <Button color="primary" round onClick={toggleCart}>
+      [Close]
   </Button>
   </div>
   <h2>Shopping Cart</h2>
