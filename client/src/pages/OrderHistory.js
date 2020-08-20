@@ -66,14 +66,17 @@ import {
 } from "react-router-dom";
 
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_USER, QUERY_PROFILE, QUERY_ME } from "../utils/queries";
+import { QUERY_ME } from "../utils/queries";
 
 function OrderHistory() {
-  const { data } = useQuery(QUERY_USER);
+  const { data } = useQuery(QUERY_ME);
   let user;
 
   if (data) {
-    user = data.user;
+    user = data.me;
+    //console.log(user);
+    //console.log(user.firstName);
+    //console.log(user.lastName);
   }
   
   return (

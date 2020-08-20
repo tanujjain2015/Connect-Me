@@ -28,12 +28,12 @@ const offeringSchema = new Schema({
   },
   subject: {
     type: Schema.Types.ObjectId,
-    ref: 'Subject',
+    ref: 'Subject'
     // required: true
   },
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'User'
     // required: true
   }
 });

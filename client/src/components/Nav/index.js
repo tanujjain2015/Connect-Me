@@ -289,10 +289,10 @@ export default function Nav(){
                 </ListItemText>
           </ListItem>
 
-          <ListItem button key="Booked Classes">
+          <ListItem button key="Payment History">
             <ListItemIcon><MailIcon/></ListItemIcon>
             <ListItemText>
-                  <Link to ="/orderHistory">Booked Classes</Link>
+                  <Link to ="/orderHistory">Payment History</Link>
                 </ListItemText>
           </ListItem>
 
