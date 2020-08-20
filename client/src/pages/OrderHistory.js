@@ -56,7 +56,14 @@
 
 //==================
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import {
+  Link,
+  useHistory,
+  useLocation,
+  useParams,
+  Redirect,
+} from "react-router-dom";
 
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_ME } from "../utils/queries";
@@ -67,11 +74,11 @@ function OrderHistory() {
 
   if (data) {
     user = data.me;
-    console.log(user);
-    console.log(user.firstName);
-    console.log(user.lastName);
+    //console.log(user);
+    //console.log(user.firstName);
+    //console.log(user.lastName);
   }
-
+  
   return (
     <>
       <div className="container my-1">
@@ -89,10 +96,10 @@ function OrderHistory() {
                   {order.offerings.map(({ _id, image, name, price }, index) => (
                     <div key={index} className="card px-1 py-1">
                       <Link to={`/offerings/${_id}`}>
-                        <img
+                        {/* <img
                           alt={name}
                           src={`/images/${image}`}
-                        />
+                        /> */}
                         <p>{name}</p>
                       </Link>
                       <div>

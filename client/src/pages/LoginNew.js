@@ -20,39 +20,31 @@ import CardFooter from "../components/Card/CardFooter.js";
 import CustomInput from "../components/CustomInput/CustomInput.js";
 import styles from "../assets/jss/material-kit-react/views/loginPage.js";
 import image from "../assets/img/bg.jpg";
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
-import { LOGIN } from "../utils/mutations"
+import { LOGIN } from "../utils/mutations";
 import Auth from "../utils/auth";
 
 const useStyles = makeStyles(styles);
 
-
-
 export default function LoginNew(props) {
-//   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
-//   setTimeout(function() {
-//     setCardAnimation("");
-//   }, 700);
   const classes = useStyles();
 
-//   const { ...rest } = props;
-
-  //existing code from Login
-
-  const [formState, setFormState] = useState({ email: '', password: '' })
+  const [formState, setFormState] = useState({ email: "", password: "" });
   console.log(formState);
 
   const [login, { error }] = useMutation(LOGIN);
   console.log(error);
 
-  const handleFormSubmit = async event => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(event.target)
-    console.log(event.target.value)
+    console.log(event.target);
+    console.log(event.target.value);
 
     try {
-      const mutationResponse = await login({ variables: { email: formState.email, password: formState.password } })
+      const mutationResponse = await login({
+        variables: { email: formState.email, password: formState.password },
+      });
       const token = mutationResponse.data.login.token;
       Auth.login(token);
     } catch (e) {
@@ -60,124 +52,71 @@ export default function LoginNew(props) {
     }
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
       ...formState,
-      [name]: value
+      [name]: value,
     });
-    console.log(event.target)
+    console.log(event.target);
   };
 
   return (
     <div>
-      <Header
-        absolute
-        color="transparent"
-        // brand="Material Kit React"
-        // rightLinks={<HeaderLinks />}
-        // {...rest}
-      />
-
-
+      <Header absolute color="transparent" />
 
       <div
         className={classes.pageHeader}
         style={{
           backgroundImage: "url(" + image + ")",
           backgroundSize: "cover",
-          backgroundPosition: "top center"
+          backgroundPosition: "top center",
         }}
       >
-
-
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={4}>
-              <Card 
-              //className={classes[cardAnimaton]}
-              >
+              <Card>
                 <form className={classes.form} onSubmit={handleFormSubmit}>
-                  <CardHeader color="primary" className={classes.cardHeader} justify="center">
+                  <CardHeader
+                    color="primary"
+                    className={classes.cardHeader}
+                    justify="center"
+                  >
                     <h4>Login</h4>
-                    <div className={classes.socialLine}>
-                      {/* <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={e => e.preventDefault()}
-                      >
-                        <i className={"fab fa-twitter"} />
-                      </Button> */}
-                      {/* <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={e => e.preventDefault()}
-                      >
-                        <i className={"fab fa-facebook"} />
-                      </Button> */}
-                      {/* <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={e => e.preventDefault()}
-                      >
-                        <i className={"fab fa-google-plus-g"} />
-                      </Button> */}
-                    </div>
+                    <div className={classes.socialLine}></div>
                   </CardHeader>
-                  {/* <p className={classes.divider}>Or Be Classical</p> */}
                   <CardBody>
-
-
                     <CustomInput
                       labelText="Email..."
                       id="email"
-                      // formControlProps={{
-                      //   fullWidth: true
-                      // }}
                       htmlFor="email"
                       name="email"
                       type="email"
-                    //   value={formState.email}
-                    //   onChange={handleChange}
-                      
-
                       inputProps={{
                         name: "email",
                         type: "email",
                         onChange: handleChange,
-                        value:formState.email,
+                        value: formState.email,
                         endAdornment: (
                           <InputAdornment position="end">
                             <Email className={classes.inputIconsColor} />
                           </InputAdornment>
-                        )
+                        ),
                       }}
                     />
-
 
                     <CustomInput
                       labelText="Password"
                       id="password"
-                    //   formControlProps={{
-                    //     fullWidth: true
-                    //   }}
                       htmlFor="pwd"
-                      name ="password"
+                      name="password"
                       type="pwd"
-                    //   value={formState.password}
-                    //   onChange={handleChange}
-
                       inputProps={{
-                        name:"password",
+                        name: "password",
                         type: "password",
                         onChange: handleChange,
-                        value:formState.password,
+                        value: formState.password,
                         endAdornment: (
                           <InputAdornment position="end">
                             <Icon className={classes.inputIconsColor}>
@@ -185,41 +124,35 @@ export default function LoginNew(props) {
                             </Icon>
                           </InputAdornment>
                         ),
-                        autoComplete: "off"
+                        autoComplete: "off",
                       }}
                     />
-
-
-
                   </CardBody>
 
-                  {
-                    error ? <div>
-                        <p className="error-text" >The provided credentials are incorrect</p>
-                    </div> : null
-                    }
+                  {error ? (
+                    <div>
+                      <p className="error-text">
+                        The provided credentials are incorrect
+                      </p>
+                    </div>
+                  ) : null}
 
                   <CardFooter className={classes.cardFooter}>
-
-
-                    {/* <Button type="submit" color="primary" size="lg" round >
-                            Login
-                    </Button> */}
-                    {/* </div> */}
-                    <Button type="submit" simple color="primary" size="lg" round>
+                    <Button
+                      type="submit"
+                      simple
+                      color="primary"
+                      size="lg"
+                      round
+                    >
                       Get started
                     </Button>
 
                     <div>
-                    {/* <Button color="default" round simple > */}
-                        <Link to="/signup" color="primary"  round>
-                            Go to Signup
-                        </Link>
-                    {/* </Button> */}
-
+                      <Link to="/signup" color="primary" round>
+                        Go to Signup
+                      </Link>
                     </div>
-
-
                   </CardFooter>
                 </form>
               </Card>

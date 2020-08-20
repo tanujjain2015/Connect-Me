@@ -110,6 +110,20 @@ db.once('open', async () => {
       // subject: subjects[0].subject
     },
     { 
+      name: "Angular JS",
+      description: "This class will help you have an idea of how Angular.js works",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 210.00,
+      quantity: 1,
+      user: users[0]._id,
+      subject: {
+        _id: subjects[0]._id,
+        subject: subjects[0].subject
+      }
+      // ,subjects[0]._id,
+      // subject: subjects[0].subject
+    },
+    { 
       name: "Javascript Basics",
       description: "Covers the basics of Javascript. Needs prior knowledge of HTML and CSS",
       image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
@@ -123,11 +137,39 @@ db.once('open', async () => {
         subject: subjects[1].subject
       }
     },
-    {
-      name: "Javascript Advanced",
-      description: "Covers the advance levels of Javascript. Needs prior knowledge of HTML and CSS",
+    { 
+      name: "Introduction to physics",
+      description: "An introductory course which focuses on Physis theorems",
       image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
-      price: 90.00,
+      price: 110.00,
+      quantity: 1,
+      user: users[0]._id,
+      // subject: subjects[1]._id,
+      // subject: subjects[1].subject
+      subject: {
+        _id: subjects[1]._id,
+        subject: subjects[1].subject
+      }
+    },
+    {
+      name: "Algebra Advanced",
+      description: "Covers the advance levels of Algebra. Needs prior knowledge of theorems and formulae",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 190.00,
+      quantity: 1,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[2]._id,
+        subject: subjects[2].subject
+      }
+    },
+    {
+      name: "Integration beginners",
+      description: "Intoductory course to Mathematics Integration.",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 190.00,
       quantity: 1,
       user:users[0]._id,
       // subject: subjects[2]._id, 
@@ -149,6 +191,48 @@ db.once('open', async () => {
       subject: {
         _id: subjects[3]._id,
         subject: subjects[3].subject
+      }
+    },
+    {
+      name: "Life Science concentration",
+      description: "Interdisciplinary course for Careers in Medicine or Public health",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 210.00,
+      quantity: 10,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[3]._id,
+        subject: subjects[3].subject
+      }
+    },
+    {
+      name: "GIS, Mapping, and Spatial Analysis",
+      description: "Focuses on concepts, tools, and techniques to make great maps",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 200.00,
+      quantity: 10,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[4]._id,
+        subject: subjects[4].subject
+      }
+    },
+    {
+      name: "Geographical Information Systems - Part 1",
+      description: "Theoretical and practical foundations of geographic information systems(GIS)",
+      image:"https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/082014/js1_0.png?itok=9fCD5b30",
+      price: 200.00,
+      quantity: 10,
+      user:users[0]._id,
+      // subject: subjects[2]._id, 
+      // subject: subjects[2].subject
+      subject: {
+        _id: subjects[4]._id,
+        subject: subjects[4].subject
       }
     },
     {
