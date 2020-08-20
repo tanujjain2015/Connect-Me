@@ -20,36 +20,30 @@ import '../../assets/jss/material-kit-react/components/customInputStyle.js';
 import CustomInput from '../CustomInput/CustomInput';
 //============import from profile
 
-// nodejs library that concatenates classes
-import classNames from "classnames";
+import ImageUpload from "../ImageUpload";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
-import Camera from "@material-ui/icons/Camera";
-import Palette from "@material-ui/icons/Palette";
-import Favorite from "@material-ui/icons/Favorite";
+import Email from "@material-ui/icons/Email";
+import People from "@material-ui/icons/People";
 // core components
 import Header from "../Header/Header.js";
+import HeaderLinks from "../Header/HeaderLinks.js";
 import GridContainer from "../Grid/GridContainer.js";
 import GridItem from "../Grid/GridItem.js";
-import HeaderLinks from "../Header/HeaderLinks.js";
-import NavPills from "../NavPills/NavPills.js";
-import Parallax from "../Parallax/Parallax.js";
-import profile from "../../assets/img/faces/avatarimage.jpeg";
-import studio1 from "../../assets/img/examples/studio-1.jpg";
-import studio2 from "../../assets/img/examples/studio-2.jpg";
-import studio3 from "../../assets/img/examples/studio-3.jpg";
-import studio4 from "../../assets/img/examples/studio-4.jpg";
-import studio5 from "../../assets/img/examples/studio-5.jpg";
-import work1 from "../../assets/img/examples/olu-eletu.jpg";
-import work2 from "../../assets/img/examples/clem-onojeghuo.jpg";
-import work3 from "../../assets/img/examples/cynthia-del-rio.jpg";
-import work4 from "../../assets/img/examples/mariya-georgieva.jpg";
-import work5 from "../../assets/img/examples/clem-onojegaw.jpg";
-import styles from "../../assets/jss/material-kit-react/views/profilePage.js";
-import Nav from '../Nav/index'
+import Card from "../Card/Card.js";
 import CardBody from "../Card/CardBody.js";
-
+import CardHeader from "../Card/CardHeader.js";
+import CardFooter from "../Card/CardFooter.js";
+import styles from "../../assets/jss/material-kit-react/views/loginPage.js";
+import image from "../../assets/img/bg7.jpg";
+import CustomDropdown from '../CustomDropdown/CustomDropdown.js';
+import Nav from '../Nav/index';
+import Parallax from '../Parallax/Parallax';
+import profile from "../../assets/img/faces/avatarimage.jpeg";
+import classNames from "classnames";
 
 const useStyles = makeStyles(styles);
 
@@ -58,12 +52,13 @@ function ProfileUpdate (props) {
 
     const classes = useStyles();
     const { ...rest } = props;
+
     const imageClasses = classNames(
-      classes.imgRaised,
-      classes.imgRoundedCircle,
-      classes.imgFluid
-    );
-    const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
+        classes.imgRaised,
+        classes.imgRoundedCircle,
+        classes.imgFluid
+      );
+      const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
 
     //changes
     const { email: userParam } = useParams();
@@ -116,11 +111,60 @@ function ProfileUpdate (props) {
         history.push('/')
       };
 
+      const handleChange = event => {
+        const { name, value } = event.target;
+        console.log(event);
+        console.log(event.target.name);
+        console.log(event.target.value);
+        setFormState({
+          ...formState,
+          [name]: value
+        });
+      };
 
 
     return(
 
-        //================================================
+        // //================================================
+        // <div>
+        // <Nav 
+        //  {...rest}/>
+  
+        // <div
+        //     className={classes.pageHeader}
+        //     style={{
+        //     backgroundImage: "url(" + image + ")",
+        //     backgroundSize: "cover",
+        //     backgroundPosition: "top center"
+        //     }}
+        // >
+  
+        // <Parallax small filter image={require("../../assets/img/bg7.jpg")} round />
+        // <div className={classNames(classes.main, classes.mainRaised)}>
+        //   <div>
+        //     <div className={classes.container}>
+        //       <GridContainer justify="center">
+        //         <GridItem xs={12} sm={12} md={6}>
+        //           <div className={classes.profile}>
+        //           <div>
+        //             <img src={profile} alt="..." className={imageClasses} />
+        //           </div>
+        //             <div className={classes.name}>
+        //               <h3 className={classes.title}>{user.firstName} {user.lastName}</h3>
+        //               <h6>{user.tutor}</h6>
+        //             </div>
+        //           </div>
+        //         </GridItem>
+        //       </GridContainer>
+        //       <div className={classes.description}>
+        //         <p>
+        //           {user.bio}
+        //           {" "}
+        //         </p>
+        //       </div>
+        //       <GridContainer justify="center">
+        //         <GridItem xs={12} sm={12} md={8} lg={6} className={classes.navWrapper}>
+
         <div>
         <Nav 
          {...rest}/>
@@ -153,9 +197,136 @@ function ProfileUpdate (props) {
                 <GridItem xs={12} sm={12} md={8} lg={6} className={classes.navWrapper}>
   
                   
+  <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark"  onSubmit={async event => {event.preventDefault()}}
+            onSubmit={handleFormSubmit}>
+
+<div className = "form-group ">
+
+                    <CustomInput 
+                      labelText="First Name"
+                      id="firstName"
+                      htmlFor="firstName"
+                      name="firstName"
+                      type="firstName"
+                      inputProps={{
+                        name: "firstName",
+                        type: "firstName",
+                        onChange: handleChange,
+                        value:formState.firstName,
+                      }}
+                    />
+                    </div>
+
+                    <div className = "form-group ">
+<CustomInput 
+                      labelText="Last Name"
+                      id="lastName"
+                      htmlFor="lastName"
+                      name="lastName"
+                      type="lastName"
+                      inputProps={{
+                        name: "lastName",
+                        type: "lastName",
+                        onChange: handleChange,
+                        value:formState.lastName,
+                      }}
+                    />
+                    </div>
+
+                    <div className = "form-group ">
+
+<CustomInput 
+                      labelText="Email"
+                      id="email"
+                      htmlFor="email"
+                      name="email"
+                      type="email"
+                      inputProps={{
+                        name: "email",
+                        type: "email",
+                        onChange: handleChange,
+                        value:formState.email,
+                      }}
+                    />
+
+</div>
+                        <div className = "form-row">
+                            <div className="form-group col-md-6">
+                                 <label htmlFor="tutor">Signed up as:</label>
+                                 <select id = "tutor" name="tutor" className = "form-control border border-info" value = {formState.tutor || ''} 
+                                 onChange={handleChange}
+                                    // onChange={event => {
+                                    //     const { name, value } = event.target;
+                                    //         console.log(event);
+                                    //         console.log(event.target.name);
+                                    //         console.log(event.target.value);
+                                    //         setFormState({
+                                    //         ...formState,
+                                    //         [name]: value
+                                    //         });
+                                    //     }}  
+                                        >
+                                    <option value="tutor">Tutor  </option>
+                                    <option value="student">Student</option>
+                                 </select>
+                                 </div>
+                            </div>
+   
+
+
+                            <div className = "form-row">
+                            <div className="form-group col-md-6">
+                                 <label htmlFor="location">Location:</label>
+                                 <select id = "location" name="location" className = "form-control border border-info" value = {formState.location || ''} 
+                                   onChange={handleChange}
+                                   // onChange={event => {
+                                   //     const { name, value } = event.target;
+                                   //         console.log(event);
+                                   //         console.log(event.target.name);
+                                   //         console.log(event.target.value);
+                                   //         setFormState({
+                                   //         ...formState,
+                                   //         [name]: value
+                                   //         });
+                                   //     }}  
+                                       >
+                                    <option value="AMER">AMER  </option>
+                                    <option value="EMEA">EMEA</option>
+                                    <option value="APAC">APAC</option>
+                                 </select>
+                            </div>
+                            </div>
+
+<div>
+                            <CustomInput 
+                      labelText="Bio"
+                      id="bio"
+                      htmlFor="bio"
+                      name="bio"
+                      type="bio"
+                      inputProps={{
+                        name: "bio",
+                        type: "bio",
+                        onChange: handleChange,
+                        value:formState.bio,
+                      }}
+                    />
+
+</div>
+
+
+                    <Button type="submit" color="primary" round style={{color: "#FFFFFF"}}>
+                        Update
+                    </Button>
+
+                    <Button type="submit" color="default" round simple>
+                            <Link to="/">Home</Link>
+                    </Button>
+  </form>
   
-  
-                <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark" 
+                {/* <form className = "mx-auto my-5 p-3 mb-2 bg-light text-dark" 
+
+
             // onSubmit={async event => {event.preventDefault()}}
             onSubmit={handleFormSubmit}
             >
@@ -270,27 +441,24 @@ function ProfileUpdate (props) {
                          </div>
 
 
-                    <Button type="submit" color="primary" round style={{color: "#FFFFFF"}}>
-                        Update
-                    </Button>
 
-                    <Button type="submit" color="default" round simple>
-                            <Link to="/">Home</Link>
-                    </Button>
 
-         </form>
-              </GridItem>
-              </GridContainer>
-      <div>
-  </div>
-  
-            </div>
+         </form> */}
+
+
+
+
+            </GridItem>
+            </GridContainer>
+    <div>
+</div>
+
           </div>
-  
-      </div>
-        <Footer />
-      </div>
-      //========
+        </div>
+
+    </div>
+      <Footer />
+    </div>
 
     )
 }
