@@ -22,8 +22,8 @@ import Auth from "../../utils/auth";
 import Footer from "../Footer/Footer";
 import Button from "../CustomButtons/Button";
 
-//================================================================
-//================================================
+
+
 
 // @material-ui/icons
 import Camera from "@material-ui/icons/Camera";
