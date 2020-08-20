@@ -8,12 +8,14 @@ const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id })
-          .select('-__v -password')
-          .populate('User')
-          // .populate('offerings')
-    
-        return userData;
+        const user = await User.findById(context.user._id).populate({
+          path: 'orders.offerings',
+          populate: 'subject'
+        });
+
+        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+
+        return user;
       }
     
       throw new AuthenticationError('Not logged in');
@@ -31,7 +33,7 @@ const resolvers = {
           populate: 'subject'
         });
 
-        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+        //user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
 
         return user;
       }
@@ -71,12 +73,20 @@ const resolvers = {
     offering: async (parent, { _id }) => {
       return await Offering.findById(_id).populate('subject');
     },
+    searchOffering: async (parent, { name }) => {
+      const params = {};
+      params.name = name;
+      console.log(name)
+      return await Offering.find({name});
+    },
 
     //Retrieve offering by userID
     // offeringbyUserID: async (parent, { userid }, context) => {
     //   return await Offering.find({userid: userid}).populate('subject');
     // },
-    
+    orders: async () => {
+      return await Order.find();
+    },
   
     order: async (parent, { _id }, context) => {
       if (context.user) {
@@ -84,7 +94,7 @@ const resolvers = {
           path: 'orders.offerings',
           populate: 'subject'
         });
-        return user.orders.id(_id);
+        return user.orders._id(_id);
       }
 
       throw new AuthenticationError('Not logged in');
@@ -120,38 +130,23 @@ const resolvers = {
     //   }
 
     checkout: async (parent, args, context) => {
-      console.log("Inside : " + args.offerings );
+      //console.log("Inside : " + args.offerings );
       const order = new Order ({offerings: args.offerings});
-     //console.log(order);
+      //console.log( "Order value at start checkout: ", order);
       const { offerings } = await order.populate('offerings').execPopulate(); 
-      console.log(offerings);
+      //console.log("Offerings value at line 137 after checkout: ", offerings);
       const products = offerings;
       const url = new URL(context.headers.referer).origin;
      // console.log("Inside checkout" + offerings );
       const line_items = [];
-      console.log(products.length);
+      //console.log(products.length);
 
       for (let i = 0; i < products.length; i++) {
-        //console.log(offerings.id);
-         console.log(products[i]._id);
-        // console.log(offerings[i].price);`
-        // console.log(offerings[i].quantity);
-        // generate offering id
         const product = await stripe.products.create({
-          //id: offerings.id, (No ID Value hence commented out) q
-          //user: context.user.email,
-          name: "maths",
-          description: "Offerings"
-          // price: products[i].price,
-          //quantity: products[i].quantity,
-          // subject: offerings[i].subject,
-          // user: offerings[i].user,
-          // name: products[i].name,
-          // description: products[i].description,
-          // images: [`${url}/images/${offerings[i].image}`]
+          name: products[i].name,
+          description: products[i].description
         });
-        //console.log("offering value is: " + product);
-        // generate price id using the offering id
+  
         const price = await stripe.prices.create({
           product: product.id,
           unit_amount: products[i].price * 100,
@@ -172,7 +167,24 @@ const resolvers = {
         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${url}/`
       })
+      
+      if (context.user){
+        //if (session.id){
+          //console.log( "Order value in checkout: ", order);
+          //console.log("User Context id is", context.user._id );
 
+          const updateUser = await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $push: { orders: order }},
+            { new: true, runValidators: true }
+          );
+          //console.log("update user value is", updateUser);
+          const userdetails = await User.findById(context.user._id );
+          //console.log("user details are", userdetails);
+
+          //User.findByIdAndUpdate(context.user._id, input, { new: true });
+       // }
+      }
       return { session: session.id}
 
     }
@@ -238,10 +250,10 @@ const resolvers = {
     
       throw new AuthenticationError('You need to be logged in!');
     },
-    removeSubject: async (parent, {subjectid}, context) => {
+    removeSubject: async (parent, {subject}, context) => {
       if (context.user) {
         const updatedSubject = await Subject.findByIdAndDelete(
-          { _id: subjectid }
+          { _id: subject }
         );
         return updatedSubject;
       }
@@ -251,11 +263,11 @@ const resolvers = {
     addOffering: async (parent, args, context) => {
       console.log(args)
       if (context.user ) {
-        const subjectDetails = await Subject.findById(args.subjectid);
+        const subjectDetails = await Subject.findById(args.subject);
         args.subject = subjectDetails;
-        // const userDetails = await User.findById(args.userid);
-        // console.log(userDetails);
-        // args.user = userDetails;
+        const userDetails = await User.findById(args.user);
+        console.log(userDetails);
+        args.user = userDetails;
 
         const offering =  await Offering.create(args);
         return offering;

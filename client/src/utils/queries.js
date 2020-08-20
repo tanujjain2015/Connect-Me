@@ -107,6 +107,18 @@ export const QUERY_ME = gql`
       bio
       tutor
       location
+      orders {
+      _id
+      purchaseDate
+        offerings {
+          _id
+          name
+          description
+          price
+          quantity
+        }
+      } 
+      
   	}
   }
 `;

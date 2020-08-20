@@ -18,8 +18,8 @@ const offeringSchema = new Schema({
   // },
   price: {
     type: Number,
-    // required: true,
-    // min: 0.99
+    required: true,
+    min: 0.99
   },
   quantity: {
     type: Number,
@@ -28,12 +28,12 @@ const offeringSchema = new Schema({
   },
   subject: {
     type: Schema.Types.ObjectId,
-    ref: 'Subject',
+    ref: 'Subject'
     // required: true
   },
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'User'
     // required: true
   }
 });

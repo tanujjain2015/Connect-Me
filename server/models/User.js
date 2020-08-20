@@ -36,7 +36,7 @@ const userSchema = new Schema({
   bio: {
     type: String,
     required: false,
-    minlength: 10
+    // minlength: 3
   },
   image: {
     type: String,
@@ -51,6 +51,7 @@ const userSchema = new Schema({
   // },
   orders: [Order.schema],
   feedback: [Feedback.schema],
+  subject: [Subject.schema]
 });
 
 // set up pre-save middleware to create password
