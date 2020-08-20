@@ -165,6 +165,13 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import ListIcon from '@material-ui/icons/List';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ScheduleIcon from '@material-ui/icons/Schedule';
+import LocalAtmIcon from '@material-ui/icons/LocalAtm';
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import Avatar from '@material-ui/core/Avatar';
 
 import Auth from "../../utils/auth";
@@ -174,6 +181,8 @@ import Calender from "../Calender";
 import SearchedOfferings from "../../pages/SearchedOfferings"
 import Cart from '../Cart';
 import Button from '../CustomButtons/Button';
+
+// import { RiLogOutBoxRFill } from 'react-icons/ri';
 
 const drawerWidth = 240;
 
@@ -269,35 +278,35 @@ export default function Nav(){
           </ListItem>
 
           <ListItem button key="Manage Offerings">
-            <ListItemIcon><AssignmentIcon /></ListItemIcon>
+            <ListItemIcon><ListIcon/></ListItemIcon>
             <ListItemText>
                   <Link to ="/manageOfferings">Manage Offerings</Link>
                 </ListItemText>
           </ListItem>
 
           <ListItem button key="My Profile">
-            <ListItemIcon><PageviewIcon /></ListItemIcon>
+            <ListItemIcon><AssignmentIndIcon /></ListItemIcon>
             <ListItemText>
                   <Link to ="/profile">My Profile</Link>
                 </ListItemText>
           </ListItem>
 
           <ListItem button key="My Schedule">
-            <ListItemIcon><MailIcon/></ListItemIcon>
+            <ListItemIcon><ScheduleIcon/></ListItemIcon>
             <ListItemText>
                   <Link to ="/myschedule">My Schedule</Link>
                 </ListItemText>
           </ListItem>
 
           <ListItem button key="Payment History">
-            <ListItemIcon><MailIcon/></ListItemIcon>
+            <ListItemIcon><LocalAtmIcon/></ListItemIcon>
             <ListItemText>
                   <Link to ="/orderHistory">Payment History</Link>
                 </ListItemText>
           </ListItem>
 
           <ListItem >
-            <ListItemIcon><MailIcon/></ListItemIcon>
+            <ListItemIcon><ExitToAppIcon/></ListItemIcon>
             <ListItemText>
             <Link to ="/signup"onclick={() => Auth.logout()}>Logout</Link>
             {/* <a href="/signup" onclick={() => Auth.logout()}>Logout</a> */}
@@ -311,14 +320,14 @@ export default function Nav(){
         return (
           <List>  
           <ListItem button key="Signup">
-            <ListItemIcon> <MailIcon/></ListItemIcon>
+            <ListItemIcon> <VpnKeyIcon/></ListItemIcon>
             <ListItemText>
               <Link to ="/signup">Signup</Link>
             </ListItemText>
           </ListItem>
   
           <ListItem button key="Login">
-            <ListItemIcon> <MailIcon/></ListItemIcon>
+            <ListItemIcon> <LockOpenIcon/></ListItemIcon>
             <ListItemText>
               <Link to ="/login">Login</Link>
             </ListItemText>
