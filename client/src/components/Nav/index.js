@@ -363,7 +363,9 @@ export default function Nav(){
       </Button>
       {/* <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button> */}
       </Link>
+     
           </Toolbar>
+          <Cart/>
         </AppBar>
 
         <Drawer
@@ -382,7 +384,8 @@ export default function Nav(){
           </div>
           <Divider />
           {ShowNav()}
-          <Cart/>
+         
+         
           </Drawer>
         <main
           className={clsx(classes.content, {

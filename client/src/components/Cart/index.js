@@ -119,7 +119,7 @@ const Cart = () => {
   // className="close" onClick={toggleCart}>[close]
   >
   <Button color="primary" round onClick={toggleCart}>
-      [Close]
+      Close
   </Button>
   </div>
   <h2>Shopping Cart</h2>
