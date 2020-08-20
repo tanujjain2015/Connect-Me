@@ -8,10 +8,13 @@ const path = require('path');
 // const cloudinary = require("cloudinary");
 // const cloudinaryStorage = require("multer-storage-cloudinary");
 // require('dotenv').config()
-const AWS = require('aws-sdk');
-const fs = require('fs');
-AWS.config.loadFromPath('./config.json');
-const s3 = new AWS.S3({apiVersion: '2006-03-01'});
+
+
+
+// const AWS = require('aws-sdk');
+// const fs = require('fs');
+// AWS.config.loadFromPath('./config.json');
+// const s3 = new AWS.S3({apiVersion: '2006-03-01'});
 
 
 const { typeDefs, resolvers } = require('./schemas');
