@@ -283,10 +283,10 @@ export default function SignupNew(props) {
                     </div>
                   </CardFooter>
 
-                  <div className="">
+                  {/* <div className="">
         <ImageUpload>
         </ImageUpload>
-       </div>
+       </div> */}
 
                 </form>
               </Card>
