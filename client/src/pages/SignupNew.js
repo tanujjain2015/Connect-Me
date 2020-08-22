@@ -282,6 +282,12 @@ export default function SignupNew(props) {
                       {/* </Button> */}
                     </div>
                   </CardFooter>
+
+                  <div className="">
+        <ImageUpload>
+        </ImageUpload>
+       </div>
+
                 </form>
               </Card>
             </GridItem>

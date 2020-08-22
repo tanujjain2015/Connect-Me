@@ -2,7 +2,24 @@ const { AuthenticationError } = require('apollo-server-express');
 const { User, Offering, Subject, Order } = require('../models');
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc'); //replace with process.env.STRIPE_KEY
-const fs = require('fs');
+// const fs = require('fs');
+const multer = require("multer");
+const path = require("path");
+
+
+let Storage = multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, "../../client/public/Images/uploads/");
+  },
+  filename: function (req, file, callback) {
+    callback(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
+  },
+});
+let upload = multer({
+  storage: Storage,
+}).array("uploader", 4);
+
+
 
 const resolvers = {
   Query: {
@@ -199,7 +216,7 @@ const resolvers = {
 
         const fileStream = fs.createReadStream(filename)
 
-        fileStream.pipe(fs.createWriteStream(`./uploadedFiles/${filename}`))
+        fileStream.pipe(fs.createWriteStream(`../../client/public/Images/uploads/${filename}`))
         
         return file;
       });
