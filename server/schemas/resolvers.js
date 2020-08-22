@@ -8,12 +8,14 @@ const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id })
-          .select('-__v -password')
-          .populate('User')
-          // .populate('offerings')
-    
-        return userData;
+        const user = await User.findById(context.user._id).populate({
+          path: 'orders.offerings',
+          populate: 'subject'
+        });
+
+        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+
+        return user;
       }
     
       throw new AuthenticationError('Not logged in');
@@ -31,7 +33,7 @@ const resolvers = {
           populate: 'subject'
         });
 
-        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+        //user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
 
         return user;
       }
@@ -82,7 +84,9 @@ const resolvers = {
     // offeringbyUserID: async (parent, { userid }, context) => {
     //   return await Offering.find({userid: userid}).populate('subject');
     // },
-    
+    orders: async () => {
+      return await Order.find();
+    },
   
     order: async (parent, { _id }, context) => {
       if (context.user) {
@@ -90,7 +94,7 @@ const resolvers = {
           path: 'orders.offerings',
           populate: 'subject'
         });
-        return user.orders.id(_id);
+        return user.orders._id(_id);
       }
 
       throw new AuthenticationError('Not logged in');
@@ -126,16 +130,16 @@ const resolvers = {
     //   }
 
     checkout: async (parent, args, context) => {
-      console.log("Inside : " + args.offerings );
+      //console.log("Inside : " + args.offerings );
       const order = new Order ({offerings: args.offerings});
-     //console.log(order);
+      //console.log( "Order value at start checkout: ", order);
       const { offerings } = await order.populate('offerings').execPopulate(); 
-      console.log(offerings);
+      //console.log("Offerings value at line 137 after checkout: ", offerings);
       const products = offerings;
       const url = new URL(context.headers.referer).origin;
      // console.log("Inside checkout" + offerings );
       const line_items = [];
-      console.log(products.length);
+      //console.log(products.length);
 
       for (let i = 0; i < products.length; i++) {
         const product = await stripe.products.create({
@@ -163,7 +167,24 @@ const resolvers = {
         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${url}/`
       })
+      
+      if (context.user){
+        //if (session.id){
+          //console.log( "Order value in checkout: ", order);
+          //console.log("User Context id is", context.user._id );
 
+          const updateUser = await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $push: { orders: order }},
+            { new: true, runValidators: true }
+          );
+          //console.log("update user value is", updateUser);
+          const userdetails = await User.findById(context.user._id );
+          //console.log("user details are", userdetails);
+
+          //User.findByIdAndUpdate(context.user._id, input, { new: true });
+       // }
+      }
       return { session: session.id}
 
     }

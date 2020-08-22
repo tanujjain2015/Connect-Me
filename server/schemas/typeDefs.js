@@ -61,6 +61,7 @@ type File {
     # offeringbyUserID(userid: String!): Offering 
     feedback: Feedback
     order(_id: ID!): Order  
+    orders: Order  
     checkout(offerings: [ID]!): Checkout
   }
   type Mutation {
