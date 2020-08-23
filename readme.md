@@ -27,7 +27,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 [ConnectMe](https://tanjain-connectme.herokuapp.com/)<br />
 <br />
 
-![Image](https://github.com/izabelacloud/Connect-Me/blob/master/client/src/assets/img/connect-me1.png?raw=true)<br />
+![Image](https://github.com/tanujjain2015/Connect-Me/blob/master/client/src/assets/img/connect-me1.png?raw=true)<br />
 
 ## Installation
 
