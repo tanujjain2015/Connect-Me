@@ -24,7 +24,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Deployed Application 
 
-[ConnectMe](https://izabelacloud-connectme.herokuapp.com/)<br />
+[ConnectMe](https://tanjain-connectme.herokuapp.com/)<br />
 <br />
 
 ![Image](https://github.com/izabelacloud/Connect-Me/blob/master/client/src/assets/img/connect-me1.png?raw=true)<br />
